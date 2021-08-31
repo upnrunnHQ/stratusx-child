@@ -134,3 +134,8 @@ form input, .frm_forms form label, .with_frm_style label.frm_primary_label, .wit
 .woocommerce.single-product .product {
     margin-top: 0;
 }
+
+.anly_right_content.exp_p_detail {
+    width: calc(100% - 100px);
+    margin-left: auto;
+}
