@@ -1,5 +1,13 @@
 <?php
 add_action( 'wp_enqueue_scripts', 'enqueue_child_theme_style', 9999 );
+add_action( 'wp_enqueue_scripts', 'expert_profile_js_css' );
+add_filter( 'wf_pklist_alter_tax_inclusive_text', 'wf_pklist_remove_tax_text', 10, 3 );
+add_action( 'wp_head', 'stratusx_child_remove_actions' );
+
+if ( SITECOOKIEPATH != COOKIEPATH ) {
+	setcookie( TEST_COOKIE, 'WP Cookie check', 0, SITECOOKIEPATH, COOKIE_DOMAIN );
+}
+
 function enqueue_child_theme_style() {
 	wp_enqueue_style(
 		'dtbwp_css_child',
@@ -11,7 +19,6 @@ function enqueue_child_theme_style() {
 	);
 }
 
-add_filter( 'wf_pklist_alter_tax_inclusive_text', 'wf_pklist_remove_tax_text', 10, 3 );
 function wf_pklist_remove_tax_text( $incl_tax_text, $template_type, $order ) {
 	if ( $template_type == 'invoice' ) {
 		$incl_tax_text = '';
@@ -42,10 +49,6 @@ function wf_pklist_remove_tax_text( $incl_tax_text, $template_type, $order ) {
 
 // add_filter( 'woocommerce_show_page_title', '__return_null' );
 
-if ( SITECOOKIEPATH != COOKIEPATH ) {
-	setcookie( TEST_COOKIE, 'WP Cookie check', 0, SITECOOKIEPATH, COOKIE_DOMAIN );
-}
-
 /**
  * Never worry about cache again!
  */
@@ -75,4 +78,19 @@ function expert_profile_js_css() {
 		wp_enqueue_style( 'custom_css' );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'expert_profile_js_css' );
+
+function stratusx_child_remove_actions() {
+	remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10 );
+	remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 20 );
+
+	remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
+	remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
+	remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+	remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20 );
+	remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+	remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_sharing', 50 );
+
+	remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );
+	remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
+	remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
+}
