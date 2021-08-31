@@ -1,0 +1,109 @@
+/*
+Theme Name:     Stratus - Child Theme
+Theme URI:      http://themovation.com/stratus
+Template:       stratusx
+Author:         Themovation
+Author URI:     http://themovation.com
+Version:        3.0
+Text Domain:    stratus
+Domain Path:    /languages/
+*/
+
+
+/* = Theme customization starts here
+-------------------------------------------------------------- */
+@font-face {
+  font-family: 'Tajawal';
+  font-style: normal;
+  font-weight: 300; 
+  src: url("fonts/ArbFONTS-Tajawal-Light.ttf");
+}
+body{
+	/*text-align: justify;*/
+	font-family: 'Tajawal';
+}
+body, p, li{
+  font-family: 'Tajawal' !important;
+}
+.navbar .navbar-nav{
+  font-family: 'Tajawal' !important;
+}
+.navbar .navbar-nav > li > a, .navbar .navbar-nav > li > a:hover, .navbar .navbar-nav > li.active > a, .navbar .navbar-nav > li.active > a:hover, .navbar .navbar-nav > li.active > a:focus, .banner[data-transparent-header="true"].headhesive--clone .navbar-nav > li > a, .navbar .navbar-nav > li.th-accent{
+  font-family: 'Tajawal' !important;
+}
+.elementor-179 .elementor-element.elementor-element-4251bf2 .elementor-heading-title{
+	font-weight: normal
+}
+.footer .widget{
+	text-align: right
+}
+.footer p, .footer a, .footer ul li, .footer ol li{
+	text-align: right
+}
+.th-contact-info-widget .icon-block i{
+	padding-left: 10px;
+}
+.top-nav-icon-blocks .icon-block i{
+	padding-left: 13px;
+}
+.headhesive--clone #logo img{
+	max-height: 50px !important;
+}
+.navbar-nav > li{
+	float: right
+}
+.elementor-widget-themo-service-block.elementor-position-left .th-service-block-w .elementor-icon-box-icon{
+	margin-left: 20px
+}
+.elementor-widget-themo-service-block.elementor-position-left .th-service-block-w .elementor-icon-box-wrapper.th-show-icon{
+	text-align: right
+}
+.col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12{
+	float: right
+}
+/*
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6{
+	text-align: right
+}*/
+.elementor-213 .elementor-element.elementor-element-zkydphc .th-header-wrap .elementor-icon-box-wrapper{
+	text-align: right
+}
+.frm_forms form input[type="text"], .frm_forms form input[type="email"], .frm_forms form input[type="url"], .frm_forms form input[type="password"], .frm_forms form input[type="number"], .frm_forms form input[type="tel"], .frm_style_formidable-style.with_frm_style input[type="text"], .frm_style_formidable-style.with_frm_style input[type="password"], .frm_style_formidable-style.with_frm_style input[type="email"], .frm_style_formidable-style.with_frm_style input[type="number"], .frm_style_formidable-style.with_frm_style input[type="url"], .frm_style_formidable-style.with_frm_style input[type="tel"], .frm_style_formidable-style.with_frm_style input[type="file"], .frm_style_formidable-style.with_frm_style input[type="search"]{
+  font-family: 'Tajawal' !important;	
+}
+form input, .frm_forms form label, .with_frm_style label.frm_primary_label, .with_frm_style.frm_login_form label, .frm_forms form input, .frm_forms form textarea, .with_frm_style input[type="text"], .with_frm_style input[type="password"], .with_frm_style input[type="email"], .with_frm_style input[type="number"], .with_frm_style input[type="url"], .with_frm_style input[type="tel"], .with_frm_style select, .frm_style_formidable-style.with_frm_style select, .with_frm_style textarea, .frm_style_formidable-style.with_frm_style textarea, #content .with_frm_style input:not([type="submit"]):not([type="button"]), #content .with_frm_style select, #content .with_frm_style textarea, .with_frm_style .chzn-container, .with_frm_style input[type="file"], .with_frm_style .frm_submit input[type="submit"], .with_frm_style .frm_submit input[type="button"], .frm_form_submit_style, .with_frm_style.frm_login_form input[type="submit"], a.frm_save_draft, .with_frm_style #frm_field_cptch_number_container, .with_frm_style .frm_radio label, .with_frm_style .frm_checkbox label, .frm_forms .frm_description, .with_frm_style p.description, .with_frm_style div.description, .with_frm_style div.frm_description, .frm_style_formidable-style.with_frm_style .frm_error{
+  font-family: 'Tajawal' !important;	
+}
+
+.frm_forms form label, .with_frm_style label.frm_primary_label, .with_frm_style.frm_login_form label, .frm_style_formidable-style.with_frm_style label.frm_primary_label, .frm_style_formidable-style.with_frm_style.frm_login_form label, .frm_style_formidable-style.with_frm_style .frm_radio label, .frm_style_formidable-style.with_frm_style .frm_checkbox label{
+	float: right;
+}
+.frm_forms form label, .with_frm_style label.frm_primary_label, .with_frm_style.frm_login_form label, .frm_style_formidable-style.with_frm_style label.frm_primary_label, .frm_style_formidable-style.with_frm_style.frm_login_form label, .frm_style_formidable-style.with_frm_style .frm_radio label, .frm_style_formidable-style.with_frm_style .frm_checkbox label{
+	width: 100%;
+	text-align: right
+}
+.with_frm_style .frm_radio input[type="radio"], .with_frm_style .frm_checkbox input[type="checkbox"]{
+	margin: 4px 15px 5px 10px;
+}
+.with_frm_style .chosen-rtl .chosen-choices li.search-choice{
+	padding: 10px;
+	margin: 5px;
+	padding-left: 16px;
+}
+.with_frm_style .chosen-rtl .chosen-choices li.search-choice .search-choice-close{
+	left: 3px;
+	top: 12px;
+}
+.with_frm_style .chosen-container-multi .chosen-choices{
+	min-height: 45px;
+}
+.with_frm_style .chosen-container-multi .chosen-choices li.search-field{
+	line-height:3;
+	margin-right: 10px;
+}
+.with_frm_style .chosen-container-multi .chosen-choices{
+	border: 1px solid var(--border-color);
+}
+.with_frm_style .frm_message p{
+	text-align: right
+}

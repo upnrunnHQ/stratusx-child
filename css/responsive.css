@@ -1,0 +1,152 @@
+/* -----------------------------------------------------
+---------------------Responsive Css--------------------- */
+
+@media (max-width: 1200px) {
+  .header_manu .navbar-expand-lg .navbar-nav .nav-link {
+    padding-left: 8px;
+  }
+}
+@media (max-width: 991px) {
+  .list_experts_main .list_expt_card {
+    margin: 0 auto;
+  }
+  .anly_profile_content .prof_details_name {
+    padding: 5px 30px;
+  }
+  .anly_profile_img_main {
+    margin-left: -90px;
+  }
+}
+
+@media (max-width: 767px) {
+  .signup_main {
+    border-radius: 0;
+    padding: 0 20px;
+  }
+  .sign_inner_content .s_cont_int .inp_border {
+    display: none;
+  }
+  .sign_inner_content .s_cont_int .inp_border.m_border1 {
+    display: block;
+  }
+  .d_navbar {
+    flex-wrap: wrap;
+  }
+  .navbar_right {
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  .user_p_heading {
+    margin-top: 20px;
+  }
+  .h_search_box,
+  .h_notifications,
+  .h_profile {
+    margin: 5px 0px;
+  }
+  .rank_card.rank_card_content {
+    width: 100%;
+  }
+  /* ----owl ca----*/
+
+  #list-of-experts {
+    padding: 24px 0px;
+  }
+  #list-of-experts .list_experts_main {
+    padding: 15px 0;
+  }
+  .list_expert_inner_f .owl-next,
+  .list_expert_inner_sec .owl-next,
+  .list_expert_inner_view .owl-next,
+  .list_expert_inner_view_post .owl-next {
+    right: 0;
+  }
+  .list_expert_inner_f .owl-prev,
+  .list_expert_inner_sec,
+  .list_expert_inner_view .owl-prev,
+  .list_expert_inner_view_post .owl-prev {
+    left: 0;
+  }
+  .anly_right_content {
+    flex-wrap: wrap;
+  }
+  .anly_profile_img_main {
+    margin: 20px auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .signup_main {
+    padding: 0 10px;
+  }
+  .sign_inner_content .s_cont_int .inp_border {
+    display: block;
+  }
+  .sign_inner_content .s_cont_int .inp_border.m_border1 {
+    display: none;
+  }
+  .r_filter_main {
+    padding: 0px 10px 38px 10px;
+  }
+  .trading_mains {
+    justify-content: center;
+  }
+  .navbar_right .h_search_box .h_search {
+    width: 270px;
+  }
+  .g_percentage .cash_percentage.g_per_padd {
+    padding-right: 18px;
+  }
+  .user_top_detail .user_left .u_l_details .us_l_name {
+    font-size: 22px;
+  }
+  /* ----top header---- */
+  #top_header .top_header_inner ul .top_h_list {
+    padding: 5px 8px;
+  }
+  .anly_profile_content {
+    margin: 10px 0px;
+  }
+  .anly_profile_main {
+    padding-right: 0px;
+  }
+  .anly_right_content {
+    padding: 10px;
+  }
+  .user_about_section .usr_ab_content {
+    text-align: justify;
+  }
+  .anly_person_details .per_details .a_per_nm {
+    font-size: 24px;
+  }
+  .anly_person_details .per_details .a_per_id {
+    font-size: 18px;
+  }
+  .anly_person_details .anyl_participate .anly_partici_btn {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+  .anly_user_social li {
+    padding-right: 4px;
+  }
+  .anly_user_social li a {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+  .anly_profile_content .prof_details_name {
+    padding: 5px 14px;
+  }
+  .anly_profile_content .prof_details_name .p_full_nm {
+    font-size: 15px;
+  }
+  .anly_profile_content .prof_details_name .full_name {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .r_filter_main .f_choose .fl_score {
+    margin: 0;
+  }
+}
