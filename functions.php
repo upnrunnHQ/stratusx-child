@@ -130,18 +130,34 @@ function stratusx_child_remove_actions() {
 function stratusx_child_expert_details() {
 	global $product;
 
-	$Portfolio_ID = get_post_meta( $product->get_id(), 'expert_analyst_details_portfolio-id', true );
-	if ( empty( $Portfolio_ID ) ) {
-		// return;
+	$product_id = $product->get_id();
+	$user_type  = get_post_meta( $product_id, 'expert_analyst_details_user-type', true );
+	if ( empty( $user_type ) ) {
+		return;
 	}
 
-	$token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBwc2ludm9kZXZsb3BtZW50LmNvbVwvZGF3dWwtbmV3LWJhY2tlbmRcL2FwaVwvbG9naW4iLCJpYXQiOjE2MjkzNjgxMTgsIm5iZiI6MTYyOTM2ODExOCwianRpIjoiQUxGaFpRc0xBemlZOWRFbiIsInN1YiI6MTc3NSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.WdoSYu0AkDPF0R6vJ_6X8be39UNzAMkxC2wEXJ_JodA';
+	$portfolio_id = '';
+	if ( 'expert' === $user_type ) {
+		$portfolio_id = get_post_meta( $product_id, 'expert_analyst_details_portfolio-id', true );
+	} else {
+		$analyst_id = get_post_meta( $product_id, 'expert_analyst_details_id', true );
+		if ( ! empty( $analyst_id ) ) {
+			$analyst_details = stratusx_child_get_analyst_details( $analyst_id );
+			$analyst_details = json_decode( $analyst_details, true );
+			if ( isset( $analyst_details['data']['analyst']['portfolio_id'] ) ) {
+				$portfolio_id = $analyst_details['data']['analyst']['portfolio_id'];
+			}
+		}
+	}
 
-	return;
+	if ( empty( $portfolio_id ) ) {
+		return;
+	}
 
+	$token   = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBwc2ludm9kZXZsb3BtZW50LmNvbVwvZGF3dWwtbmV3LWJhY2tlbmRcL2FwaVwvbG9naW4iLCJpYXQiOjE2MjkzNjgxMTgsIm5iZiI6MTYyOTM2ODExOCwianRpIjoiQUxGaFpRc0xBemlZOWRFbiIsInN1YiI6MTc3NSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.WdoSYu0AkDPF0R6vJ_6X8be39UNzAMkxC2wEXJ_JodA';
 	$url     = 'https://appsinvodevlopment.com/dawul-new-backend/api/getOtherProfile';
 	$fields  = array(
-		'Portfolio_ID' => $Portfolio_ID,
+		'Portfolio_ID' => $portfolio_id,
 		'token'        => $token,
 		'is_web'       => 1,
 	);
@@ -183,7 +199,7 @@ function stratusx_child_expert_details() {
 
 	//API 3 graphInformation
 	$fields    = array(
-		'Portfolio_ID' => $Portfolio_ID,
+		'Portfolio_ID' => $portfolio_id,
 		'token'        => $token,
 		'is_web'       => 1,
 		'filterYear'   => 2021,
@@ -207,26 +223,75 @@ function stratusx_child_expert_details() {
 	?>
 	<div class="anly_profile_main exp_pro_main">
 		<div class="container-fluid">
-			<div class="anly_right_content exp_p_detail">
-				<div class="anly_profile_img_main">
-					<img src="<?php echo ( ! empty( $data[0]->image ) ? $data[0]->image : get_stylesheet_directory_uri() . '/image/alison.jpg' ); ?>" alt="<?php echo $data[0]->userName; ?>" class="img-fluid anly_pro_pic">
+			<?php
+			if ( 'expert' === $user_type ) :
+				?>
+				<div class="anly_right_content exp_p_detail">
+					<div class="anly_profile_img_main">
+						<img src="<?php echo ( ! empty( $data[0]->image ) ? $data[0]->image : get_stylesheet_directory_uri() . '/image/alison.jpg' ); ?>" alt="<?php echo $data[0]->userName; ?>" class="img-fluid anly_pro_pic">
+					</div>
+					<div class="anly_profile_content">
+						<div class="anly_person_details">
+							<div class="per_details">
+								<h1 class="a_per_nm"><?php echo $data[0]->userName; ?></h1>
+								<span class="a_per_id"><?php echo $data[0]->emailAddress; ?></span>
+								<p class="exp_profit">Profit of Last Month: <spna class="exp_per"><?php echo $data[0]->profileProfit; ?>%</spna>
+								</p>
+								<div class="exp_part_btn">
+									<a href="#" class="exp_partici_btn">Participation</a>
+								</div>
+							</div>
+
+						</div>
+					</div>
 				</div>
-				<div class="anly_profile_content">
-					<div class="anly_person_details">
-						<div class="per_details">
-							<h1 class="a_per_nm"><?php echo $data[0]->userName; ?></h1>
-							<span class="a_per_id"><?php echo $data[0]->emailAddress; ?></span>
-							<p class="exp_profit">Profit of Last Month: <spna class="exp_per"><?php echo $data[0]->profileProfit; ?>%</spna>
-							</p>
-							<div class="exp_part_btn">
-								<a href="#" class="exp_partici_btn">Participation</a>
+				<?php
+			else :
+				$featured_img_url = get_the_post_thumbnail_url( get_the_ID(), 'full' );
+				$twitter_link     = isset( $analyst_details['data']['twitter_link'] ) ? $analyst_details['data']['twitter_link'] : '';
+				$linkedin_link    = isset( $analyst_details['data']['linkedin_link'] ) ? $analyst_details['data']['linkedin_link'] : '';
+				$youtube_link     = isset( $analyst_details['data']['youtube_link'] ) ? $analyst_details['data']['youtube_link'] : '';
+				$telegram_link    = isset( $analyst_details['data']['telegram_link'] ) ? $analyst_details['data']['telegram_link'] : '';
+				?>
+				<div class="anly_right_content">
+					<div class="anly_profile_img_main">
+						<img src="<?php echo esc_url( $featured_img_url ); ?>" alt="" class="img-fluid anly_pro_pic">
+					</div>
+					<div class="anly_profile_content">
+						<div class="anly_person_details">
+							<div class="per_details">
+								<h1 class="a_per_nm"><?php echo $analyst_details['data']['analyst']['name']; ?></h1>
+								<span class="a_per_id">@<?php echo $analyst_details['data']['analyst']['user_name']; ?></span>
+								<ul class="anly_user_social">
+									<li class="a_u_telegram"><a href="<?php echo $telegram_link; ?>"><i class="fa fa-paper-plane"></i></a>
+									</li>
+									<li class="a_u_twitter"><a href="<?php echo $twitter_link; ?>"><i class="fa fa-twitter"></i></a></li>
+									<li class="a_u_linkedin"><a href="<?php echo $linkedin_link; ?>"><i class="fa fa-linkedin"></i></a></li>
+									<li class="a_u_youtube"><a href="<?php echo $youtube_link; ?>"><i class="fa fa-youtube-square"></i></a>
+									</li>
+								</ul>
+							</div>
+							<div class="anyl_participate">
+								<a href="#" class="anly_partici_btn">Participation</a>
 							</div>
 						</div>
-
+						<div class="prof_details_name">
+							<div class="prof_nm_cont">
+								<spna class="p_full_nm">Full Name</spna>
+								<h3 class="full_name"><?php echo $analyst_details['data']['analyst']['name']; ?></h3>
+							</div>
+							<div class="prof_dt_cont">
+								<spna class="p_full_nm">Join Date</spna>
+								<h3 class="full_name">12-12-2020</h3>
+							</div>
+						</div>
+						<div class="user_about_section">
+							<h3 class="usr_ab_name">About <?php echo $analyst_details['data']['analyst']['name']; ?></h3>
+							<p class="usr_ab_content"><?php echo $analyst_details['data']['bio']; ?></p>
+						</div>
 					</div>
-
 				</div>
-			</div>
+			<?php endif; ?>
 		</div>
 	</div>
 	<!--  -->

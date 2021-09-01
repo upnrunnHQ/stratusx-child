@@ -135,7 +135,7 @@ form input, .frm_forms form label, .with_frm_style label.frm_primary_label, .wit
     margin-top: 0;
 }
 
-.anly_right_content.exp_p_detail {
+.anly_right_content {
     width: calc(100% - 100px);
     margin-left: auto;
 }
