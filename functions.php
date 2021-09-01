@@ -3,6 +3,7 @@ add_action( 'wp_enqueue_scripts', 'enqueue_child_theme_style', 9999 );
 add_action( 'wp_enqueue_scripts', 'expert_profile_js_css' );
 add_filter( 'wf_pklist_alter_tax_inclusive_text', 'wf_pklist_remove_tax_text', 10, 3 );
 add_action( 'wp_head', 'stratusx_child_remove_actions' );
+add_action( 'woocommerce_after_shop_loop_item', 'stratusx_child_expert_details_button', 5 );
 
 if ( SITECOOKIEPATH != COOKIEPATH ) {
 	setcookie( TEST_COOKIE, 'WP Cookie check', 0, SITECOOKIEPATH, COOKIE_DOMAIN );
@@ -100,82 +101,80 @@ function stratusx_child_remove_actions() {
 }
 
 function stratusx_child_expert_details() {
-	if ( isset( $_GET['Portfolio_ID'] ) && isset( $_GET['token'] ) ) {
-		$Portfolio_ID = $_GET['Portfolio_ID'];
-		$token        = $_GET['token'];
-		$is_web       = 1;
-		$url          = 'https://appsinvodevlopment.com/dawul-new-backend/api/getOtherProfile';
-		$fields       = array(
-			'Portfolio_ID' => $Portfolio_ID,
-			'token'        => $token,
-			'is_web'       => 1,
-		);
-		$headr        = array();
-		$headr[]      = 'Content-type: application/json';
-		$headr[]      = 'Authorization: ' . $token;
-		$ch           = curl_init();
-		curl_setopt( $ch, CURLOPT_URL, $url );
-		curl_setopt( $ch, CURLOPT_POST, true );
-		curl_setopt( $ch, CURLOPT_HTTPHEADER, $headr );
-		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-		curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
-		curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $fields ) );
-		// Execute post
-		$result  = curl_exec( $ch );
-		$arrData = json_decode( $result );
-		$data    = $arrData->data;
-		//var_dump($data[0]);exit;
+	$Portfolio_ID = 'DRY1037474';
+	$token        = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBwc2ludm9kZXZsb3BtZW50LmNvbVwvZGF3dWwtbmV3LWJhY2tlbmRcL2FwaVwvbG9naW4iLCJpYXQiOjE2MjkzNjgxMTgsIm5iZiI6MTYyOTM2ODExOCwianRpIjoiQUxGaFpRc0xBemlZOWRFbiIsInN1YiI6MTc3NSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.WdoSYu0AkDPF0R6vJ_6X8be39UNzAMkxC2wEXJ_JodA';
+	$is_web       = 1;
+	$url          = 'https://appsinvodevlopment.com/dawul-new-backend/api/getOtherProfile';
+	$fields       = array(
+		'Portfolio_ID' => $Portfolio_ID,
+		'token'        => $token,
+		'is_web'       => 1,
+	);
+	$headr        = array();
+	$headr[]      = 'Content-type: application/json';
+	$headr[]      = 'Authorization: ' . $token;
+	$ch           = curl_init();
+	curl_setopt( $ch, CURLOPT_URL, $url );
+	curl_setopt( $ch, CURLOPT_POST, true );
+	curl_setopt( $ch, CURLOPT_HTTPHEADER, $headr );
+	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+	curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
+	curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $fields ) );
+	// Execute post
+	$result  = curl_exec( $ch );
+	$arrData = json_decode( $result );
+	$data    = $arrData->data;
+	//var_dump($data[0]);exit;
 
-		// API userInformation
+	// API userInformation
 
-		$url2     = 'https://appsinvodevlopment.com/dawul-new-backend/api/userInformation';
-		$header   = array();
-		$header[] = 'Content-type: application/json';
-		$header[] = 'Authorization: ' . $token;
-		$ch       = curl_init();
-		curl_setopt( $ch, CURLOPT_URL, $url2 );
-		curl_setopt( $ch, CURLOPT_POST, true );
-		curl_setopt( $ch, CURLOPT_HTTPHEADER, $header );
-		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-		curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
-		curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $fields ) );
-		// Execute post
-		$result2  = curl_exec( $ch );
-		$arrData2 = json_decode( $result2 );
+	$url2     = 'https://appsinvodevlopment.com/dawul-new-backend/api/userInformation';
+	$header   = array();
+	$header[] = 'Content-type: application/json';
+	$header[] = 'Authorization: ' . $token;
+	$ch       = curl_init();
+	curl_setopt( $ch, CURLOPT_URL, $url2 );
+	curl_setopt( $ch, CURLOPT_POST, true );
+	curl_setopt( $ch, CURLOPT_HTTPHEADER, $header );
+	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+	curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
+	curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $fields ) );
+	// Execute post
+	$result2  = curl_exec( $ch );
+	$arrData2 = json_decode( $result2 );
 
-		$data2 = $arrData2->data;
-		//var_dump($data);exit;
+	$data2 = $arrData2->data;
+	//var_dump($data);exit;
 
-		//API 3 graphInformation
-		$fields    = array(
-			'Portfolio_ID' => $Portfolio_ID,
-			'token'        => $token,
-			'is_web'       => 1,
-			'filterYear'   => 2021,
-		);
-		$url3      = 'https://appsinvodevlopment.com/dawul-new-backend/api/graphPerformance';
-		$headers   = array();
-		$headers[] = 'Content-type: application/json';
-		$headers[] = 'Authorization: ' . $token;
-		$ch        = curl_init();
-		curl_setopt( $ch, CURLOPT_URL, $url3 );
-		curl_setopt( $ch, CURLOPT_POST, true );
-		curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers );
-		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-		curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
-		curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $fields ) );
-		// Execute post
-		$result3  = curl_exec( $ch );
-		$arrdata3 = json_decode( $result3 );
-		$data3    = $arrdata3->data;
-		//var_dump($data3[0]->HPR);exit;
-	}
+	//API 3 graphInformation
+	$fields    = array(
+		'Portfolio_ID' => $Portfolio_ID,
+		'token'        => $token,
+		'is_web'       => 1,
+		'filterYear'   => 2021,
+	);
+	$url3      = 'https://appsinvodevlopment.com/dawul-new-backend/api/graphPerformance';
+	$headers   = array();
+	$headers[] = 'Content-type: application/json';
+	$headers[] = 'Authorization: ' . $token;
+	$ch        = curl_init();
+	curl_setopt( $ch, CURLOPT_URL, $url3 );
+	curl_setopt( $ch, CURLOPT_POST, true );
+	curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers );
+	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+	curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
+	curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $fields ) );
+	// Execute post
+	$result3  = curl_exec( $ch );
+	$arrdata3 = json_decode( $result3 );
+	$data3    = $arrdata3->data;
+	//var_dump($data3[0]->HPR);exit;
 	?>
 	<div class="anly_profile_main exp_pro_main">
 		<div class="container-fluid">
 			<div class="anly_right_content exp_p_detail">
 				<div class="anly_profile_img_main">
-					<img src="<?php echo ( ! empty( $data[0]->image ) ? $data[0]->image : get_stylesheet_directory_uri() . '/image/alison.jpg' ); ?>" alt="" class="img-fluid anly_pro_pic">
+					<img src="<?php echo ( ! empty( $data[0]->image ) ? $data[0]->image : get_stylesheet_directory_uri() . '/image/alison.jpg' ); ?>" alt="<?php echo $data[0]->userName; ?>" class="img-fluid anly_pro_pic">
 				</div>
 				<div class="anly_profile_content">
 					<div class="anly_person_details">
@@ -192,7 +191,7 @@ function stratusx_child_expert_details() {
 					</div>
 
 				</div>
-			</div>			
+			</div>
 		</div>
 	</div>
 	<!--  -->
@@ -208,14 +207,14 @@ function stratusx_child_expert_details() {
 
 					<div class="exp-add_info">
 						<h4>Additional Info</h4>
-						<a href="#"><img src="image/info-white-e.png" alt="info"></a>
+						<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info-white-e.png" alt="info"></a>
 					</div>
 					<div class="addition_info_area exp_additon_info">
 
 						<div class="trades_monthly exp_trades_monthly">
 							<div class="add_cale">
-								<a href="#"><img src="image/calendar-e.png" alt="calendar"></a>
-								<a href="#"><img src="image/Path-1292.png" alt="info"></a>
+								<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/calendar-e.png" alt="calendar"></a>
+								<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/Path-1292.png" alt="info"></a>
 							</div>
 							<div class="a_trades-inner">
 								<div class="a_week_trades">
@@ -234,8 +233,8 @@ function stratusx_child_expert_details() {
 						</div>
 						<div class="trades_monthly exp_trades_monthly1">
 							<div class="add_cale">
-								<a href="#"><img src="image/bar-e.png" alt="calendar"></a>
-								<a href="#"><img src="image/info-orange-e.png" alt="info"></a>
+								<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/bar-e.png" alt="calendar"></a>
+								<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info-orange-e.png" alt="info"></a>
 							</div>
 							<div class="tra_days">
 								<h4 class="days"><?php echo $data2[0]->avgHoldingTime; ?> Day</h4>
@@ -244,8 +243,8 @@ function stratusx_child_expert_details() {
 						</div>
 						<div class="trades_monthly exp_trades_monthly2">
 							<div class="add_cale">
-								<a href="#"><img src="image/user-e.png" alt="calendar"></a>
-								<a href="#"><img src="image/info-green-e.png" alt="info"></a>
+								<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/user-e.png" alt="calendar"></a>
+								<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info-green-e.png" alt="info"></a>
 							</div>
 							<div class="tra_days">
 								<h4 class="days"><?php echo date( 'd-m-y', strtotime( $data2[0]->joiningDate ) ); ?></h4>
@@ -254,8 +253,8 @@ function stratusx_child_expert_details() {
 						</div>
 						<div class="trades_monthly exp_trades_monthly3">
 							<div class="add_cale">
-								<a href="#"><img src="image/bar-purple-e.png" alt="calendar"></a>
-								<a href="#"><img src="image/info-e.png" alt="info"></a>
+								<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/bar-purple-e.png" alt="calendar"></a>
+								<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info-e.png" alt="info"></a>
 							</div>
 							<div class="max_profit">
 								<div class="tra_days">
@@ -276,7 +275,7 @@ function stratusx_child_expert_details() {
 						<h4>Indication</h4>
 					</div>
 					<div class="exp_lone_area">
-						<a href="#"><img src="image/dollar-e.png" alt="doller" class="img-fluid"></a>
+						<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/dollar-e.png" alt="doller" class="img-fluid"></a>
 						<div class="exp_lone_inner">
 							<div class="percentage_chart_main">
 								<canvas id="percentChart" width="250" height="300"></canvas>
@@ -309,7 +308,7 @@ function stratusx_child_expert_details() {
 								<span class="risk_txt">Risk indicator for the last 12 months</span>
 							</div>
 							<div class="risk_info_icon exp_r_info">
-								<a href="#"><img src="image/info-black-e.png" alt="info"></a>
+								<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info-black-e.png" alt="info"></a>
 								<div class="g_yearly">
 									<select class="g_year_drp" id="">
 										<option value="">2021</option>
@@ -328,7 +327,7 @@ function stratusx_child_expert_details() {
 					<div class="profit_score_main">
 						<div class="profit_score_head">
 							<div class="profit_icon">
-								<img src="image/profit-score.png" alt="">
+								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/profit-score.png" alt="">
 								<h4 class="profit_txt"> Profit Score</h4>
 							</div>
 							<div class="g_yearly">
@@ -360,11 +359,11 @@ function stratusx_child_expert_details() {
 					<div class="performance_main">
 						<div class="performance_head_area">
 							<div class="perfor_head_inner exp_perfor_head">
-								<img src="image/performance.png" alt="">
+								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/performance.png" alt="">
 								<h4 class="performance_txt">Performance</h4>
 							</div>
 							<div class="risk_info_icon exp_risk_info">
-								<a href="#"><img src="image/info.png" alt="info"></a>
+								<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info.png" alt="info"></a>
 								<div class="g_yearly">
 									<select class="g_year_drp" id="">
 										<option value="">2021</option>
@@ -404,10 +403,10 @@ function stratusx_child_expert_details() {
 					<div class="trading_main_area exp-trading">
 						<div class="trading_head">
 							<div class="exp_trading_icon">
-								<img src="image/trading.png" alt="">
+								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/trading.png" alt="">
 								<h4 class="trading_txt">Trading</h4>
 							</div>
-							<a href="#"><img src="image/info.png" alt="info"></a>
+							<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info.png" alt="info"></a>
 						</div>
 						<div class="trading_totle">
 							<div class="total_trading">
@@ -425,7 +424,7 @@ function stratusx_child_expert_details() {
 								</div>
 							</div>
 							<div class="trading_filter">
-								<a href="#"><img src="image/fliter.png" alt="filter"></a>
+								<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/fliter.png" alt="filter"></a>
 							</div>
 						</div>
 
@@ -635,4 +634,15 @@ function stratusx_child_expert_details() {
 		</div>
 	</div>
 	<?php
+}
+
+function stratusx_child_expert_details_button() {
+	global $product;
+
+	printf(
+		'<a href="%s" class="%s">%s</a>',
+		get_the_permalink(),
+		'button',
+		__( 'View Details', 'stratusx-child' )
+	);
 }

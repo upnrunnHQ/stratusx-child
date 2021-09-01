@@ -10,78 +10,75 @@
 global $post;
 include( locate_template( 'templates/page-layout.php' ) );
 
+$Portfolio_ID = $_GET['Portfolio_ID'];
+$token        = $_GET['token'];
+$is_web       = 1;
+$url          = 'https://appsinvodevlopment.com/dawul-new-backend/api/getOtherProfile';
+$fields       = array(
+	'Portfolio_ID' => $Portfolio_ID,
+	'token'        => $token,
+	'is_web'       => 1,
+);
+$headr        = array();
+$headr[]      = 'Content-type: application/json';
+$headr[]      = 'Authorization: ' . $token;
+$ch           = curl_init();
+curl_setopt( $ch, CURLOPT_URL, $url );
+curl_setopt( $ch, CURLOPT_POST, true );
+curl_setopt( $ch, CURLOPT_HTTPHEADER, $headr );
+curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
+curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $fields ) );
+// Execute post
+$result  = curl_exec( $ch );
+$arrData = json_decode( $result );
+$data    = $arrData->data;
+// var_dump($data[0]);exit;
 
-if ( isset( $_GET['Portfolio_ID'] ) && isset( $_GET['token'] ) ) {
-	$Portfolio_ID = $_GET['Portfolio_ID'];
-	$token        = $_GET['token'];
-	$is_web       = 1;
-	$url          = 'https://appsinvodevlopment.com/dawul-new-backend/api/getOtherProfile';
-	$fields       = array(
-		'Portfolio_ID' => $Portfolio_ID,
-		'token'        => $token,
-		'is_web'       => 1,
-	);
-	$headr        = array();
-	$headr[]      = 'Content-type: application/json';
-	$headr[]      = 'Authorization: ' . $token;
-	$ch           = curl_init();
-	curl_setopt( $ch, CURLOPT_URL, $url );
-	curl_setopt( $ch, CURLOPT_POST, true );
-	curl_setopt( $ch, CURLOPT_HTTPHEADER, $headr );
-	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-	curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
-	curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $fields ) );
-	// Execute post
-	$result  = curl_exec( $ch );
-	$arrData = json_decode( $result );
-	$data    = $arrData->data;
-	//var_dump($data[0]);exit;
+// API userInformation
 
-	// API userInformation
+$url2     = 'https://appsinvodevlopment.com/dawul-new-backend/api/userInformation';
+$header   = array();
+$header[] = 'Content-type: application/json';
+$header[] = 'Authorization: ' . $token;
+$ch       = curl_init();
+curl_setopt( $ch, CURLOPT_URL, $url2 );
+curl_setopt( $ch, CURLOPT_POST, true );
+curl_setopt( $ch, CURLOPT_HTTPHEADER, $header );
+curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
+curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $fields ) );
+// Execute post
+$result2  = curl_exec( $ch );
+$arrData2 = json_decode( $result2 );
 
-	$url2     = 'https://appsinvodevlopment.com/dawul-new-backend/api/userInformation';
-	$header   = array();
-	$header[] = 'Content-type: application/json';
-	$header[] = 'Authorization: ' . $token;
-	$ch       = curl_init();
-	curl_setopt( $ch, CURLOPT_URL, $url2 );
-	curl_setopt( $ch, CURLOPT_POST, true );
-	curl_setopt( $ch, CURLOPT_HTTPHEADER, $header );
-	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-	curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
-	curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $fields ) );
-	// Execute post
-	$result2  = curl_exec( $ch );
-	$arrData2 = json_decode( $result2 );
-
-	$data2 = $arrData2->data;
-	//var_dump($data);exit;
+$data2 = $arrData2->data;
+//var_dump($data);exit;
 
 
-	//API 3 graphInformation
-	$fields    = array(
-		'Portfolio_ID' => $Portfolio_ID,
-		'token'        => $token,
-		'is_web'       => 1,
-		'filterYear'   => 2021,
-	);
-	$url3      = 'https://appsinvodevlopment.com/dawul-new-backend/api/graphPerformance';
-	$headers   = array();
-	$headers[] = 'Content-type: application/json';
-	$headers[] = 'Authorization: ' . $token;
-	$ch        = curl_init();
-	curl_setopt( $ch, CURLOPT_URL, $url3 );
-	curl_setopt( $ch, CURLOPT_POST, true );
-	curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers );
-	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-	curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
-	curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $fields ) );
-	// Execute post
-	$result3  = curl_exec( $ch );
-	$arrdata3 = json_decode( $result3 );
-	$data3    = $arrdata3->data;
-	//var_dump($data3[0]->HPR);exit;
-}
+//API 3 graphInformation
+$fields    = array(
+	'Portfolio_ID' => $Portfolio_ID,
+	'token'        => $token,
+	'is_web'       => 1,
+	'filterYear'   => 2021,
+);
+$url3      = 'https://appsinvodevlopment.com/dawul-new-backend/api/graphPerformance';
+$headers   = array();
+$headers[] = 'Content-type: application/json';
+$headers[] = 'Authorization: ' . $token;
+$ch        = curl_init();
+curl_setopt( $ch, CURLOPT_URL, $url3 );
+curl_setopt( $ch, CURLOPT_POST, true );
+curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers );
+curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
+curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $fields ) );
+// Execute post
+$result3  = curl_exec( $ch );
+$arrdata3 = json_decode( $result3 );
+$data3    = $arrdata3->data;
+//var_dump($data3[0]->HPR);exit;
 ?>
 <div class="inner-container">
 	<div class="anly_profile_main exp_pro_main">
