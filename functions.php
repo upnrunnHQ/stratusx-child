@@ -1,4 +1,6 @@
 <?php
+include( get_stylesheet_directory() . '/includes/class-stratusx-child.php' );
+
 add_action( 'wp_enqueue_scripts', 'enqueue_child_theme_style', 9999 );
 add_action( 'wp_enqueue_scripts', 'expert_profile_js_css' );
 add_filter( 'wf_pklist_alter_tax_inclusive_text', 'wf_pklist_remove_tax_text', 10, 3 );
