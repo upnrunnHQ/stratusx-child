@@ -748,25 +748,37 @@ function stratusx_child_expert_details_button() {
 }
 
 function stratusx_child_get_analyst_details( $analyst_id ) {
-	$curl = curl_init();
+	try {
+		$transient_id    = "stratusx_child_get_analyst_details_{$analyst_id}";
+		$analyst_details = get_transient( $transient_id );
+		if ( $analyst_details ) {
+			return $analyst_details;
+		}
 
-	curl_setopt_array(
-		$curl,
-		array(
-			CURLOPT_URL            => "https://appsinvodevlopment.com/dawul-new-backend/api/analyst/details?analyst_id={$analyst_id}&languageType=1&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBwc2ludm9kZXZsb3BtZW50LmNvbVwvZGF3dWwtbmV3LWJhY2tlbmRcL2FwaVwvbG9naW4iLCJpYXQiOjE2MjkzNjgxMTgsIm5iZiI6MTYyOTM2ODExOCwianRpIjoiQUxGaFpRc0xBemlZOWRFbiIsInN1YiI6MTc3NSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.WdoSYu0AkDPF0R6vJ_6X8be39UNzAMkxC2wEXJ_JodA&deviceToken=f_KjDyF9r_g:APA91bFVmQivW26s6zxE54SZDnssRGJMO3JxLY3XNEvgaxnfGeBeJWhJLMoZPgTTcPL1efAc5HixZIsAeCvVVy4gRkTfmf0QfQV-pbynJRL1i1tlR2PngzxLYdP0x4PYFsy1NCZH1NOf&is_web=1",
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING       => '',
-			CURLOPT_MAXREDIRS      => 10,
-			CURLOPT_TIMEOUT        => 0,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_HTTP_VERSION   => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST  => 'GET',
-		)
-	);
+		$curl = curl_init();
 
-	$response = curl_exec( $curl );
+		curl_setopt_array(
+			$curl,
+			array(
+				CURLOPT_URL            => "https://appsinvodevlopment.com/dawul-new-backend/api/analyst/details?analyst_id={$analyst_id}&languageType=1&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBwc2ludm9kZXZsb3BtZW50LmNvbVwvZGF3dWwtbmV3LWJhY2tlbmRcL2FwaVwvbG9naW4iLCJpYXQiOjE2MjkzNjgxMTgsIm5iZiI6MTYyOTM2ODExOCwianRpIjoiQUxGaFpRc0xBemlZOWRFbiIsInN1YiI6MTc3NSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.WdoSYu0AkDPF0R6vJ_6X8be39UNzAMkxC2wEXJ_JodA&deviceToken=f_KjDyF9r_g:APA91bFVmQivW26s6zxE54SZDnssRGJMO3JxLY3XNEvgaxnfGeBeJWhJLMoZPgTTcPL1efAc5HixZIsAeCvVVy4gRkTfmf0QfQV-pbynJRL1i1tlR2PngzxLYdP0x4PYFsy1NCZH1NOf&is_web=1",
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING       => '',
+				CURLOPT_MAXREDIRS      => 10,
+				CURLOPT_TIMEOUT        => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION   => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST  => 'GET',
+			)
+		);
 
-	curl_close( $curl );
+		$response = curl_exec( $curl );
 
-	return $response;
+		curl_close( $curl );
+
+		set_transient( $transient_id, $response, 12 * HOUR_IN_SECONDS );
+
+		return $response;
+	} catch ( Exception $e ) {
+		return [];
+	}
 }
