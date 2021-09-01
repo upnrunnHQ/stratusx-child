@@ -128,19 +128,27 @@ function stratusx_child_remove_actions() {
 }
 
 function stratusx_child_expert_details() {
-	$Portfolio_ID = 'DRY1037474';
-	$token        = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBwc2ludm9kZXZsb3BtZW50LmNvbVwvZGF3dWwtbmV3LWJhY2tlbmRcL2FwaVwvbG9naW4iLCJpYXQiOjE2MjkzNjgxMTgsIm5iZiI6MTYyOTM2ODExOCwianRpIjoiQUxGaFpRc0xBemlZOWRFbiIsInN1YiI6MTc3NSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.WdoSYu0AkDPF0R6vJ_6X8be39UNzAMkxC2wEXJ_JodA';
-	$is_web       = 1;
-	$url          = 'https://appsinvodevlopment.com/dawul-new-backend/api/getOtherProfile';
-	$fields       = array(
+	global $product;
+
+	$Portfolio_ID = get_post_meta( $product->get_id(), 'expert_analyst_details_portfolio-id', true );
+	if ( empty( $Portfolio_ID ) ) {
+		// return;
+	}
+
+	$token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBwc2ludm9kZXZsb3BtZW50LmNvbVwvZGF3dWwtbmV3LWJhY2tlbmRcL2FwaVwvbG9naW4iLCJpYXQiOjE2MjkzNjgxMTgsIm5iZiI6MTYyOTM2ODExOCwianRpIjoiQUxGaFpRc0xBemlZOWRFbiIsInN1YiI6MTc3NSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.WdoSYu0AkDPF0R6vJ_6X8be39UNzAMkxC2wEXJ_JodA';
+
+	return;
+
+	$url     = 'https://appsinvodevlopment.com/dawul-new-backend/api/getOtherProfile';
+	$fields  = array(
 		'Portfolio_ID' => $Portfolio_ID,
 		'token'        => $token,
 		'is_web'       => 1,
 	);
-	$headr        = array();
-	$headr[]      = 'Content-type: application/json';
-	$headr[]      = 'Authorization: ' . $token;
-	$ch           = curl_init();
+	$headr   = array();
+	$headr[] = 'Content-type: application/json';
+	$headr[] = 'Authorization: ' . $token;
+	$ch      = curl_init();
 	curl_setopt( $ch, CURLOPT_URL, $url );
 	curl_setopt( $ch, CURLOPT_POST, true );
 	curl_setopt( $ch, CURLOPT_HTTPHEADER, $headr );
@@ -672,4 +680,28 @@ function stratusx_child_expert_details_button() {
 		'button',
 		__( 'View Details', 'stratusx-child' )
 	);
+}
+
+function stratusx_child_get_analyst_details( $analyst_id ) {
+	$curl = curl_init();
+
+	curl_setopt_array(
+		$curl,
+		array(
+			CURLOPT_URL            => "https://appsinvodevlopment.com/dawul-new-backend/api/analyst/details?analyst_id={$analyst_id}&languageType=1&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBwc2ludm9kZXZsb3BtZW50LmNvbVwvZGF3dWwtbmV3LWJhY2tlbmRcL2FwaVwvbG9naW4iLCJpYXQiOjE2MjkzNjgxMTgsIm5iZiI6MTYyOTM2ODExOCwianRpIjoiQUxGaFpRc0xBemlZOWRFbiIsInN1YiI6MTc3NSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.WdoSYu0AkDPF0R6vJ_6X8be39UNzAMkxC2wEXJ_JodA&deviceToken=f_KjDyF9r_g:APA91bFVmQivW26s6zxE54SZDnssRGJMO3JxLY3XNEvgaxnfGeBeJWhJLMoZPgTTcPL1efAc5HixZIsAeCvVVy4gRkTfmf0QfQV-pbynJRL1i1tlR2PngzxLYdP0x4PYFsy1NCZH1NOf&is_web=1",
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING       => '',
+			CURLOPT_MAXREDIRS      => 10,
+			CURLOPT_TIMEOUT        => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION   => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST  => 'GET',
+		)
+	);
+
+	$response = curl_exec( $curl );
+
+	curl_close( $curl );
+
+	return $response;
 }
