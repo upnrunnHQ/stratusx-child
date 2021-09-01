@@ -6,6 +6,8 @@ add_action( 'wp_enqueue_scripts', 'expert_profile_js_css' );
 add_filter( 'wf_pklist_alter_tax_inclusive_text', 'wf_pklist_remove_tax_text', 10, 3 );
 add_action( 'wp_head', 'stratusx_child_remove_actions' );
 add_action( 'woocommerce_after_shop_loop_item', 'stratusx_child_expert_details_button', 5 );
+add_action( 'pre_get_posts', 'stratusx_child_product_query' );
+add_filter( 'woocommerce_shortcode_products_query', 'stratusx_child_shortcode_products_query' );
 
 if ( SITECOOKIEPATH != COOKIEPATH ) {
 	setcookie( TEST_COOKIE, 'WP Cookie check', 0, SITECOOKIEPATH, COOKIE_DOMAIN );
@@ -27,6 +29,29 @@ function wf_pklist_remove_tax_text( $incl_tax_text, $template_type, $order ) {
 		$incl_tax_text = '';
 	}
 	return $incl_tax_text;
+}
+
+function stratusx_child_product_query( $query ) {
+	if ( ! is_admin() && $query->is_main_query() && is_post_type_archive( 'product' ) ) {
+		$meta_query   = $query->get( 'meta_query' );
+		$meta_query[] = [
+			'key'   => 'expert_analyst_details_user-type',
+			'value' => 'expert',
+		];
+
+		$query->set( 'meta_query', $meta_query );
+	}
+}
+
+function stratusx_child_shortcode_products_query( $query_args ) {
+	if ( is_page( 'analysts' ) ) {
+		$query_args['meta_query'][] = [
+			'key'   => 'expert_analyst_details_user-type',
+			'value' => 'analyst',
+		];
+	}
+
+	return $query_args;
 }
 
 // add_filter('woocommerce_show_page_title', 'bbloomer_hide_shop_page_title');

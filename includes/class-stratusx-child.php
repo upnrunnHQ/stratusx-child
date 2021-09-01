@@ -9,7 +9,7 @@
  * User Type = get_post_meta( get_the_ID(), 'expert_analyst_details_user-type', true )
  */
 class Stratusx_Child {
-	private $config = '{"title":"Expert\/Analyst Details","prefix":"expert_analyst_details_","domain":"stratusx-child","class_name":"Stratusx_Child","context":"normal","priority":"default","cpt":"product","fields":[{"type":"text","label":"ID","id":"expert_analyst_details_id"},{"type":"text","label":"Portfolio ID","id":"expert_analyst_details_portfolio-id"},{"type":"select","label":"User Type","default":"expert","options":"expert : Expert \r\nanalyst : Analyst","id":"expert_analyst_details_user-type"}]}';
+	private $config = '{"title":"Expert\/Analyst Details","prefix":"expert_analyst_details_","domain":"stratusx-child","class_name":"Stratusx_Child","context":"normal","priority":"default","cpt":"product","fields":[{"type":"select","label":"User Type","default":"expert","options":"expert : Expert \r\nanalyst : Analyst","id":"expert_analyst_details_user-type"},{"type":"text","label":"ID","id":"expert_analyst_details_id"},{"type":"text","label":"Portfolio ID","id":"expert_analyst_details_portfolio-id"}]}';
 
 	public function __construct() {
 		$this->config = json_decode( $this->config, true );
