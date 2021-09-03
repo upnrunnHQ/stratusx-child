@@ -171,7 +171,7 @@ function stratusx_child_expert_details() {
 								<p class="exp_profit">Profit of Last Month: <spna class="exp_per"><?php echo $data[0]->profileProfit; ?>%</spna>
 								</p>
 								<div class="exp_part_btn">
-									<a href="#" class="exp_partici_btn">Participation</a>
+									<a href="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="exp_partici_btn">Participation</a>
 								</div>
 							</div>
 
@@ -204,7 +204,7 @@ function stratusx_child_expert_details() {
 								</ul>
 							</div>
 							<div class="anyl_participate">
-								<a href="#" class="anly_partici_btn">Participation</a>
+								<a href="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="anly_partici_btn">Participation</a>
 							</div>
 						</div>
 						<div class="prof_details_name">
