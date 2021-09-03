@@ -150,76 +150,9 @@ function stratusx_child_expert_details() {
 		}
 	}
 
-	if ( empty( $portfolio_id ) ) {
-		return;
-	}
-
-	$token   = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBwc2ludm9kZXZsb3BtZW50LmNvbVwvZGF3dWwtbmV3LWJhY2tlbmRcL2FwaVwvbG9naW4iLCJpYXQiOjE2MjkzNjgxMTgsIm5iZiI6MTYyOTM2ODExOCwianRpIjoiQUxGaFpRc0xBemlZOWRFbiIsInN1YiI6MTc3NSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.WdoSYu0AkDPF0R6vJ_6X8be39UNzAMkxC2wEXJ_JodA';
-	$url     = 'https://appsinvodevlopment.com/dawul-new-backend/api/getOtherProfile';
-	$fields  = array(
-		'Portfolio_ID' => $portfolio_id,
-		'token'        => $token,
-		'is_web'       => 1,
-	);
-	$headr   = array();
-	$headr[] = 'Content-type: application/json';
-	$headr[] = 'Authorization: ' . $token;
-	$ch      = curl_init();
-	curl_setopt( $ch, CURLOPT_URL, $url );
-	curl_setopt( $ch, CURLOPT_POST, true );
-	curl_setopt( $ch, CURLOPT_HTTPHEADER, $headr );
-	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-	curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
-	curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $fields ) );
-	// Execute post
-	$result  = curl_exec( $ch );
-	$arrData = json_decode( $result );
-	$data    = $arrData->data;
-	//var_dump($data[0]);exit;
-
-	// API userInformation
-
-	$url2     = 'https://appsinvodevlopment.com/dawul-new-backend/api/userInformation';
-	$header   = array();
-	$header[] = 'Content-type: application/json';
-	$header[] = 'Authorization: ' . $token;
-	$ch       = curl_init();
-	curl_setopt( $ch, CURLOPT_URL, $url2 );
-	curl_setopt( $ch, CURLOPT_POST, true );
-	curl_setopt( $ch, CURLOPT_HTTPHEADER, $header );
-	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-	curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
-	curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $fields ) );
-	// Execute post
-	$result2  = curl_exec( $ch );
-	$arrData2 = json_decode( $result2 );
-
-	$data2 = $arrData2->data;
-	//var_dump($data);exit;
-
-	//API 3 graphInformation
-	$fields    = array(
-		'Portfolio_ID' => $portfolio_id,
-		'token'        => $token,
-		'is_web'       => 1,
-		'filterYear'   => 2021,
-	);
-	$url3      = 'https://appsinvodevlopment.com/dawul-new-backend/api/graphPerformance';
-	$headers   = array();
-	$headers[] = 'Content-type: application/json';
-	$headers[] = 'Authorization: ' . $token;
-	$ch        = curl_init();
-	curl_setopt( $ch, CURLOPT_URL, $url3 );
-	curl_setopt( $ch, CURLOPT_POST, true );
-	curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers );
-	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-	curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
-	curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $fields ) );
-	// Execute post
-	$result3  = curl_exec( $ch );
-	$arrdata3 = json_decode( $result3 );
-	$data3    = $arrdata3->data;
-	//var_dump($data3[0]->HPR);exit;
+	$featured_img_url = get_the_post_thumbnail_url( get_the_ID(), 'full' );
+	$arrData          = json_decode( stratusx_child_get_get_other_profile( $portfolio_id ) );
+	$data             = $arrData->data;
 	?>
 	<div class="anly_profile_main exp_pro_main">
 		<div class="container-fluid">
@@ -228,7 +161,7 @@ function stratusx_child_expert_details() {
 				?>
 				<div class="anly_right_content exp_p_detail">
 					<div class="anly_profile_img_main">
-						<img src="<?php echo ( ! empty( $data[0]->image ) ? $data[0]->image : get_stylesheet_directory_uri() . '/image/alison.jpg' ); ?>" alt="<?php echo $data[0]->userName; ?>" class="img-fluid anly_pro_pic">
+						<img src="<?php echo esc_url( $featured_img_url ); ?>" alt="" class="img-fluid anly_pro_pic">
 					</div>
 					<div class="anly_profile_content">
 						<div class="anly_person_details">
@@ -247,11 +180,10 @@ function stratusx_child_expert_details() {
 				</div>
 				<?php
 			else :
-				$featured_img_url = get_the_post_thumbnail_url( get_the_ID(), 'full' );
-				$twitter_link     = isset( $analyst_details['data']['twitter_link'] ) ? $analyst_details['data']['twitter_link'] : '';
-				$linkedin_link    = isset( $analyst_details['data']['linkedin_link'] ) ? $analyst_details['data']['linkedin_link'] : '';
-				$youtube_link     = isset( $analyst_details['data']['youtube_link'] ) ? $analyst_details['data']['youtube_link'] : '';
-				$telegram_link    = isset( $analyst_details['data']['telegram_link'] ) ? $analyst_details['data']['telegram_link'] : '';
+				$twitter_link  = isset( $analyst_details['data']['twitter_link'] ) ? $analyst_details['data']['twitter_link'] : '';
+				$linkedin_link = isset( $analyst_details['data']['linkedin_link'] ) ? $analyst_details['data']['linkedin_link'] : '';
+				$youtube_link  = isset( $analyst_details['data']['youtube_link'] ) ? $analyst_details['data']['youtube_link'] : '';
+				$telegram_link = isset( $analyst_details['data']['telegram_link'] ) ? $analyst_details['data']['telegram_link'] : '';
 				?>
 				<div class="anly_right_content">
 					<div class="anly_profile_img_main">
@@ -296,6 +228,18 @@ function stratusx_child_expert_details() {
 	</div>
 	<!--  -->
 
+	<?php
+	if ( empty( $portfolio_id ) ) {
+		return;
+	}
+
+	// API userInformation
+	$arrData2 = json_decode( stratusx_child_get_get_user_information( $portfolio_id ) );
+	$data2    = $arrData2->data;
+	//API 3 graphInformation
+	$arrdata3 = json_decode( stratusx_child_get_get_graph_performance( $portfolio_id ) );
+	$data3    = $arrdata3->data;
+	?>
 	<!--  -->
 	<div id="home">
 		<div class="container-fluid">
@@ -652,7 +596,7 @@ function stratusx_child_expert_details() {
 					<div class="repeate_area">
 						<div class="repeat_cont">
 							<h4 class="repeat_txt">Repeated Trades</h4>
-							<a href="#"><img src=<?php get_stylesheet_directory_uri(); ?>"/image/info.png" alt="info"></a>
+							<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info.png" alt="info"></a>
 						</div>
 						<div class="repeat_see">
 							<a href="#"> See More</a>
@@ -772,6 +716,121 @@ function stratusx_child_get_analyst_details( $analyst_id ) {
 		);
 
 		$response = curl_exec( $curl );
+
+		curl_close( $curl );
+
+		set_transient( $transient_id, $response, 12 * HOUR_IN_SECONDS );
+
+		return $response;
+	} catch ( Exception $e ) {
+		return [];
+	}
+}
+
+function stratusx_child_get_get_other_profile( $portfolio_id ) {
+	try {
+		$transient_id  = "stratusx_child_get_get_other_profile_{$portfolio_id}";
+		$other_profile = get_transient( $transient_id );
+		if ( $other_profile ) {
+			return $other_profile;
+		}
+
+		$token   = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBwc2ludm9kZXZsb3BtZW50LmNvbVwvZGF3dWwtbmV3LWJhY2tlbmRcL2FwaVwvbG9naW4iLCJpYXQiOjE2MjkzNjgxMTgsIm5iZiI6MTYyOTM2ODExOCwianRpIjoiQUxGaFpRc0xBemlZOWRFbiIsInN1YiI6MTc3NSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.WdoSYu0AkDPF0R6vJ_6X8be39UNzAMkxC2wEXJ_JodA';
+		$url     = 'https://appsinvodevlopment.com/dawul-new-backend/api/getOtherProfile';
+		$fields  = array(
+			'Portfolio_ID' => $portfolio_id,
+			'token'        => $token,
+			'is_web'       => 1,
+		);
+		$headr   = array();
+		$headr[] = 'Content-type: application/json';
+		$headr[] = 'Authorization: ' . $token;
+		$ch      = curl_init();
+		curl_setopt( $ch, CURLOPT_URL, $url );
+		curl_setopt( $ch, CURLOPT_POST, true );
+		curl_setopt( $ch, CURLOPT_HTTPHEADER, $headr );
+		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+		curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
+		curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $fields ) );
+		// Execute post
+		$response = curl_exec( $ch );
+
+		curl_close( $curl );
+
+		set_transient( $transient_id, $response, 12 * HOUR_IN_SECONDS );
+
+		return $response;
+	} catch ( Exception $e ) {
+		return [];
+	}
+}
+
+function stratusx_child_get_get_user_information( $portfolio_id ) {
+	try {
+		$transient_id     = "stratusx_child_get_user_information_{$portfolio_id}";
+		$user_information = get_transient( $transient_id );
+		if ( $user_information ) {
+			return $user_information;
+		}
+
+		$token    = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBwc2ludm9kZXZsb3BtZW50LmNvbVwvZGF3dWwtbmV3LWJhY2tlbmRcL2FwaVwvbG9naW4iLCJpYXQiOjE2MjkzNjgxMTgsIm5iZiI6MTYyOTM2ODExOCwianRpIjoiQUxGaFpRc0xBemlZOWRFbiIsInN1YiI6MTc3NSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.WdoSYu0AkDPF0R6vJ_6X8be39UNzAMkxC2wEXJ_JodA';
+		$url2     = 'https://appsinvodevlopment.com/dawul-new-backend/api/userInformation';
+		$fields   = array(
+			'Portfolio_ID' => $portfolio_id,
+			'token'        => $token,
+			'is_web'       => 1,
+		);
+		$header   = array();
+		$header[] = 'Content-type: application/json';
+		$header[] = 'Authorization: ' . $token;
+		$ch       = curl_init();
+		curl_setopt( $ch, CURLOPT_URL, $url2 );
+		curl_setopt( $ch, CURLOPT_POST, true );
+		curl_setopt( $ch, CURLOPT_HTTPHEADER, $header );
+		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+		curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
+		curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $fields ) );
+		// Execute post
+		$response = curl_exec( $ch );
+
+		curl_close( $curl );
+
+		set_transient( $transient_id, $response, 12 * HOUR_IN_SECONDS );
+
+		return $response;
+	} catch ( Exception $e ) {
+		return [];
+	}
+}
+
+function stratusx_child_get_get_graph_performance( $portfolio_id ) {
+	try {
+		$transient_id      = "stratusx_child_get_graph_performance_{$portfolio_id}";
+		$graph_performance = get_transient( $transient_id );
+		if ( $graph_performance ) {
+			return $graph_performance;
+		}
+
+		$token     = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBwc2ludm9kZXZsb3BtZW50LmNvbVwvZGF3dWwtbmV3LWJhY2tlbmRcL2FwaVwvbG9naW4iLCJpYXQiOjE2MjkzNjgxMTgsIm5iZiI6MTYyOTM2ODExOCwianRpIjoiQUxGaFpRc0xBemlZOWRFbiIsInN1YiI6MTc3NSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.WdoSYu0AkDPF0R6vJ_6X8be39UNzAMkxC2wEXJ_JodA';
+		$fields    = array(
+			'Portfolio_ID' => $portfolio_id,
+			'token'        => $token,
+			'is_web'       => 1,
+			'filterYear'   => 2021,
+		);
+		$url3      = 'https://appsinvodevlopment.com/dawul-new-backend/api/graphPerformance';
+		$headers   = array();
+		$headers[] = 'Content-type: application/json';
+		$headers[] = 'Authorization: ' . $token;
+		$ch        = curl_init();
+		curl_setopt( $ch, CURLOPT_URL, $url3 );
+		curl_setopt( $ch, CURLOPT_POST, true );
+		curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers );
+		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+		curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
+		curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $fields ) );
+		// Execute post
+		$response = curl_exec( $ch );
 
 		curl_close( $curl );
 
