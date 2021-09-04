@@ -405,118 +405,7 @@ function stratusx_child_expert_details() {
 							</div>
 						</div>
 						<?php stratus_child_get_performance( $data2[0]->performance, $data2[0]->totalPerformance ); ?>
-						<div class="trading_main_area exp-trading">
-							<div class="trading_head">
-								<div class="exp_trading_icon">
-									<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/trading.png" alt="">
-									<h4 class="trading_txt">Trading</h4>
-								</div>
-								<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info.png" alt="info"></a>
-							</div>
-							<div class="trading_totle">
-								<div class="total_trading">
-									<div class="tot_inner">
-										<span class="to_num"><?php echo $data2[0]->totalTrade; ?></span>
-										<p class="t_trade_txt">Total Trades</p>
-									</div>
-									<div class="tot_inner">
-										<span class="to_num c_num_r">-0.06%</span>
-										<p class="t_trade_txt">Avg. Profit</p>
-									</div>
-									<div class="tot_inner">
-										<span class="to_num c_num_g">+15.67%</span>
-										<p class="t_trade_txt">Avg. Loss</p>
-									</div>
-								</div>
-								<div class="trading_filter">
-									<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/fliter.png" alt="filter"></a>
-								</div>
-							</div>
-
-						</div>
-						<div class="exp-trading-inner">
-							<div class="trading_mains">
-								<div class="tra_box exp_tra-box">
-									<spna class="t_bx_num">5</spna>
-									<p class="t_bx_txt">The longest trades</p>
-								</div>
-								<div class="tra_box exp_tra-box">
-									<spna class="t_bx_num">3</spna>
-									<p class="t_bx_txt">The shortest trades</p>
-								</div>
-							</div>
-							<div class="trading_mains">
-								<div class="tra_box c_bor_cgr exp_gr-bg">
-									<spna class="t_bx_num c_num_g">30,000</spna>
-									<p class="t_bx_txt c_num_g">Avg. of all profit</p>
-								</div>
-								<div class="tra_box exp_gr-bg">
-									<spna class="t_bx_num c_num_g">12,000</spna>
-									<p class="t_bx_txt c_num_g">Avg. of all loss</p>
-								</div>
-								<div class="tra_box exp_bg_rd">
-									<spna class="t_bx_num c_num_r">5</spna>
-									<p class="t_bx_txt c_num_r">Profitable trades</p>
-								</div>
-								<div class="tra_box c_bor_cred exp_bg_rd">
-									<spna class="t_bx_num c_num_r">3</spna>
-									<p class="t_bx_txt c_num_r">losing trades</p>
-								</div>
-								<div class="tra_box c_bor_cgr exp_gr-bg">
-									<spna class="t_bx_num c_num_g">50%</spna>
-									<p class="t_bx_txt c_num_g">Rate of profitable trades</p>
-								</div>
-								<div class="tra_box c_bor_cred exp_gr-bg">
-									<spna class="t_bx_num c_num_g">30%</spna>
-									<p class="t_bx_txt c_num_g">Rate of losing trades</p>
-								</div>
-								<div class="tra_box c_bor_cgr exp_bg_rd">
-									<spna class="t_bx_num c_num_r">50%</spna>
-									<p class="t_bx_txt c_num_r">Highest profit on deals</p>
-								</div>
-								<div class="tra_box c_bor_cred exp_bg_rd">
-									<spna class="t_bx_num c_num_r">30%</spna>
-									<p class="t_bx_txt c_num_r">Highest loss on deals</p>
-								</div>
-								<div class="tra_box c_bor_cred exp_gr-bg">
-									<spna class="t_bx_num c_num_g ">5.80%</spna>
-									<p class="t_bx_txt c_num_g">Avg profit/loss</p>
-								</div>
-								<div class="tra_box c_bor_cgr exp_gr-bg">
-									<spna class="t_bx_num c_num_g">50%</spna>
-									<p class="t_bx_txt c_num_g">Total profit</p>
-								</div>
-								<div class="tra_box c_bor_cred exp_bg_rd">
-									<spna class="t_bx_num c_num_r">30%</spna>
-									<p class="t_bx_txt c_num_r">Total loss</p>
-								</div>
-								<div class="tra_box c_bor_cgr exp_bg_rd">
-									<spna class="t_bx_num c_num_r">120,900,00</spna>
-									<p class="t_bx_txt c_num_r">Net profit/loss</p>
-								</div>
-							</div>
-							<div class="material_progress_main exp-material-main">
-								<div class="material_head">
-									<a href="#" class="material_see">See More</a>
-								</div>
-								<div class="exp_progress_main">
-									<p class="exp_material">Materials</p>
-									<div class="progress">
-										<div class="progress-bar-blue" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width:45%">
-										</div>
-										<span class="pro_percent">45%</span>
-									</div>
-								</div>
-								<div class="exp_progress_main">
-									<p class="exp_material">Transpotation</p>
-									<div class="progress">
-										<div class="progress-bar-red" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width:15%">
-										</div>
-										<span class="pro_percent">15%</span>
-									</div>
-								</div>
-							</div>
-						</div>
+						<?php stratus_child_get_trading( $data2[0] ); ?>
 					</div>
 					<div class="col-md-3">
 						<div class="user_p_heading">
@@ -664,6 +553,7 @@ function stratusx_child_get_get_other_profile( $portfolio_id ) {
 		$transient_id  = "stratusx_child_get_get_other_profile_{$portfolio_id}";
 		$other_profile = get_transient( $transient_id );
 		if ( $other_profile ) {
+			// print_r( json_decode( $other_profile ) );
 			return $other_profile;
 		}
 
@@ -702,6 +592,7 @@ function stratusx_child_get_get_user_information( $portfolio_id ) {
 		$transient_id     = "stratusx_child_get_user_information_{$portfolio_id}";
 		$user_information = get_transient( $transient_id );
 		if ( $user_information ) {
+			print_r( json_decode( $user_information ) );
 			return $user_information;
 		}
 
