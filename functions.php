@@ -153,6 +153,7 @@ function stratusx_child_expert_details() {
 	$featured_img_url = get_the_post_thumbnail_url( get_the_ID(), 'full' );
 	$arrData          = json_decode( stratusx_child_get_get_other_profile( $portfolio_id ) );
 	$data             = $arrData->data;
+	// print_r($data);
 	?>
 	<div class="anly_profile_main exp_pro_main">
 		<div class="container-fluid">
@@ -194,14 +195,7 @@ function stratusx_child_expert_details() {
 							<div class="per_details">
 								<h1 class="a_per_nm"><?php echo $analyst_details['data']['analyst']['name']; ?></h1>
 								<span class="a_per_id">@<?php echo $analyst_details['data']['analyst']['user_name']; ?></span>
-								<ul class="anly_user_social">
-									<li class="a_u_telegram"><a href="<?php echo $telegram_link; ?>"><i class="fa fa-paper-plane"></i></a>
-									</li>
-									<li class="a_u_twitter"><a href="<?php echo $twitter_link; ?>"><i class="fa fa-twitter"></i></a></li>
-									<li class="a_u_linkedin"><a href="<?php echo $linkedin_link; ?>"><i class="fa fa-linkedin"></i></a></li>
-									<li class="a_u_youtube"><a href="<?php echo $youtube_link; ?>"><i class="fa fa-youtube-square"></i></a>
-									</li>
-								</ul>
+								<h3 class="usr_ab_type">Analyst Type: Technical</h3>
 							</div>
 							<div class="anyl_participate">
 								<a href="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="anly_partici_btn">Participation</a>
@@ -214,7 +208,7 @@ function stratusx_child_expert_details() {
 							</div>
 							<div class="prof_dt_cont">
 								<spna class="p_full_nm">Join Date</spna>
-								<h3 class="full_name">12-12-2020</h3>
+								<h3 class="full_name"><?php echo $analyst_details['data']['created_at']; ?></h3>
 							</div>
 						</div>
 						<div class="user_about_section">
@@ -239,6 +233,8 @@ function stratusx_child_expert_details() {
 	//API 3 graphInformation
 	$arrdata3 = json_decode( stratusx_child_get_get_graph_performance( $portfolio_id ) );
 	$data3    = $arrdata3->data;
+	print_r($data2);
+	print_r($data3);
 	?>
 	<!--  -->
 	<div id="home">
@@ -335,7 +331,7 @@ function stratusx_child_expert_details() {
 								</div>
 								<div class="exp_percent exp_stc">
 									<h4>Stock Percentage</h4>
-									<h3><?php echo $data2[0]->cashPercenage; ?>%</h3>
+									<h3><?php echo $data2[0]->stockPercenage; ?>%</h3>
 								</div>
 								<div class="exp_percent exp_fnd">
 									<h4>Fund Percentage</h4>
@@ -696,7 +692,7 @@ function stratusx_child_get_analyst_details( $analyst_id ) {
 		$transient_id    = "stratusx_child_get_analyst_details_{$analyst_id}";
 		$analyst_details = get_transient( $transient_id );
 		if ( $analyst_details ) {
-			return $analyst_details;
+			// return $analyst_details;
 		}
 
 		$curl = curl_init();
@@ -732,7 +728,7 @@ function stratusx_child_get_get_other_profile( $portfolio_id ) {
 		$transient_id  = "stratusx_child_get_get_other_profile_{$portfolio_id}";
 		$other_profile = get_transient( $transient_id );
 		if ( $other_profile ) {
-			return $other_profile;
+			// return $other_profile;
 		}
 
 		$token   = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBwc2ludm9kZXZsb3BtZW50LmNvbVwvZGF3dWwtbmV3LWJhY2tlbmRcL2FwaVwvbG9naW4iLCJpYXQiOjE2MjkzNjgxMTgsIm5iZiI6MTYyOTM2ODExOCwianRpIjoiQUxGaFpRc0xBemlZOWRFbiIsInN1YiI6MTc3NSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.WdoSYu0AkDPF0R6vJ_6X8be39UNzAMkxC2wEXJ_JodA';
@@ -770,7 +766,7 @@ function stratusx_child_get_get_user_information( $portfolio_id ) {
 		$transient_id     = "stratusx_child_get_user_information_{$portfolio_id}";
 		$user_information = get_transient( $transient_id );
 		if ( $user_information ) {
-			return $user_information;
+			// return $user_information;
 		}
 
 		$token    = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBwc2ludm9kZXZsb3BtZW50LmNvbVwvZGF3dWwtbmV3LWJhY2tlbmRcL2FwaVwvbG9naW4iLCJpYXQiOjE2MjkzNjgxMTgsIm5iZiI6MTYyOTM2ODExOCwianRpIjoiQUxGaFpRc0xBemlZOWRFbiIsInN1YiI6MTc3NSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.WdoSYu0AkDPF0R6vJ_6X8be39UNzAMkxC2wEXJ_JodA';
@@ -808,7 +804,7 @@ function stratusx_child_get_get_graph_performance( $portfolio_id ) {
 		$transient_id      = "stratusx_child_get_graph_performance_{$portfolio_id}";
 		$graph_performance = get_transient( $transient_id );
 		if ( $graph_performance ) {
-			return $graph_performance;
+			// return $graph_performance;
 		}
 
 		$token     = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBwc2ludm9kZXZsb3BtZW50LmNvbVwvZGF3dWwtbmV3LWJhY2tlbmRcL2FwaVwvbG9naW4iLCJpYXQiOjE2MjkzNjgxMTgsIm5iZiI6MTYyOTM2ODExOCwianRpIjoiQUxGaFpRc0xBemlZOWRFbiIsInN1YiI6MTc3NSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.WdoSYu0AkDPF0R6vJ_6X8be39UNzAMkxC2wEXJ_JodA';

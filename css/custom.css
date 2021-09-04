@@ -2352,7 +2352,8 @@ i {
     margin-top: 40px;
 }
 
-.user_about_section .usr_ab_name {
+.user_about_section .usr_ab_name,
+.anly_person_details .usr_ab_type {
     color: #ffffff;
 }
 
