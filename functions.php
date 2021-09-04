@@ -406,6 +406,27 @@ function stratusx_child_expert_details() {
 						</div>
 						<?php stratus_child_get_performance( $data2[0]->performance, $data2[0]->totalPerformance ); ?>
 						<?php stratus_child_get_trading( $data2[0] ); ?>
+						<div class="material_progress_main exp-material-main">
+							<div class="material_head">
+								<a href="#" class="material_see"><?php _e( 'See More', 'stratusx-child' ); ?></a>
+							</div>
+							<div class="exp_progress_main">
+								<p class="exp_material"><?php _e( 'Materials', 'stratusx-child' ); ?></p>
+								<div class="progress">
+									<div class="progress-bar-blue" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width:45%">
+									</div>
+									<span class="pro_percent">45%</span>
+								</div>
+							</div>
+							<div class="exp_progress_main">
+								<p class="exp_material"><?php _e( 'Transpotation', 'stratusx-child' ); ?></p>
+								<div class="progress">
+									<div class="progress-bar-red" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width:15%">
+									</div>
+									<span class="pro_percent">15%</span>
+								</div>
+							</div>
+						</div>
 					</div>
 					<div class="col-md-3">
 						<div class="user_p_heading">
