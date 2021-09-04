@@ -1,4 +1,5 @@
 <?php
+include( get_stylesheet_directory() . '/includes/template-functions.php' );
 include( get_stylesheet_directory() . '/includes/class-stratusx-child.php' );
 
 add_action( 'wp_enqueue_scripts', 'enqueue_child_theme_style', 9999 );
@@ -196,8 +197,8 @@ function stratusx_child_expert_details() {
 							<div class="per_details">
 								<h1 class="a_per_nm"><?php echo $analyst_details['data']['analyst']['name']; ?></h1>
 								<span class="a_per_id">@<?php echo $analyst_details['data']['analyst']['user_name']; ?></span>
-								<?php $user_type = $analyst_details['data']['analyst']['user_type']?>
-								<h3 class="usr_ab_type">Analyst Type: <?php analyst_expert_user_type( $user_type );?></h3>
+								<?php $user_type = $analyst_details['data']['analyst']['user_type']; ?>
+								<h3 class="usr_ab_type">Analyst Type: <?php analyst_expert_user_type( $user_type ); ?></h3>
 							</div>
 							<div class="anyl_participate">
 								<a href="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="anly_partici_btn">Participation</a>
@@ -211,8 +212,8 @@ function stratusx_child_expert_details() {
 							<div class="prof_dt_cont">
 								<spna class="p_full_nm">Join Date</spna>
 								<?php
-								$date=date_create($analyst_details['data']['created_at']);
-								$date_join = date_format( $date,"d-m-Y" );
+								$date      = date_create( $analyst_details['data']['created_at'] );
+								$date_join = date_format( $date, 'd-m-Y' );
 								?>
 								<h3 class="full_name"><?php echo $date_join; ?></h3>
 							</div>
@@ -229,22 +230,22 @@ function stratusx_child_expert_details() {
 	<!--  -->
 
 	<?php
-	if( 'expert' === $user_type ) {
+	if ( 'expert' === $user_type ) {
 		?>
 			<?php
-		if ( empty( $portfolio_id ) ) {
-			return;
-		}
+			if ( empty( $portfolio_id ) ) {
+				return;
+			}
 
-		// API userInformation
-		$arrData2 = json_decode( stratusx_child_get_get_user_information( $portfolio_id ) );
-		$data2    = $arrData2->data;
-		//API 3 graphInformation
-		$arrdata3 = json_decode( stratusx_child_get_get_graph_performance( $portfolio_id ) );
-		$data3    = $arrdata3->data;
-		// print_r($data2);
-		// print_r($data3);
-		?>
+			// API userInformation
+			$arrData2 = json_decode( stratusx_child_get_get_user_information( $portfolio_id ) );
+			$data2    = $arrData2->data;
+			//API 3 graphInformation
+			$arrdata3 = json_decode( stratusx_child_get_get_graph_performance( $portfolio_id ) );
+			$data3    = $arrdata3->data;
+			// print_r($data2);
+			// print_r($data3);
+			?>
 		<!--  -->
 		<div id="home">
 			<div class="container-fluid">
@@ -597,54 +598,9 @@ function stratusx_child_expert_details() {
 								<canvas id="CashChart" width="200" height="250"></canvas>
 							</div>
 						</div>
-
-						<div class="repeate_area">
-							<div class="repeat_cont">
-								<h4 class="repeat_txt">Repeated Trades</h4>
-								<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info.png" alt="info"></a>
-							</div>
-							<div class="repeat_see">
-								<a href="#"> See More</a>
-							</div>
-							<div class="repeat_avg exp_avg">
-								<div class="trade_ave">
-									<p class="t_tra-txt">5% <span class="exp_trad"> (9 trades)</span></p>
-									<h4 class="t_petro">Bahri</h4>
-								</div>
-								<div class="t_avg_p">
-									<div class="avg-pro">
-										<p class="ave_txt exp_ave_txt">Avg. Profit</p>
-										<h4 class="pro_per exp_pro_per">9%</h4>
-									</div>
-									<div class="avg-pro">
-										<p class="ave_txt exp_ave_txt">Avg. Profit</p>
-										<h4 class="pro_per exp_pro_per">1%</h4>
-									</div>
-								</div>
-							</div>
-							<div class="repeat_avg exp_avg_avg">
-								<div class="trade_ave">
-									<p class="t_tra-txt">23% <span class="exp_trad"> (4 trades)</span></p>
-									<h4 class="t_petro">Petro Rabigh</h4>
-								</div>
-								<div class="t_avg_p">
-									<div class="avg-pro">
-										<p class="ave_txt exp_ave_txt">Avg. Profit</p>
-										<h4 class="pro_per exp_pro_per">9%</h4>
-									</div>
-									<div class="avg-pro">
-										<p class="ave_txt exp_ave_txt">Avg. Profit</p>
-										<h4 class="pro_per exp_pro_per">1%</h4>
-									</div>
-								</div>
-							</div>
-						</div>
-
-
-
+						<?php stratus_child_get_repeated_trades(); ?>
 					</div>
 				</div>
-
 			</div>
 		</div>
 		</div>
@@ -682,23 +638,23 @@ function stratusx_child_expert_details() {
 				</div>
 			</div>
 		</div>
-	<?php 
+		<?php
 	}
 }
 
 function analyst_expert_user_type( $type_id ) {
 	switch ( $type_id ) {
 		case 1:
-			echo "Technical";
-		break;
+			echo 'Technical';
+			break;
 		case 2:
-			echo "Financial";
-		break;
+			echo 'Financial';
+			break;
 		case 3:
-			echo "Technical and financial";
-		break;
+			echo 'Technical and financial';
+			break;
 		default:
-			echo "Other";
+			echo 'Other';
 	}
 }
 function stratusx_child_expert_details_button() {
