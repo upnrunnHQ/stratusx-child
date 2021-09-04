@@ -613,7 +613,7 @@ function stratusx_child_get_get_user_information( $portfolio_id ) {
 		$transient_id     = "stratusx_child_get_user_information_{$portfolio_id}";
 		$user_information = get_transient( $transient_id );
 		if ( $user_information ) {
-			print_r( json_decode( $user_information ) );
+			// print_r( json_decode( $user_information ) );
 			return $user_information;
 		}
 
@@ -652,6 +652,7 @@ function stratusx_child_get_get_graph_performance( $portfolio_id ) {
 		$transient_id      = "stratusx_child_get_graph_performance_{$portfolio_id}";
 		$graph_performance = get_transient( $transient_id );
 		if ( $graph_performance ) {
+			// print_r( json_decode( $graph_performance ) );
 			return $graph_performance;
 		}
 
