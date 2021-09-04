@@ -404,50 +404,7 @@ function stratusx_child_expert_details() {
 								</div>
 							</div>
 						</div>
-						<div class="performance_main">
-							<div class="performance_head_area">
-								<div class="perfor_head_inner exp_perfor_head">
-									<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/performance.png" alt="">
-									<h4 class="performance_txt">Performance</h4>
-								</div>
-								<div class="risk_info_icon exp_risk_info">
-									<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info.png" alt="info"></a>
-									<div class="g_yearly">
-										<select class="g_year_drp" id="">
-											<option value="">2021</option>
-											<option value="">2022</option>
-											<option value="">2023</option>
-											<option value="">2024</option>
-											<option value="">2025</option>
-										</select>
-									</div>
-								</div>
-							</div>
-							<h4 class="exp_total_per">Total performance cross the year.</h4>
-							<div class="performance_chart">
-								<canvas id="performancelineChart"></canvas>
-							</div>
-							<div class="user_totle_month exp_usr_mont">
-								<div class="totle_see_m">
-									<h4 class="tot_txt">Total: 25%</h4>
-									<a href="#">See More</a>
-								</div>
-								<div class="tot_perc">
-									<div class="monthly_per">
-										<h4 class="per_mon">July</h4>
-										<h4 class="per_num">+30.70%</h4>
-									</div>
-									<div class="monthly_per">
-										<h4 class="per_mon">June</h4>
-										<h4 class="per_num">+10.77%</h4>
-									</div>
-									<div class="monthly_per">
-										<h4 class="per_mon">May</h4>
-										<h4 class="per_num">+3.261</h4>
-									</div>
-								</div>
-							</div>
-						</div>
+						<?php stratus_child_get_performance( $data2[0]->performance, $data2[0]->totalPerformance ); ?>
 						<div class="trading_main_area exp-trading">
 							<div class="trading_head">
 								<div class="exp_trading_icon">
