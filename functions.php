@@ -231,21 +231,19 @@ function stratusx_child_expert_details() {
 
 	<?php
 	if ( 'expert' === $user_type ) {
-		?>
-			<?php
-			if ( empty( $portfolio_id ) ) {
-				return;
-			}
+		if ( empty( $portfolio_id ) ) {
+			return;
+		}
 
-			// API userInformation
-			$arrData2 = json_decode( stratusx_child_get_get_user_information( $portfolio_id ) );
-			$data2    = $arrData2->data;
-			//API 3 graphInformation
-			$arrdata3 = json_decode( stratusx_child_get_get_graph_performance( $portfolio_id ) );
-			$data3    = $arrdata3->data;
-			// print_r($data2);
-			// print_r($data3);
-			?>
+		// API userInformation
+		$arrData2 = json_decode( stratusx_child_get_get_user_information( $portfolio_id ) );
+		$data2    = $arrData2->data;
+		//API 3 graphInformation
+		$arrdata3 = json_decode( stratusx_child_get_get_graph_performance( $portfolio_id ) );
+		$data3    = $arrdata3->data;
+		// print_r( $data2 );
+		// print_r($data3);
+		?>
 		<!--  -->
 		<div id="home">
 			<div class="container-fluid">
@@ -598,7 +596,7 @@ function stratusx_child_expert_details() {
 								<canvas id="CashChart" width="200" height="250"></canvas>
 							</div>
 						</div>
-						<?php stratus_child_get_repeated_trades(); ?>
+						<?php stratus_child_get_repeated_trades( $data2[0]->repeatedTrade ); ?>
 					</div>
 				</div>
 			</div>
@@ -673,7 +671,7 @@ function stratusx_child_get_analyst_details( $analyst_id ) {
 		$transient_id    = "stratusx_child_get_analyst_details_{$analyst_id}";
 		$analyst_details = get_transient( $transient_id );
 		if ( $analyst_details ) {
-			// return $analyst_details;
+			return $analyst_details;
 		}
 
 		$curl = curl_init();
@@ -696,7 +694,7 @@ function stratusx_child_get_analyst_details( $analyst_id ) {
 
 		curl_close( $curl );
 
-		set_transient( $transient_id, $response, 12 * HOUR_IN_SECONDS );
+		set_transient( $transient_id, $response, HOUR_IN_SECONDS );
 
 		return $response;
 	} catch ( Exception $e ) {
@@ -709,7 +707,7 @@ function stratusx_child_get_get_other_profile( $portfolio_id ) {
 		$transient_id  = "stratusx_child_get_get_other_profile_{$portfolio_id}";
 		$other_profile = get_transient( $transient_id );
 		if ( $other_profile ) {
-			// return $other_profile;
+			return $other_profile;
 		}
 
 		$token   = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBwc2ludm9kZXZsb3BtZW50LmNvbVwvZGF3dWwtbmV3LWJhY2tlbmRcL2FwaVwvbG9naW4iLCJpYXQiOjE2MjkzNjgxMTgsIm5iZiI6MTYyOTM2ODExOCwianRpIjoiQUxGaFpRc0xBemlZOWRFbiIsInN1YiI6MTc3NSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.WdoSYu0AkDPF0R6vJ_6X8be39UNzAMkxC2wEXJ_JodA';
@@ -734,7 +732,7 @@ function stratusx_child_get_get_other_profile( $portfolio_id ) {
 
 		curl_close( $curl );
 
-		set_transient( $transient_id, $response, 12 * HOUR_IN_SECONDS );
+		set_transient( $transient_id, $response, HOUR_IN_SECONDS );
 
 		return $response;
 	} catch ( Exception $e ) {
@@ -747,7 +745,7 @@ function stratusx_child_get_get_user_information( $portfolio_id ) {
 		$transient_id     = "stratusx_child_get_user_information_{$portfolio_id}";
 		$user_information = get_transient( $transient_id );
 		if ( $user_information ) {
-			// return $user_information;
+			return $user_information;
 		}
 
 		$token    = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBwc2ludm9kZXZsb3BtZW50LmNvbVwvZGF3dWwtbmV3LWJhY2tlbmRcL2FwaVwvbG9naW4iLCJpYXQiOjE2MjkzNjgxMTgsIm5iZiI6MTYyOTM2ODExOCwianRpIjoiQUxGaFpRc0xBemlZOWRFbiIsInN1YiI6MTc3NSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.WdoSYu0AkDPF0R6vJ_6X8be39UNzAMkxC2wEXJ_JodA';
@@ -772,7 +770,7 @@ function stratusx_child_get_get_user_information( $portfolio_id ) {
 
 		curl_close( $curl );
 
-		set_transient( $transient_id, $response, 12 * HOUR_IN_SECONDS );
+		set_transient( $transient_id, $response, HOUR_IN_SECONDS );
 
 		return $response;
 	} catch ( Exception $e ) {
@@ -785,7 +783,7 @@ function stratusx_child_get_get_graph_performance( $portfolio_id ) {
 		$transient_id      = "stratusx_child_get_graph_performance_{$portfolio_id}";
 		$graph_performance = get_transient( $transient_id );
 		if ( $graph_performance ) {
-			// return $graph_performance;
+			return $graph_performance;
 		}
 
 		$token     = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBwc2ludm9kZXZsb3BtZW50LmNvbVwvZGF3dWwtbmV3LWJhY2tlbmRcL2FwaVwvbG9naW4iLCJpYXQiOjE2MjkzNjgxMTgsIm5iZiI6MTYyOTM2ODExOCwianRpIjoiQUxGaFpRc0xBemlZOWRFbiIsInN1YiI6MTc3NSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.WdoSYu0AkDPF0R6vJ_6X8be39UNzAMkxC2wEXJ_JodA';
@@ -811,7 +809,7 @@ function stratusx_child_get_get_graph_performance( $portfolio_id ) {
 
 		curl_close( $curl );
 
-		set_transient( $transient_id, $response, 12 * HOUR_IN_SECONDS );
+		set_transient( $transient_id, $response, HOUR_IN_SECONDS );
 
 		return $response;
 	} catch ( Exception $e ) {
