@@ -108,11 +108,7 @@ jQuery(document).ready(function($) {
             datasets: [
                 {
                     backgroundColor: "#ff4e4e",
-                    data: [3.5, 5, 3, 5, 6, 3, 4, 5]
-                },
-                {
-                    backgroundColor: "#5fff41",
-                    data: [3, 6, 4, 8, 7, 10, 7, 5]
+                    data: stratusx_child.lastmonthChart["2021"]
                 }
             ]
         },
