@@ -335,32 +335,16 @@ function stratusx_child_expert_details() {
 					</div>
 
 					<div class="col-md-6">
-						<div class="user_p_heading">
-							<h4>Indication</h4>
-						</div>
-						<div class="exp_lone_area">
-							<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/dollar-e.png" alt="doller" class="img-fluid"></a>
-							<div class="exp_lone_inner">
-								<div class="percentage_chart_main">
-									<canvas id="percentChart" width="250" height="300"></canvas>
-								</div>
-								<div class="exp_cash_area">
-									<div class="exp_percent">
-										<h4>Cash Percentage</h4>
-										<h3><?php echo $user_information->cashPercenage; ?>%</h3>
-									</div>
-									<div class="exp_percent exp_ln">
-										<h4>Loan Percentage</h4>
-										<h3><?php echo $user_information->loanPercenage; ?>%</h3>
-									</div>
-									<div class="exp_percent exp_stc">
-										<h4>Stock Percentage</h4>
-										<h3><?php echo $user_information->stockPercenage; ?>%</h3>
-									</div>
-								</div>
-							</div>
-						</div>
 						<?php
+						get_template_part(
+							'template-parts/content',
+							'risk-indicator',
+							[
+								'cashPercenage'  => $user_information->cashPercenage,
+								'loanPercenage'  => $user_information->loanPercenage,
+								'stockPercenage' => $user_information->stockPercenage,
+							]
+						);
 						get_template_part(
 							'template-parts/content',
 							'risk-indicator',
