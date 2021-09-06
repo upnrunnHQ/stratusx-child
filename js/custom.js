@@ -98,17 +98,18 @@ jQuery(document).ready(function($) {
     });
 
     // ======lastmonthChart=======
-    var lastmonthChart = document
-        .getElementById("lastmonthChart")
-        .getContext("2d");
+    var lastmonthChart = document.getElementById("lastmonthChart"),
+        lastmonthChartData = JSON.parse(lastmonthChart.dataset.chartjs);
+
+    console.log(lastmonthChartData);
     new Chart(lastmonthChart, {
         type: "line",
         data: {
-            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],
+            labels: lastmonthChartData.labels,
             datasets: [
                 {
                     backgroundColor: "#ff4e4e",
-                    data: stratusx_child.lastmonthChart["2021"]
+                    data: lastmonthChartData.datasets
                 }
             ]
         },

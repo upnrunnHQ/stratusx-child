@@ -258,7 +258,7 @@ function stratusx_child_expert_details() {
 		$graph_performance = json_decode( stratusx_child_get_get_graph_performance( $portfolio_id ) );
 		$graph_performance = $graph_performance->data[0];
 		// print_r( $user_information );
-		// print_r($graph_performance);
+		// print_r( $graph_performance );
 		?>
 		<!--  -->
 		<div id="home">
@@ -357,11 +357,6 @@ function stratusx_child_expert_details() {
 										<h4>Stock Percentage</h4>
 										<h3><?php echo $user_information->stockPercenage; ?>%</h3>
 									</div>
-									<div class="exp_percent exp_fnd">
-										<h4>Fund Percentage</h4>
-										<h3><?php echo $user_information->fundPercenage; ?>%</h3>
-									</div>
-
 								</div>
 							</div>
 						</div>

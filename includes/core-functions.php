@@ -1,40 +1,20 @@
 <?php
 function stratusx_child_get_risk_indicator_data( $user_information ) {
 	$indicator_data = [
-		'labels'       => [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug' ],
-		'datasets'     => [],
-		'year_options' => [],
+		'chartjs'       => [
+			'labels'   => [],
+			'datasets' => [],
+		],
+		'totalRiskRate' => $user_information->totalRiskRate,
 	];
 
 	if ( isset( $user_information->riskPrevious12Month ) ) {
 		foreach ( $user_information->riskPrevious12Month as $risk_item ) {
-			if ( ! isset( $indicator_data['datasets'][ $risk_item->year ] ) ) {
-				$indicator_data['datasets'][ $risk_item->year ] = [
-					'January'  => 0,
-					'February' => 0,
-					'March'    => 0,
-					'April'    => 0,
-					'May'      => 0,
-					'June'     => 0,
-					'July'     => 0,
-					'August'   => 0,
-					'October'  => 0,
-					'November' => 0,
-					'December' => 0,
-				];
-			}
-
-			$indicator_data['datasets'][ $risk_item->year ][ $risk_item->month ] = $risk_item->value;
-			$indicator_data['year_options'][]                                    = $risk_item->year;
+			$indicator_data['chartjs']['labels'][]   = $risk_item->month;
+			$indicator_data['chartjs']['datasets'][] = $risk_item->value;
 		}
 	}
-
-	foreach ( $indicator_data['datasets'] as $key => $value ) {
-		$indicator_data['datasets'][ $key ] = array_values( $value );
-	}
-
-	$indicator_data['year_options'] = array_unique( $indicator_data['year_options'] );
-
+	
 	return $indicator_data;
 }
 
@@ -146,6 +126,7 @@ function stratusx_child_get_get_user_information( $portfolio_id ) {
 			'Portfolio_ID' => $portfolio_id,
 			'token'        => $token,
 			'is_web'       => 1,
+			'filterYear'   => 2021,
 		);
 		$header   = array();
 		$header[] = 'Content-type: application/json';
@@ -171,10 +152,9 @@ function stratusx_child_get_get_user_information( $portfolio_id ) {
 }
 
 function stratusx_child_get_get_graph_performance( $portfolio_id ) {
-
 	try {
-		$transient_id       = "stratusx_child_get_graph_performance_{$portfolio_id}";
-		 $graph_performance = get_transient( $transient_id );
+		$transient_id      = "stratusx_child_get_graph_performance_{$portfolio_id}";
+		$graph_performance = get_transient( $transient_id );
 		if ( $graph_performance ) {
 			// print_r( json_decode( $graph_performance ) );
 			return $graph_performance;
