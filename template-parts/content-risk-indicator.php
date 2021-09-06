@@ -8,11 +8,9 @@
 			<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info-black-e.png" alt="info"></a>
 			<div class="g_yearly">
 				<select class="g_year_drp" id="">
-					<option value="">2021</option>
-					<option value="">2022</option>
-					<option value="">2023</option>
-					<option value="">2024</option>
-					<option value="">2025</option>
+					<?php foreach ( $args['year_options'] as $year_option ) : ?>
+						<option value="<?php echo $year_option; ?>"><?php echo $year_option; ?></option>
+					<?php endforeach; ?>
 				</select>
 			</div>
 		</div>

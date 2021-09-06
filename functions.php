@@ -99,44 +99,10 @@ function expert_profile_js_css() {
 				$portfolio_id     = get_post_meta( $product_id, 'expert_analyst_details_portfolio-id', true );
 				$user_information = json_decode( stratusx_child_get_get_user_information( $portfolio_id ) );
 				$user_information = $user_information->data[0];
-
-				$lastmonthChart = [
-					'labels'   => [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug' ],
-					'datasets' => [],
-				];
-
-				if ( isset( $user_information->riskPrevious12Month ) ) {
-					foreach ( $user_information->riskPrevious12Month as $risk_item ) {
-						if ( ! isset( $lastmonthChart['datasets'][ $risk_item->year ] ) ) {
-							$lastmonthChart['datasets'][ $risk_item->year ] = [
-								'January'  => 0,
-								'February' => 0,
-								'March'    => 0,
-								'April'    => 0,
-								'May'      => 0,
-								'June'     => 0,
-								'July'     => 0,
-								'August'   => 0,
-								'October'  => 0,
-								'November' => 0,
-								'December' => 0,
-							];
-						}
-
-						$lastmonthChart['datasets'][ $risk_item->year ][ $risk_item->month ] = $risk_item->value;
-					}
-				}
-
-				foreach ( $lastmonthChart['datasets'] as $key => $value ) {
-					// $lastmonthChart['datasets'][ $key ] = array_values( $value );
-				}
-
-				print_r( $lastmonthChart );
-
 				wp_localize_script(
 					'stratusx-child',
 					'stratusx_child',
-					[ 'lastmonthChart' => $lastmonthChart ]
+					[]
 				);
 			}
 		}
@@ -403,9 +369,7 @@ function stratusx_child_expert_details() {
 						get_template_part(
 							'template-parts/content',
 							'risk-indicator',
-							[
-								'year_options' => [],
-							]
+							stratusx_child_get_risk_indicator_data( $user_information )
 						);
 						?>
 						<div class="profit_score_main">

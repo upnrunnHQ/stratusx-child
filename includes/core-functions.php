@@ -1,6 +1,6 @@
 <?php
-function stratusx_child_get_risk_indicator_data() {
-	$lastmonthChart = [
+function stratusx_child_get_risk_indicator_data( $user_information ) {
+	$indicator_data = [
 		'labels'       => [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug' ],
 		'datasets'     => [],
 		'year_options' => [],
@@ -8,8 +8,8 @@ function stratusx_child_get_risk_indicator_data() {
 
 	if ( isset( $user_information->riskPrevious12Month ) ) {
 		foreach ( $user_information->riskPrevious12Month as $risk_item ) {
-			if ( ! isset( $lastmonthChart['datasets'][ $risk_item->year ] ) ) {
-				$lastmonthChart['datasets'][ $risk_item->year ] = [
+			if ( ! isset( $indicator_data['datasets'][ $risk_item->year ] ) ) {
+				$indicator_data['datasets'][ $risk_item->year ] = [
 					'January'  => 0,
 					'February' => 0,
 					'March'    => 0,
@@ -24,16 +24,18 @@ function stratusx_child_get_risk_indicator_data() {
 				];
 			}
 
-			$lastmonthChart['datasets'][ $risk_item->year ][ $risk_item->month ] = $risk_item->value;
-			$lastmonthChart['year_options'][]                                    = $risk_item->year;
+			$indicator_data['datasets'][ $risk_item->year ][ $risk_item->month ] = $risk_item->value;
+			$indicator_data['year_options'][]                                    = $risk_item->year;
 		}
 	}
 
-	foreach ( $lastmonthChart['datasets'] as $key => $value ) {
-		$lastmonthChart['datasets'][ $key ] = array_values( $value );
+	foreach ( $indicator_data['datasets'] as $key => $value ) {
+		$indicator_data['datasets'][ $key ] = array_values( $value );
 	}
 
-	return $lastmonthChart;
+	$indicator_data['year_options'] = array_unique( $indicator_data['year_options'] );
+
+	return $indicator_data;
 }
 
 function analyst_expert_user_type( $type_id ) {
