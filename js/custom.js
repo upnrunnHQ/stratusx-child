@@ -50,22 +50,18 @@ jQuery(document).ready(function($) {
     });
 
     // =====PercentChart=======
+    var percentChart = document.getElementById("percentChart"),
+        percentChartData = JSON.parse(percentChart.dataset.chartjs);
 
-    var CashChart = document.getElementById("percentChart").getContext("2d");
     new Chart(percentChart, {
         type: "doughnut",
         data: {
+            labels: percentChartData.labels,
             datasets: [
                 {
-                    label: "Amount",
-                    backgroundColor: [
-                        "#007fff",
-                        "#f80358",
-                        "#fff0f5",
-                        "#00c17e"
-                    ],
+                    backgroundColor: ["#007fff", "#f80358", "#fff0f5"],
                     borderWidth: 0,
-                    data: [12000, 14000, 12000, 11000]
+                    data: percentChartData.data
                 }
             ]
         },

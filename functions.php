@@ -338,11 +338,18 @@ function stratusx_child_expert_details() {
 						<?php
 						get_template_part(
 							'template-parts/content',
-							'risk-indicator',
+							'indication',
 							[
-								'cashPercenage'  => $user_information->cashPercenage,
-								'loanPercenage'  => $user_information->loanPercenage,
-								'stockPercenage' => $user_information->stockPercenage,
+								'labels' => [
+									__( 'Cash Percentage', 'stratus-child' ),
+									__( 'Loan Percentage', 'stratus-child' ),
+									__( 'Stock Percentage', 'stratus-child' ),
+								],
+								'data'   => [
+									$user_information->cashPercenage,
+									$user_information->loanPercenage,
+									$user_information->stockPercenage,
+								],
 							]
 						);
 						get_template_part(
