@@ -1,4 +1,41 @@
 <?php
+function stratusx_child_get_risk_indicator_data() {
+	$lastmonthChart = [
+		'labels'       => [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug' ],
+		'datasets'     => [],
+		'year_options' => [],
+	];
+
+	if ( isset( $user_information->riskPrevious12Month ) ) {
+		foreach ( $user_information->riskPrevious12Month as $risk_item ) {
+			if ( ! isset( $lastmonthChart['datasets'][ $risk_item->year ] ) ) {
+				$lastmonthChart['datasets'][ $risk_item->year ] = [
+					'January'  => 0,
+					'February' => 0,
+					'March'    => 0,
+					'April'    => 0,
+					'May'      => 0,
+					'June'     => 0,
+					'July'     => 0,
+					'August'   => 0,
+					'October'  => 0,
+					'November' => 0,
+					'December' => 0,
+				];
+			}
+
+			$lastmonthChart['datasets'][ $risk_item->year ][ $risk_item->month ] = $risk_item->value;
+			$lastmonthChart['year_options'][]                                    = $risk_item->year;
+		}
+	}
+
+	foreach ( $lastmonthChart['datasets'] as $key => $value ) {
+		$lastmonthChart['datasets'][ $key ] = array_values( $value );
+	}
+
+	return $lastmonthChart;
+}
+
 function analyst_expert_user_type( $type_id ) {
 	switch ( $type_id ) {
 		case 1:
@@ -14,8 +51,8 @@ function analyst_expert_user_type( $type_id ) {
 			echo 'Other';
 	}
 }
-
 function stratusx_child_get_analyst_details( $analyst_id ) {
+
 	try {
 		$transient_id    = "stratusx_child_get_analyst_details_{$analyst_id}";
 		$analyst_details = get_transient( $transient_id );
@@ -39,22 +76,23 @@ function stratusx_child_get_analyst_details( $analyst_id ) {
 			)
 		);
 
-		$response = curl_exec( $curl );
+		  $response = curl_exec( $curl );
 
-		curl_close( $curl );
+		 curl_close( $curl );
 
 		set_transient( $transient_id, $response, HOUR_IN_SECONDS );
 
-		return $response;
+		 return $response;
 	} catch ( Exception $e ) {
 		return [];
 	}
 }
 
 function stratusx_child_get_get_other_profile( $portfolio_id ) {
+
 	try {
-		$transient_id  = "stratusx_child_get_get_other_profile_{$portfolio_id}";
-		$other_profile = get_transient( $transient_id );
+		$transient_id   = "stratusx_child_get_get_other_profile_{$portfolio_id}";
+		 $other_profile = get_transient( $transient_id );
 		if ( $other_profile ) {
 			// print_r( json_decode( $other_profile ) );
 			return $other_profile;
@@ -91,6 +129,7 @@ function stratusx_child_get_get_other_profile( $portfolio_id ) {
 }
 
 function stratusx_child_get_get_user_information( $portfolio_id ) {
+
 	try {
 		$transient_id     = "stratusx_child_get_user_information_{$portfolio_id}";
 		$user_information = get_transient( $transient_id );
@@ -130,9 +169,10 @@ function stratusx_child_get_get_user_information( $portfolio_id ) {
 }
 
 function stratusx_child_get_get_graph_performance( $portfolio_id ) {
+
 	try {
-		$transient_id      = "stratusx_child_get_graph_performance_{$portfolio_id}";
-		$graph_performance = get_transient( $transient_id );
+		$transient_id       = "stratusx_child_get_graph_performance_{$portfolio_id}";
+		 $graph_performance = get_transient( $transient_id );
 		if ( $graph_performance ) {
 			// print_r( json_decode( $graph_performance ) );
 			return $graph_performance;

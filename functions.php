@@ -1,5 +1,5 @@
 <?php
-include( get_stylesheet_directory() . '/includes/code-functions.php' );
+include( get_stylesheet_directory() . '/includes/core-functions.php' );
 include( get_stylesheet_directory() . '/includes/template-functions.php' );
 include( get_stylesheet_directory() . '/includes/class-stratusx-child.php' );
 
