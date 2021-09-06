@@ -1,4 +1,5 @@
 <?php
+include( get_stylesheet_directory() . '/includes/code-functions.php' );
 include( get_stylesheet_directory() . '/includes/template-functions.php' );
 include( get_stylesheet_directory() . '/includes/class-stratusx-child.php' );
 
@@ -99,35 +100,38 @@ function expert_profile_js_css() {
 				$user_information = json_decode( stratusx_child_get_get_user_information( $portfolio_id ) );
 				$user_information = $user_information->data[0];
 
-				$months = [
-					'January'  => 0,
-					'February' => 0,
-					'March'    => 0,
-					'April'    => 0,
-					'May'      => 0,
-					'June'     => 0,
-					'July'     => 0,
-					'August'   => 0,
-					'October'  => 0,
-					'November' => 0,
-					'December' => 0,
-				];
-
 				$lastmonthChart = [
-					'2020' => $months,
-					'2021' => $months,
+					'labels'   => [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug' ],
+					'datasets' => [],
 				];
 
 				if ( isset( $user_information->riskPrevious12Month ) ) {
 					foreach ( $user_information->riskPrevious12Month as $risk_item ) {
-						$lastmonthChart[$risk_item->year][$risk_item->month] = $risk_item->value;
+						if ( ! isset( $lastmonthChart['datasets'][ $risk_item->year ] ) ) {
+							$lastmonthChart['datasets'][ $risk_item->year ] = [
+								'January'  => 0,
+								'February' => 0,
+								'March'    => 0,
+								'April'    => 0,
+								'May'      => 0,
+								'June'     => 0,
+								'July'     => 0,
+								'August'   => 0,
+								'October'  => 0,
+								'November' => 0,
+								'December' => 0,
+							];
+						}
+
+						$lastmonthChart['datasets'][ $risk_item->year ][ $risk_item->month ] = $risk_item->value;
 					}
 				}
 
-				$lastmonthChart = [
-					'2020' => array_values( $lastmonthChart['2020'] ),
-					'2021' => array_values( $lastmonthChart['2021'] ),
-				];
+				foreach ( $lastmonthChart['datasets'] as $key => $value ) {
+					// $lastmonthChart['datasets'][ $key ] = array_values( $value );
+				}
+
+				print_r( $lastmonthChart );
 
 				wp_localize_script(
 					'stratusx-child',
@@ -198,9 +202,9 @@ function stratusx_child_expert_details() {
 	}
 
 	$featured_img_url = get_the_post_thumbnail_url( get_the_ID(), 'full' );
-	$arrData          = json_decode( stratusx_child_get_get_other_profile( $portfolio_id ) );
-	$data             = $arrData->data;
-	// print_r($data);
+	$other_profile    = json_decode( stratusx_child_get_get_other_profile( $portfolio_id ) );
+	$other_profile    = $other_profile->data[0];
+	// print_r($other_profile);
 	?>
 	<div class="anly_profile_main exp_pro_main">
 		<div class="container-fluid">
@@ -214,9 +218,9 @@ function stratusx_child_expert_details() {
 					<div class="anly_profile_content">
 						<div class="anly_person_details">
 							<div class="per_details">
-								<h1 class="a_per_nm"><?php echo $data[0]->userName; ?></h1>
-								<span class="a_per_id"><?php echo $data[0]->emailAddress; ?></span>
-								<p class="exp_profit">Profit of Last Month: <spna class="exp_per"><?php echo $data[0]->profileProfit; ?>%</spna>
+								<h1 class="a_per_nm"><?php echo $other_profile->userName; ?></h1>
+								<span class="a_per_id"><?php echo $other_profile->emailAddress; ?></span>
+								<p class="exp_profit">Profit of Last Month: <spna class="exp_per"><?php echo $other_profile->profileProfit; ?>%</spna>
 								</p>
 								<div class="exp_part_btn">
 									<a href="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="exp_partici_btn">Participation</a>
@@ -282,13 +286,13 @@ function stratusx_child_expert_details() {
 		}
 
 		// API userInformation
-		$arrData2 = json_decode( stratusx_child_get_get_user_information( $portfolio_id ) );
-		$data2    = $arrData2->data;
+		$user_information = json_decode( stratusx_child_get_get_user_information( $portfolio_id ) );
+		$user_information = $user_information->data[0];
 		//API 3 graphInformation
-		$arrdata3 = json_decode( stratusx_child_get_get_graph_performance( $portfolio_id ) );
-		$data3    = $arrdata3->data;
-		// print_r( $data2 );
-		// print_r($data3);
+		$graph_performance = json_decode( stratusx_child_get_get_graph_performance( $portfolio_id ) );
+		$graph_performance = $graph_performance->data[0];
+		// print_r( $user_information );
+		// print_r($graph_performance);
 		?>
 		<!--  -->
 		<div id="home">
@@ -312,15 +316,15 @@ function stratusx_child_expert_details() {
 								</div>
 								<div class="a_trades-inner">
 									<div class="a_week_trades">
-										<h5 class="week_num"><?php echo $data2[0]->totalTradePerWeek; ?></h5>
+										<h5 class="week_num"><?php echo $user_information->totalTradePerWeek; ?></h5>
 										<h5 class="week_txt">Weekly trades</h5>
 									</div>
 									<div class="a_week_trades">
-										<h5 class="week_num"><?php echo $data2[0]->totalTradePerMonth; ?></h5>
+										<h5 class="week_num"><?php echo $user_information->totalTradePerMonth; ?></h5>
 										<h5 class="week_txt">Monthly trades</h5>
 									</div>
 									<div class="a_week_trades">
-										<h5 class="week_num"><?php echo $data2[0]->totalTradePerYear; ?></h5>
+										<h5 class="week_num"><?php echo $user_information->totalTradePerYear; ?></h5>
 										<h5 class="week_txt">Yearly trades</h5>
 									</div>
 								</div>
@@ -331,7 +335,7 @@ function stratusx_child_expert_details() {
 									<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info-orange-e.png" alt="info"></a>
 								</div>
 								<div class="tra_days">
-									<h4 class="days"><?php echo $data2[0]->avgHoldingTime; ?> Day</h4>
+									<h4 class="days"><?php echo $user_information->avgHoldingTime; ?> Day</h4>
 									<h5 class="avg_time">Average Holding Time</h5>
 								</div>
 							</div>
@@ -341,7 +345,7 @@ function stratusx_child_expert_details() {
 									<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info-green-e.png" alt="info"></a>
 								</div>
 								<div class="tra_days">
-									<h4 class="days"><?php echo date( 'd-m-y', strtotime( $data2[0]->joiningDate ) ); ?></h4>
+									<h4 class="days"><?php echo date( 'd-m-y', strtotime( $user_information->joiningDate ) ); ?></h4>
 									<h5 class="avg_time">Active Since</h5>
 								</div>
 							</div>
@@ -352,11 +356,11 @@ function stratusx_child_expert_details() {
 								</div>
 								<div class="max_profit">
 									<div class="tra_days">
-										<h4 class="days"><?php echo $data2[0]->maxProfitTrade; ?></h4>
+										<h4 class="days"><?php echo $user_information->maxProfitTrade; ?></h4>
 										<h5 class="avg_time">Max Profit Trade</h5>
 									</div>
 									<div class="tra_days">
-										<h4 class="days"><?php echo $data2[0]->maxLossTrade; ?></h4>
+										<h4 class="days"><?php echo $user_information->maxLossTrade; ?></h4>
 										<h5 class="avg_time">Min Profit Trade</h5>
 									</div>
 								</div>
@@ -377,47 +381,33 @@ function stratusx_child_expert_details() {
 								<div class="exp_cash_area">
 									<div class="exp_percent">
 										<h4>Cash Percentage</h4>
-										<h3><?php echo $data2[0]->cashPercenage; ?>%</h3>
+										<h3><?php echo $user_information->cashPercenage; ?>%</h3>
 									</div>
 									<div class="exp_percent exp_ln">
 										<h4>Loan Percentage</h4>
-										<h3><?php echo $data2[0]->loanPercenage; ?>%</h3>
+										<h3><?php echo $user_information->loanPercenage; ?>%</h3>
 									</div>
 									<div class="exp_percent exp_stc">
 										<h4>Stock Percentage</h4>
-										<h3><?php echo $data2[0]->stockPercenage; ?>%</h3>
+										<h3><?php echo $user_information->stockPercenage; ?>%</h3>
 									</div>
 									<div class="exp_percent exp_fnd">
 										<h4>Fund Percentage</h4>
-										<h3><?php echo $data2[0]->fundPercenage; ?>%</h3>
+										<h3><?php echo $user_information->fundPercenage; ?>%</h3>
 									</div>
 
 								</div>
 							</div>
 						</div>
-						<div class="risk_ind_main">
-							<div class="risk_head_area">
-								<div class="ri_head_inner">
-									<span class="risk_num">-1.21</span>
-									<span class="risk_txt">Risk indicator for the last 12 months</span>
-								</div>
-								<div class="risk_info_icon exp_r_info">
-									<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info-black-e.png" alt="info"></a>
-									<div class="g_yearly">
-										<select class="g_year_drp" id="">
-											<option value="">2021</option>
-											<option value="">2022</option>
-											<option value="">2023</option>
-											<option value="">2024</option>
-											<option value="">2025</option>
-										</select>
-									</div>
-								</div>
-							</div>
-							<div class="risk_indicator_chart">
-								<canvas id="lastmonthChart"></canvas>
-							</div>
-						</div>
+						<?php
+						get_template_part(
+							'template-parts/content',
+							'risk-indicator',
+							[
+								'year_options' => [],
+							]
+						);
+						?>
 						<div class="profit_score_main">
 							<div class="profit_score_head">
 								<div class="profit_icon">
@@ -437,21 +427,21 @@ function stratusx_child_expert_details() {
 
 							<div class="porfit_inner">
 								<div class="pro_score daily_score exp_daily_score">
-									<span class="score_percent"><?php echo $data2[0]->profitScore[0]->dailyScore; ?>%</span>
+									<span class="score_percent"><?php echo $user_information->profitScore[0]->dailyScore; ?>%</span>
 									<h4 class="score_txt">Daily</h4>
 								</div>
 								<div class="pro_score exp_pro_score">
-									<span class="score_percent"><?php echo $data2[0]->profitScore[0]->monthlyScore; ?>%</span>
+									<span class="score_percent"><?php echo $user_information->profitScore[0]->monthlyScore; ?>%</span>
 									<h4 class="score_txt">Monthly</h4>
 								</div>
 								<div class="pro_score exp_pro_score">
-									<span class="score_percent"><?php echo $data2[0]->profitScore[0]->yearlyScore; ?>%</span>
+									<span class="score_percent"><?php echo $user_information->profitScore[0]->yearlyScore; ?>%</span>
 									<h4 class="score_txt">Yearly</h4>
 								</div>
 							</div>
 						</div>
-						<?php stratus_child_get_performance( $data2[0]->performance, $data2[0]->totalPerformance ); ?>
-						<?php stratus_child_get_trading( $data2[0] ); ?>
+						<?php stratus_child_get_performance( $user_information->performance, $user_information->totalPerformance ); ?>
+						<?php stratus_child_get_trading( $user_information ); ?>
 						<div class="material_progress_main exp-material-main">
 							<div class="material_head">
 								<a href="#" class="material_see"><?php _e( 'See More', 'stratusx-child' ); ?></a>
@@ -484,15 +474,15 @@ function stratusx_child_expert_details() {
 									<h4 class="tot_txt per_month">6 Months</h4>
 									<div class="monthly_per exp_monthly">
 										<h4 class="per_mon">Holding Period Return</h4>
-										<h4 class="per_num">+<?php echo $data3[0]->HPR; ?>%</h4>
+										<h4 class="per_num">+<?php echo $graph_performance->HPR; ?>%</h4>
 									</div>
 									<div class="monthly_per exp_monthly">
 										<h4 class="per_mon">Standard Deviation</h4>
-										<h4 class="per_num">+<?php echo $data3[0]->SD; ?>%</h4>
+										<h4 class="per_num">+<?php echo $graph_performance->SD; ?>%</h4>
 									</div>
 									<div class="monthly_per exp_monthly">
 										<h4 class="per_mon">Sharp Ratio</h4>
-										<h4 class="per_num">+<?php echo $data3[0]->SR; ?></h4>
+										<h4 class="per_num">+<?php echo $graph_performance->SR; ?></h4>
 									</div>
 								</div>
 							</div>
@@ -509,7 +499,7 @@ function stratusx_child_expert_details() {
 								<canvas id="CashChart" width="200" height="250"></canvas>
 							</div>
 						</div>
-						<?php stratus_child_get_repeated_trades( $data2[0]->repeatedTrade ); ?>
+						<?php stratus_child_get_repeated_trades( $user_information->repeatedTrade ); ?>
 					</div>
 				</div>
 			</div>
@@ -550,185 +540,5 @@ function stratusx_child_expert_details() {
 			</div>
 		</div>
 		<?php
-	}
-}
-
-function analyst_expert_user_type( $type_id ) {
-	switch ( $type_id ) {
-		case 1:
-			echo 'Technical';
-			break;
-		case 2:
-			echo 'Financial';
-			break;
-		case 3:
-			echo 'Technical and financial';
-			break;
-		default:
-			echo 'Other';
-	}
-}
-function stratusx_child_expert_details_button() {
-	global $product;
-
-	printf(
-		'<a href="%s" class="%s">%s</a>',
-		get_the_permalink(),
-		'button',
-		__( 'View Details', 'stratusx-child' )
-	);
-}
-
-function stratusx_child_get_analyst_details( $analyst_id ) {
-	try {
-		$transient_id    = "stratusx_child_get_analyst_details_{$analyst_id}";
-		$analyst_details = get_transient( $transient_id );
-		if ( $analyst_details ) {
-			return $analyst_details;
-		}
-
-		$curl = curl_init();
-
-		curl_setopt_array(
-			$curl,
-			array(
-				CURLOPT_URL            => "https://appsinvodevlopment.com/dawul-new-backend/api/analyst/details?analyst_id={$analyst_id}&languageType=1&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBwc2ludm9kZXZsb3BtZW50LmNvbVwvZGF3dWwtbmV3LWJhY2tlbmRcL2FwaVwvbG9naW4iLCJpYXQiOjE2MjkzNjgxMTgsIm5iZiI6MTYyOTM2ODExOCwianRpIjoiQUxGaFpRc0xBemlZOWRFbiIsInN1YiI6MTc3NSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.WdoSYu0AkDPF0R6vJ_6X8be39UNzAMkxC2wEXJ_JodA&deviceToken=f_KjDyF9r_g:APA91bFVmQivW26s6zxE54SZDnssRGJMO3JxLY3XNEvgaxnfGeBeJWhJLMoZPgTTcPL1efAc5HixZIsAeCvVVy4gRkTfmf0QfQV-pbynJRL1i1tlR2PngzxLYdP0x4PYFsy1NCZH1NOf&is_web=1",
-				CURLOPT_RETURNTRANSFER => true,
-				CURLOPT_ENCODING       => '',
-				CURLOPT_MAXREDIRS      => 10,
-				CURLOPT_TIMEOUT        => 0,
-				CURLOPT_FOLLOWLOCATION => true,
-				CURLOPT_HTTP_VERSION   => CURL_HTTP_VERSION_1_1,
-				CURLOPT_CUSTOMREQUEST  => 'GET',
-			)
-		);
-
-		$response = curl_exec( $curl );
-
-		curl_close( $curl );
-
-		set_transient( $transient_id, $response, HOUR_IN_SECONDS );
-
-		return $response;
-	} catch ( Exception $e ) {
-		return [];
-	}
-}
-
-function stratusx_child_get_get_other_profile( $portfolio_id ) {
-	try {
-		$transient_id  = "stratusx_child_get_get_other_profile_{$portfolio_id}";
-		$other_profile = get_transient( $transient_id );
-		if ( $other_profile ) {
-			// print_r( json_decode( $other_profile ) );
-			return $other_profile;
-		}
-
-		$token   = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBwc2ludm9kZXZsb3BtZW50LmNvbVwvZGF3dWwtbmV3LWJhY2tlbmRcL2FwaVwvbG9naW4iLCJpYXQiOjE2MjkzNjgxMTgsIm5iZiI6MTYyOTM2ODExOCwianRpIjoiQUxGaFpRc0xBemlZOWRFbiIsInN1YiI6MTc3NSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.WdoSYu0AkDPF0R6vJ_6X8be39UNzAMkxC2wEXJ_JodA';
-		$url     = 'https://appsinvodevlopment.com/dawul-new-backend/api/getOtherProfile';
-		$fields  = array(
-			'Portfolio_ID' => $portfolio_id,
-			'token'        => $token,
-			'is_web'       => 1,
-		);
-		$headr   = array();
-		$headr[] = 'Content-type: application/json';
-		$headr[] = 'Authorization: ' . $token;
-		$ch      = curl_init();
-		curl_setopt( $ch, CURLOPT_URL, $url );
-		curl_setopt( $ch, CURLOPT_POST, true );
-		curl_setopt( $ch, CURLOPT_HTTPHEADER, $headr );
-		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-		curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
-		curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $fields ) );
-		// Execute post
-		$response = curl_exec( $ch );
-
-		curl_close( $curl );
-
-		set_transient( $transient_id, $response, HOUR_IN_SECONDS );
-
-		return $response;
-	} catch ( Exception $e ) {
-		return [];
-	}
-}
-
-function stratusx_child_get_get_user_information( $portfolio_id ) {
-	try {
-		$transient_id     = "stratusx_child_get_user_information_{$portfolio_id}";
-		$user_information = get_transient( $transient_id );
-		if ( $user_information ) {
-			// print_r( json_decode( $user_information ) );
-			return $user_information;
-		}
-
-		$token    = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBwc2ludm9kZXZsb3BtZW50LmNvbVwvZGF3dWwtbmV3LWJhY2tlbmRcL2FwaVwvbG9naW4iLCJpYXQiOjE2MjkzNjgxMTgsIm5iZiI6MTYyOTM2ODExOCwianRpIjoiQUxGaFpRc0xBemlZOWRFbiIsInN1YiI6MTc3NSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.WdoSYu0AkDPF0R6vJ_6X8be39UNzAMkxC2wEXJ_JodA';
-		$url2     = 'https://appsinvodevlopment.com/dawul-new-backend/api/userInformation';
-		$fields   = array(
-			'Portfolio_ID' => $portfolio_id,
-			'token'        => $token,
-			'is_web'       => 1,
-		);
-		$header   = array();
-		$header[] = 'Content-type: application/json';
-		$header[] = 'Authorization: ' . $token;
-		$ch       = curl_init();
-		curl_setopt( $ch, CURLOPT_URL, $url2 );
-		curl_setopt( $ch, CURLOPT_POST, true );
-		curl_setopt( $ch, CURLOPT_HTTPHEADER, $header );
-		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-		curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
-		curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $fields ) );
-		// Execute post
-		$response = curl_exec( $ch );
-
-		curl_close( $curl );
-
-		set_transient( $transient_id, $response, HOUR_IN_SECONDS );
-
-		return $response;
-	} catch ( Exception $e ) {
-		return [];
-	}
-}
-
-function stratusx_child_get_get_graph_performance( $portfolio_id ) {
-	try {
-		$transient_id      = "stratusx_child_get_graph_performance_{$portfolio_id}";
-		$graph_performance = get_transient( $transient_id );
-		if ( $graph_performance ) {
-			// print_r( json_decode( $graph_performance ) );
-			return $graph_performance;
-		}
-
-		$token     = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBwc2ludm9kZXZsb3BtZW50LmNvbVwvZGF3dWwtbmV3LWJhY2tlbmRcL2FwaVwvbG9naW4iLCJpYXQiOjE2MjkzNjgxMTgsIm5iZiI6MTYyOTM2ODExOCwianRpIjoiQUxGaFpRc0xBemlZOWRFbiIsInN1YiI6MTc3NSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.WdoSYu0AkDPF0R6vJ_6X8be39UNzAMkxC2wEXJ_JodA';
-		$fields    = array(
-			'Portfolio_ID' => $portfolio_id,
-			'token'        => $token,
-			'is_web'       => 1,
-			'filterYear'   => 2021,
-		);
-		$url3      = 'https://appsinvodevlopment.com/dawul-new-backend/api/graphPerformance';
-		$headers   = array();
-		$headers[] = 'Content-type: application/json';
-		$headers[] = 'Authorization: ' . $token;
-		$ch        = curl_init();
-		curl_setopt( $ch, CURLOPT_URL, $url3 );
-		curl_setopt( $ch, CURLOPT_POST, true );
-		curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers );
-		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-		curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
-		curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode( $fields ) );
-		// Execute post
-		$response = curl_exec( $ch );
-
-		curl_close( $curl );
-
-		set_transient( $transient_id, $response, HOUR_IN_SECONDS );
-
-		return $response;
-	} catch ( Exception $e ) {
-		return [];
 	}
 }

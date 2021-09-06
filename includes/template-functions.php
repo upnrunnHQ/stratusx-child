@@ -1,4 +1,15 @@
 <?php
+function stratusx_child_expert_details_button() {
+	global $product;
+
+	printf(
+		'<a href="%s" class="%s">%s</a>',
+		get_the_permalink(),
+		'button',
+		__( 'View Details', 'stratusx-child' )
+	);
+}
+
 function stratus_child_get_repeated_trades( $repeated_trades ) {
 	?>
 	<div class="repeate_area">
