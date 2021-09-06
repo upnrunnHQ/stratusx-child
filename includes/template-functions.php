@@ -54,7 +54,12 @@ function stratus_child_get_repeated_trades( $repeated_trades ) {
 	<?php
 }
 
-function stratus_child_get_performance( $performance, $total_performance ) {
+function stratus_child_get_performance( $performance, $total_performance, $graph_performance ) {
+	$chartjs = [];
+	foreach ( $graph_performance->performance as $performance_item ) {
+		$chartjs['labels'][] = $performance_item->month;
+		$chartjs['data'][]   = $performance_item->value;
+	}
 	?>
 	<div class="performance_main">
 		<div class="performance_head_area">
@@ -77,7 +82,7 @@ function stratus_child_get_performance( $performance, $total_performance ) {
 		</div>
 		<h4 class="exp_total_per"><?php _e( 'Total performance cross the year.', 'stratusx-child' ); ?></h4>
 		<div class="performance_chart">
-			<canvas id="performancelineChart"></canvas>
+			<canvas id="performancelineChart" data-chartjs="<?php echo esc_attr( json_encode( $chartjs ) ); ?>"></canvas>
 		</div>
 		<div class="user_totle_month exp_usr_mont">
 			<div class="totle_see_m">

@@ -100,8 +100,6 @@ jQuery(document).ready(function($) {
     // ======lastmonthChart=======
     var lastmonthChart = document.getElementById("lastmonthChart"),
         lastmonthChartData = JSON.parse(lastmonthChart.dataset.chartjs);
-
-    console.log(lastmonthChartData);
     new Chart(lastmonthChart, {
         type: "line",
         data: {
@@ -176,23 +174,19 @@ jQuery(document).ready(function($) {
         }
     });
 
-    var performancelineChart = document
-        .getElementById("performancelineChart")
-        .getContext("2d");
+    var performancelineChart = document.getElementById("performancelineChart"),
+        performancelineChartData = JSON.parse(
+            performancelineChart.dataset.chartjs
+        );
     new Chart(performancelineChart, {
         type: "bar",
         data: {
-            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],
+            labels: performancelineChartData.labels,
             datasets: [
                 {
                     backgroundColor: "#23e200",
                     barThickness: 14,
-                    data: [0, 0, 0, 0, 3, 2, 3, 2]
-                },
-                {
-                    backgroundColor: "#ff0000",
-                    barThickness: 14,
-                    data: [-2, -4, -2.2, -4, 0, 0, 0, 0]
+                    data: performancelineChartData.data
                 }
             ]
         },

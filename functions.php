@@ -399,7 +399,7 @@ function stratusx_child_expert_details() {
 								</div>
 							</div>
 						</div>
-						<?php stratus_child_get_performance( $user_information->performance, $user_information->totalPerformance ); ?>
+						<?php stratus_child_get_performance( $user_information->performance, $user_information->totalPerformance, $graph_performance ); ?>
 						<?php stratus_child_get_trading( $user_information ); ?>
 						<div class="material_progress_main exp-material-main">
 							<div class="material_head">

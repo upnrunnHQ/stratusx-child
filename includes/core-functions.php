@@ -14,7 +14,7 @@ function stratusx_child_get_risk_indicator_data( $user_information ) {
 			$indicator_data['chartjs']['datasets'][] = $risk_item->value;
 		}
 	}
-	
+
 	return $indicator_data;
 }
 
@@ -111,7 +111,6 @@ function stratusx_child_get_get_other_profile( $portfolio_id ) {
 }
 
 function stratusx_child_get_get_user_information( $portfolio_id ) {
-
 	try {
 		$transient_id     = "stratusx_child_get_user_information_{$portfolio_id}";
 		$user_information = get_transient( $transient_id );
@@ -151,7 +150,7 @@ function stratusx_child_get_get_user_information( $portfolio_id ) {
 	}
 }
 
-function stratusx_child_get_get_graph_performance( $portfolio_id ) {
+function stratusx_child_get_get_graph_performance( $portfolio_id, $filter_year = 2021 ) {
 	try {
 		$transient_id      = "stratusx_child_get_graph_performance_{$portfolio_id}";
 		$graph_performance = get_transient( $transient_id );
@@ -165,7 +164,7 @@ function stratusx_child_get_get_graph_performance( $portfolio_id ) {
 			'Portfolio_ID' => $portfolio_id,
 			'token'        => $token,
 			'is_web'       => 1,
-			'filterYear'   => 2021,
+			'filterYear'   => $filter_year,
 		);
 		$url3      = 'https://appsinvodevlopment.com/dawul-new-backend/api/graphPerformance';
 		$headers   = array();
