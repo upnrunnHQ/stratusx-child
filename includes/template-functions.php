@@ -85,7 +85,7 @@ function stratus_child_get_performance( $performance, $total_performance, $graph
 		</div>
 		<div class="user_totle_month exp_usr_mont">
 			<div class="totle_see_m">
-				<h4 class="tot_txt"><?php printf( __( 'Total: 25%', 'stratusx-child' ), $total_performance ); ?></h4>
+				<h4 class="tot_txt"><?php printf( __( 'Total: %s', 'stratusx-child' ), $total_performance ); ?>%</h4>
 				<a href="#"><?php _e( 'See More', 'stratusx-child' ); ?></a>
 			</div>
 			<div class="tot_perc">

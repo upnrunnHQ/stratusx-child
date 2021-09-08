@@ -154,7 +154,7 @@ function stratusx_child_get_get_user_information( $portfolio_id, $filter_year = 
 	}
 }
 
-function stratusx_child_get_get_graph_performance( $portfolio_id, $filter_year = 2021 ) {
+function stratusx_child_get_graph_performance( $portfolio_id, $filter_year = 2021 ) {
 	try {
 		$transient_id      = "stratusx_child_get_graph_performance_{$portfolio_id}_{$filter_year}";
 		$graph_performance = get_transient( $transient_id );

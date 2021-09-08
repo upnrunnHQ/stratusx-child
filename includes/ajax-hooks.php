@@ -6,7 +6,7 @@ function stratusx_child_get_graph_performance_by_year_via_ajax() {
 	$portfolio_id = isset( $_POST['portfolio_id'] ) ? sanitize_text_field( $_POST['portfolio_id'] ) : '';
 	$filter_year  = isset( $_POST['filter_year'] ) ? absint( $_POST['filter_year'] ) : 0;
 
-	$graph_performance = json_decode( stratusx_child_get_get_graph_performance( $portfolio_id, $filter_year ) );
+	$graph_performance = json_decode( stratusx_child_get_graph_performance( $portfolio_id, $filter_year ) );
 	$graph_performance = $graph_performance->data[0];
 
 	$yearly_data = [];

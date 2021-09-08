@@ -140,16 +140,17 @@ function stratusx_child_expert_details() {
 		return;
 	}
 
+	$current_year = date( 'Y' );
 	$portfolio_id = '';
+
 	if ( 'expert' === $user_type ) {
 		$portfolio_id = get_post_meta( $product_id, 'expert_analyst_details_portfolio-id', true );
 		// API userInformation
-		$user_information = json_decode( stratusx_child_get_get_user_information( $portfolio_id ) );
+		$user_information = json_decode( stratusx_child_get_get_user_information( $portfolio_id, $current_year ) );
 		$user_information = $user_information->data[0];
 
 		//API 3 graphInformation
-		$filter_year       = $user_information->startYear;
-		$graph_performance = json_decode( stratusx_child_get_get_graph_performance( $portfolio_id, $filter_year ) );
+		$graph_performance = json_decode( stratusx_child_get_graph_performance( $portfolio_id, $current_year ) );
 		$graph_performance = $graph_performance->data[0];
 		// List of years.
 		$list_years = stratusx_child_get_list_years( $user_information->startYear );
