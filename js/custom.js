@@ -275,6 +275,7 @@ jQuery(document).ready(function($) {
                     _performanceLineChart.update();
 
                     $(".tot_perc").html(response.data.performanceDetail);
+                    $(".tot_txt").html(response.data.totalPerformance);
                     $loading.hide();
                 },
                 error: function() {

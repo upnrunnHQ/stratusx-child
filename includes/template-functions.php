@@ -55,7 +55,8 @@ function stratus_child_get_repeated_trades( $repeated_trades ) {
 }
 
 function stratus_child_get_performance( $performance, $total_performance, $graph_performance, $portfolio_id, $list_years ) {
-	$chartjs = [];
+	$current_item_index = 1;
+	$chartjs            = [];
 	foreach ( $graph_performance->performance as $performance_item ) {
 		$chartjs['labels'][] = $performance_item->month;
 		$chartjs['data'][]   = $performance_item->value;
@@ -90,10 +91,11 @@ function stratus_child_get_performance( $performance, $total_performance, $graph
 			</div>
 			<div class="tot_perc">
 				<?php foreach ( $performance as $performance_item ) : ?>
-					<div class="monthly_per">
+					<div class="monthly_per"<?php echo ( $current_item_index <= 3 ? '' : ' style="display: none;"' ); ?>>
 						<h4 class="per_mon"><?php echo $performance_item->month; ?></h4>
 						<h4 class="per_num"><?php echo $performance_item->value; ?>%</h4>
 					</div>
+					<?php $current_item_index++; ?>
 				<?php endforeach; ?>
 			</div>
 		</div>

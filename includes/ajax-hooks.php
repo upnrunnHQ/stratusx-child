@@ -36,6 +36,7 @@ function stratusx_child_get_graph_performance_by_year_via_ajax() {
 	}
 
 	$yearly_data['performanceDetail'] = $performance_detail_html;
+	$yearly_data['totalPerformance']  = sprintf( __( 'Total: %s', 'stratusx-child' ), $performance_detail->totalPerformance ) . '%';
 
 	wp_send_json_success( $yearly_data );
 }
