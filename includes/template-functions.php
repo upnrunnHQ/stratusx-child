@@ -74,7 +74,7 @@ function stratus_child_get_performance( $performance, $total_performance, $graph
 					<span class="g_loading" style="display:none;">Loading..</span>
 					<select class="g_year_drp" id="g_performance_drp" data-portfolio-id="<?php echo esc_attr( $portfolio_id ); ?>">
 						<?php foreach ( $list_years as $year ) : ?>
-							<option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+							<option value="<?php echo $year; ?>" <?php echo ( intval( $year ) === intval( date( 'Y' ) ) ? ' selected' : '' ); ?>><?php echo $year; ?></option>
 						<?php endforeach; ?>
 					</select>
 				</div>

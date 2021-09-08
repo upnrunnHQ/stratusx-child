@@ -150,9 +150,11 @@ function stratusx_child_expert_details() {
 		$user_information = $user_information->data[0];
 
 		//API 3 graphInformation
-		$graph_performance  = json_decode( stratusx_child_get_graph_performance( $portfolio_id, $current_year ) );
-		$graph_performance  = $graph_performance->data[0];
+		$graph_performance = json_decode( stratusx_child_get_graph_performance( $portfolio_id, $current_year ) );
+		$graph_performance = $graph_performance->data[0];
+
 		$performance_detail = stratusx_child_get_performance_detail( $portfolio_id, $current_year );
+
 		// List of years.
 		$list_years = stratusx_child_get_list_years( $user_information->startYear );
 		// print_r( $user_information );
@@ -390,7 +392,7 @@ function stratusx_child_expert_details() {
 							<div class="g_yearly">
 								<select class="g_year_drp" id="">
 									<?php foreach ( $list_years as $year ) : ?>
-										<option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+										<option value="<?php echo $year; ?>"<?php echo ( intval( $year ) === intval( date( 'Y' ) ) ? ' selected' : '' ); ?>><?php echo $year; ?></option>
 									<?php endforeach; ?>
 								</select>
 							</div>
