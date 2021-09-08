@@ -193,3 +193,43 @@ function stratusx_child_get_graph_performance( $portfolio_id, $filter_year = 202
 		return [];
 	}
 }
+
+function stratusx_child_get_performance_detail( $portfolio_id, $created_date ) {
+	$transient_id       = "stratusx_child_get_performance_detail_{$portfolio_id}_{$created_date}";
+	$performance_detail = get_transient( $transient_id );
+	if ( $performance_detail ) {
+		return $performance_detail;
+	}
+
+	try {
+		$curl = curl_init();
+
+		curl_setopt_array(
+			$curl,
+			array(
+				CURLOPT_URL            => 'https://appsinvodevlopment.com/dawul-new-backend/api/performanceDetail',
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING       => '',
+				CURLOPT_MAXREDIRS      => 10,
+				CURLOPT_TIMEOUT        => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION   => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST  => 'POST',
+				CURLOPT_POSTFIELDS     => array(
+					'Portfolio_ID' => $portfolio_id,
+					'token'        => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBwc2ludm9kZXZsb3BtZW50LmNvbVwvZGF3dWwtbmV3LWJhY2tlbmRcL2FwaVwvbG9naW4iLCJpYXQiOjE2MjkzNjgxMTgsIm5iZiI6MTYyOTM2ODExOCwianRpIjoiQUxGaFpRc0xBemlZOWRFbiIsInN1YiI6MTc3NSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.WdoSYu0AkDPF0R6vJ_6X8be39UNzAMkxC2wEXJ_JodA',
+					'is_web'       => '1',
+					'createdDate'  => $created_date,
+				),
+			)
+		);
+
+		$response = curl_exec( $curl );
+		set_transient( $transient_id, $response, HOUR_IN_SECONDS );
+		curl_close( $curl );
+
+		return $response;
+	} catch ( Exception $e ) {
+		return [];
+	}
+}
