@@ -139,3 +139,9 @@ form input, .frm_forms form label, .with_frm_style label.frm_primary_label, .wit
     width: calc(100% - 100px);
     margin-left: auto;
 }
+.themo_cart_icon {
+    margin-left: 2% !important;
+}
+.navbar .navbar-nav {
+    padding-right: 0px !important;
+}

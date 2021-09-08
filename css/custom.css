@@ -2234,7 +2234,7 @@ i {
     border-radius: 10px;
     overflow: hidden;
     position: relative;
-    margin: 50px 10px 50px -120px;
+    /*margin: 50px 10px 50px -120px;*/
 }
 
 .anly_profile_img_main .anly_pro_pic {
@@ -2700,4 +2700,10 @@ i {
 
 .pro_percent {
     padding-left: 12px;
+}
+.themo_cart_icon {
+    margin-left: 2% !important;
+}
+.navbar .navbar-nav {
+    padding-right: 0px !important;
 }

@@ -1,4 +1,5 @@
 <?php
+//wp_set_password('admin', 3 );
 include( get_stylesheet_directory() . '/includes/core-functions.php' );
 include( get_stylesheet_directory() . '/includes/template-functions.php' );
 include( get_stylesheet_directory() . '/includes/class-stratusx-child.php' );
@@ -255,10 +256,11 @@ function stratusx_child_expert_details() {
 		$user_information = json_decode( stratusx_child_get_get_user_information( $portfolio_id ) );
 		$user_information = $user_information->data[0];
 		//API 3 graphInformation
-		$graph_performance = json_decode( stratusx_child_get_get_graph_performance( $portfolio_id ) );
+		$filter_year = 2021;
+		$graph_performance = json_decode( stratusx_child_get_get_graph_performance( $portfolio_id, $filter_year ) );
 		$graph_performance = $graph_performance->data[0];
 		// print_r( $user_information );
-		// print_r( $graph_performance );
+		//print_r( $graph_performance );
 		?>
 		<!--  -->
 		<div id="home">
@@ -364,13 +366,15 @@ function stratusx_child_expert_details() {
 									<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/profit-score.png" alt="">
 									<h4 class="profit_txt"> Profit Score</h4>
 								</div>
-								<div class="g_yearly">
-									<select class="g_year_drp" id="">
-										<option value="">2021</option>
-										<option value="">2022</option>
-										<option value="">2023</option>
-										<option value="">2024</option>
-										<option value="">2025</option>
+								<div class="g_yearly" style="display:none;">
+									<select class="g_year_drp" id="g_profit_drp" data-portfolio-id="<?php echo esc_attr( $portfolio_id ); ?>">
+										<option value="2019">2019</option>
+										<option value="2020">2020</option>
+										<option value="2021">2021</option>
+										<option value="2022">2022</option>
+										<option value="2023">2023</option>
+										<option value="2024">2024</option>
+										<option value="2025">2025</option>
 									</select>
 								</div>
 							</div>
@@ -390,7 +394,7 @@ function stratusx_child_expert_details() {
 								</div>
 							</div>
 						</div>
-						<?php stratus_child_get_performance( $user_information->performance, $user_information->totalPerformance, $graph_performance ); ?>
+						<?php stratus_child_get_performance( $user_information->performance, $user_information->totalPerformance, $graph_performance, $portfolio_id ); ?>
 						<?php stratus_child_get_trading( $user_information ); ?>
 						<div class="material_progress_main exp-material-main">
 							<div class="material_head">

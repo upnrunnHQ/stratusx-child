@@ -54,7 +54,7 @@ function stratus_child_get_repeated_trades( $repeated_trades ) {
 	<?php
 }
 
-function stratus_child_get_performance( $performance, $total_performance, $graph_performance ) {
+function stratus_child_get_performance( $performance, $total_performance, $graph_performance, $portfolio_id ) {
 	$chartjs = [];
 	foreach ( $graph_performance->performance as $performance_item ) {
 		$chartjs['labels'][] = $performance_item->month;
@@ -70,12 +70,15 @@ function stratus_child_get_performance( $performance, $total_performance, $graph
 			<div class="risk_info_icon exp_risk_info">
 				<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info.png" alt="info"></a>
 				<div class="g_yearly">
-					<select class="g_year_drp" id="">
-						<option value="">2021</option>
-						<option value="">2022</option>
-						<option value="">2023</option>
-						<option value="">2024</option>
-						<option value="">2025</option>
+					<span class="g_loading" style="display:none;">Loading..</span>
+					<select class="g_year_drp" id="g_performance_drp" data-portfolio-id="<?php echo esc_attr( $portfolio_id ); ?>">
+						<option value="2019">2019</option>
+						<option value="2020">2020</option>
+						<option value="2021">2021</option>
+						<option value="2022">2022</option>
+						<option value="2023">2023</option>
+						<option value="2024">2024</option>
+						<option value="2025">2025</option>
 					</select>
 				</div>
 			</div>
