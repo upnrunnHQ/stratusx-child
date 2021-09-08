@@ -14,11 +14,19 @@ function stratusx_child_get_graph_performance_by_year_via_ajax() {
 
 	$performance_detail_html = '';
 
+	$current_item_index = 1;
 	foreach ( $performance_detail->performance as $performance_item ) {
-		$performance_detail_html .= '<div class="monthly_per">';
+		if ( $current_item_index <= 3 ) {
+			$performance_detail_html .= '<div class="monthly_per">';
+		} else {
+			$performance_detail_html .= '<div class="monthly_per" style="display: none;">';
+		}
+
 		$performance_detail_html .= '<h4 class="per_mon">' . $performance_item->month . '</h4>';
-		$performance_detail_html .= '<h4 class="per_mon">' . $performance_item->valueh . '</h4>';
+		$performance_detail_html .= '<h4 class="per_num">' . $performance_item->value . '%</h4>';
 		$performance_detail_html .= '</div>';
+
+		$current_item_index++;
 	}
 
 	$yearly_data = [];
@@ -27,7 +35,7 @@ function stratusx_child_get_graph_performance_by_year_via_ajax() {
 		$yearly_data['graphPerformance'][] = $performance_item->value;
 	}
 
-	$yearly_data['performanceDetail'] = performance_detail_html;
+	$yearly_data['performanceDetail'] = $performance_detail_html;
 
 	wp_send_json_success( $yearly_data );
 }
