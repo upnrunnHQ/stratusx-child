@@ -158,6 +158,18 @@ function stratusx_child_expert_details() {
 	$portfolio_id = '';
 	if ( 'expert' === $user_type ) {
 		$portfolio_id = get_post_meta( $product_id, 'expert_analyst_details_portfolio-id', true );
+		// API userInformation
+		$user_information = json_decode( stratusx_child_get_get_user_information( $portfolio_id ) );
+		$user_information = $user_information->data[0];
+
+		//API 3 graphInformation
+		$filter_year       = $user_information->startYear;
+		$graph_performance = json_decode( stratusx_child_get_get_graph_performance( $portfolio_id, $filter_year ) );
+		$graph_performance = $graph_performance->data[0];
+		// List of years.
+		$list_years = stratusx_child_get_list_years( $user_information->startYear );
+		// print_r( $user_information );
+		// print_r( $graph_performance );
 	} else {
 		$analyst_id = get_post_meta( $product_id, 'expert_analyst_details_id', true );
 		if ( ! empty( $analyst_id ) ) {
@@ -176,9 +188,7 @@ function stratusx_child_expert_details() {
 	?>
 	<div class="anly_profile_main exp_pro_main">
 		<div class="container-fluid">
-			<?php
-			if ( 'expert' === $user_type ) :
-				?>
+			<?php if ( 'expert' === $user_type ) : ?>
 				<div class="anly_right_content exp_p_detail">
 					<div class="anly_profile_img_main">
 						<img src="<?php echo esc_url( $featured_img_url ); ?>" alt="" class="img-fluid anly_pro_pic">
@@ -193,19 +203,16 @@ function stratusx_child_expert_details() {
 								<div class="exp_part_btn">
 									<a href="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="exp_partici_btn">Participation</a>
 								</div>
-							</div>
 
+								<div class="user_about_section">
+									<h3 class="usr_ab_name"><?php printf( __( 'About %s', 'stratusx-child' ), $other_profile->userName ); ?></h3>
+									<p class="usr_ab_content"><?php echo $user_information->aboutUs; ?></p>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-				<?php
-			else :
-				$twitter_link  = isset( $analyst_details['data']['twitter_link'] ) ? $analyst_details['data']['twitter_link'] : '';
-				$linkedin_link = isset( $analyst_details['data']['linkedin_link'] ) ? $analyst_details['data']['linkedin_link'] : '';
-				$youtube_link  = isset( $analyst_details['data']['youtube_link'] ) ? $analyst_details['data']['youtube_link'] : '';
-				$telegram_link = isset( $analyst_details['data']['telegram_link'] ) ? $analyst_details['data']['telegram_link'] : '';
-				//print_r($analyst_details['data']['analyst']);
-				?>
+			<?php else : ?>
 				<div class="anly_right_content">
 					<div class="anly_profile_img_main">
 						<img src="<?php echo esc_url( $featured_img_url ); ?>" alt="" class="img-fluid anly_pro_pic">
@@ -245,27 +252,8 @@ function stratusx_child_expert_details() {
 			<?php endif; ?>
 		</div>
 	</div>
-	<!--  -->
 
-	<?php
-	if ( 'expert' === $user_type ) {
-		if ( empty( $portfolio_id ) ) {
-			return;
-		}
-
-		// API userInformation
-		$user_information = json_decode( stratusx_child_get_get_user_information( $portfolio_id ) );
-		$user_information = $user_information->data[0];
-		//API 3 graphInformation
-		$filter_year       = 2021;
-		$graph_performance = json_decode( stratusx_child_get_get_graph_performance( $portfolio_id, $filter_year ) );
-		$graph_performance = $graph_performance->data[0];
-		// List of years.
-		$list_years = stratusx_child_get_list_years( $user_information->startYear );
-		// print_r( $user_information );
-		// print_r( $graph_performance );
-		?>
-		<!--  -->
+	<?php if ( 'expert' === $user_type ) : ?>
 		<div id="home">
 			<div class="container-fluid">
 				<div class="row">
@@ -427,7 +415,6 @@ function stratusx_child_expert_details() {
 				</div>
 			</div>
 		</div>
-		</div>
 
 		<!-- Info Modal  -->
 		<div class="modal fade" id="infoModal">
@@ -463,5 +450,5 @@ function stratusx_child_expert_details() {
 			</div>
 		</div>
 		<?php
-	}
+	endif;
 }
