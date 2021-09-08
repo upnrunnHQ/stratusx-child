@@ -150,12 +150,14 @@ function stratusx_child_expert_details() {
 		$user_information = $user_information->data[0];
 
 		//API 3 graphInformation
-		$graph_performance = json_decode( stratusx_child_get_graph_performance( $portfolio_id, $current_year ) );
-		$graph_performance = $graph_performance->data[0];
+		$graph_performance  = json_decode( stratusx_child_get_graph_performance( $portfolio_id, $current_year ) );
+		$graph_performance  = $graph_performance->data[0];
+		$performance_detail = stratusx_child_get_performance_detail( $portfolio_id, $current_year );
 		// List of years.
 		$list_years = stratusx_child_get_list_years( $user_information->startYear );
 		// print_r( $user_information );
 		// print_r( $graph_performance );
+		// print_r( $performance_detail );
 	} else {
 		$analyst_id = get_post_meta( $product_id, 'expert_analyst_details_id', true );
 		if ( ! empty( $analyst_id ) ) {

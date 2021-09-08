@@ -225,6 +225,7 @@ function stratusx_child_get_performance_detail( $portfolio_id, $created_date ) {
 		);
 
 		$response = curl_exec( $curl );
+		$response = json_decode( $response );
 		set_transient( $transient_id, $response, HOUR_IN_SECONDS );
 		curl_close( $curl );
 
