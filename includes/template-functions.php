@@ -54,7 +54,7 @@ function stratus_child_get_repeated_trades( $repeated_trades ) {
 	<?php
 }
 
-function stratus_child_get_performance( $performance, $total_performance, $graph_performance, $portfolio_id ) {
+function stratus_child_get_performance( $performance, $total_performance, $graph_performance, $portfolio_id, $list_years ) {
 	$chartjs = [];
 	foreach ( $graph_performance->performance as $performance_item ) {
 		$chartjs['labels'][] = $performance_item->month;
@@ -72,13 +72,9 @@ function stratus_child_get_performance( $performance, $total_performance, $graph
 				<div class="g_yearly">
 					<span class="g_loading" style="display:none;">Loading..</span>
 					<select class="g_year_drp" id="g_performance_drp" data-portfolio-id="<?php echo esc_attr( $portfolio_id ); ?>">
-						<option value="2019">2019</option>
-						<option value="2020">2020</option>
-						<option value="2021">2021</option>
-						<option value="2022">2022</option>
-						<option value="2023">2023</option>
-						<option value="2024">2024</option>
-						<option value="2025">2025</option>
+						<?php foreach ( $list_years as $year ) : ?>
+							<option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+						<?php endforeach; ?>
 					</select>
 				</div>
 			</div>

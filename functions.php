@@ -257,10 +257,12 @@ function stratusx_child_expert_details() {
 		$user_information = json_decode( stratusx_child_get_get_user_information( $portfolio_id ) );
 		$user_information = $user_information->data[0];
 		//API 3 graphInformation
-		$filter_year = 2021;
+		$filter_year       = 2021;
 		$graph_performance = json_decode( stratusx_child_get_get_graph_performance( $portfolio_id, $filter_year ) );
 		$graph_performance = $graph_performance->data[0];
-		print_r( $user_information );
+		// List of years.
+		$list_years = stratusx_child_get_list_years( $user_information->startYear );
+		// print_r( $user_information );
 		// print_r( $graph_performance );
 		?>
 		<!--  -->
@@ -365,59 +367,27 @@ function stratusx_child_expert_details() {
 							<div class="profit_score_head">
 								<div class="profit_icon">
 									<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/profit-score.png" alt="">
-									<h4 class="profit_txt"> Profit Score</h4>
-								</div>
-								<div class="g_yearly" style="display:none;">
-									<select class="g_year_drp" id="g_profit_drp" data-portfolio-id="<?php echo esc_attr( $portfolio_id ); ?>">
-										<option value="2019">2019</option>
-										<option value="2020">2020</option>
-										<option value="2021">2021</option>
-										<option value="2022">2022</option>
-										<option value="2023">2023</option>
-										<option value="2024">2024</option>
-										<option value="2025">2025</option>
-									</select>
+									<h4 class="profit_txt"><?php _e( 'Profit Score', 'stratus-child' ); ?></h4>
 								</div>
 							</div>
 
 							<div class="porfit_inner">
 								<div class="pro_score daily_score exp_daily_score">
 									<span class="score_percent"><?php echo $user_information->profitScore[0]->dailyScore; ?>%</span>
-									<h4 class="score_txt">Daily</h4>
+									<h4 class="score_txt"><?php _e( 'Daily', 'stratus-child' ); ?></h4>
 								</div>
 								<div class="pro_score exp_pro_score">
 									<span class="score_percent"><?php echo $user_information->profitScore[0]->monthlyScore; ?>%</span>
-									<h4 class="score_txt">Monthly</h4>
+									<h4 class="score_txt"><?php _e( 'Monthly', 'stratus-child' ); ?></h4>
 								</div>
 								<div class="pro_score exp_pro_score">
 									<span class="score_percent"><?php echo $user_information->profitScore[0]->yearlyScore; ?>%</span>
-									<h4 class="score_txt">Yearly</h4>
+									<h4 class="score_txt"><?php _e( 'Yearly', 'stratus-child' ); ?></h4>
 								</div>
 							</div>
 						</div>
-						<?php stratus_child_get_performance( $user_information->performance, $user_information->totalPerformance, $graph_performance, $portfolio_id ); ?>
+						<?php stratus_child_get_performance( $user_information->performance, $user_information->totalPerformance, $graph_performance, $portfolio_id, $list_years ); ?>
 						<?php stratus_child_get_trading( $user_information ); ?>
-						<div class="material_progress_main exp-material-main">
-							<div class="material_head">
-								<a href="#" class="material_see"><?php _e( 'See More', 'stratusx-child' ); ?></a>
-							</div>
-							<div class="exp_progress_main">
-								<p class="exp_material"><?php _e( 'Materials', 'stratusx-child' ); ?></p>
-								<div class="progress">
-									<div class="progress-bar-blue" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width:45%">
-									</div>
-									<span class="pro_percent">45%</span>
-								</div>
-							</div>
-							<div class="exp_progress_main">
-								<p class="exp_material"><?php _e( 'Transpotation', 'stratusx-child' ); ?></p>
-								<div class="progress">
-									<div class="progress-bar-red" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width:15%">
-									</div>
-									<span class="pro_percent">15%</span>
-								</div>
-							</div>
-						</div>
 					</div>
 					<div class="col-md-3">
 						<div class="user_p_heading">
@@ -443,11 +413,9 @@ function stratusx_child_expert_details() {
 							</div>
 							<div class="g_yearly">
 								<select class="g_year_drp" id="">
-									<option value="">2021</option>
-									<option value="">2022</option>
-									<option value="">2023</option>
-									<option value="">2024</option>
-									<option value="">2025</option>
+									<?php foreach ( $list_years as $year ) : ?>
+										<option value="<?php echo $year; ?>"><?php echo $year; ?></option>
+									<?php endforeach; ?>
 								</select>
 							</div>
 							<div class="cashout_chart">
