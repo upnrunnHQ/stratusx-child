@@ -94,21 +94,6 @@ function expert_profile_js_css() {
 		wp_enqueue_script( 'main', get_stylesheet_directory_uri() . '/js/main.js', array( 'jquery' ), '', true );
 		wp_enqueue_script( 'stratusx-child', get_stylesheet_directory_uri() . '/js/custom.js', array( 'jquery' ), '', true );
 
-		if ( is_product() ) {
-			$product_id = get_queried_object_id();
-			$user_type  = get_post_meta( $product_id, 'expert_analyst_details_user-type', true );
-			if ( 'expert' === $user_type ) {
-				$portfolio_id     = get_post_meta( $product_id, 'expert_analyst_details_portfolio-id', true );
-				$user_information = json_decode( stratusx_child_get_get_user_information( $portfolio_id ) );
-				$user_information = $user_information->data[0];
-				wp_localize_script(
-					'stratusx-child',
-					'stratusx_child',
-					[]
-				);
-			}
-		}
-
 		wp_register_style( 'bootstrap', get_stylesheet_directory_uri() . '/css/bootstrap.min.css', false );
 		wp_register_style( 'chart', get_stylesheet_directory_uri() . '/css/Chart.css', false );
 		wp_register_style( 'font-awesome', get_stylesheet_directory_uri() . '/css/font-awesome.min.css', false );
