@@ -1,6 +1,7 @@
 <?php
 //wp_set_password('admin', 3 );
 include( get_stylesheet_directory() . '/includes/core-functions.php' );
+include( get_stylesheet_directory() . '/includes/ajax-hooks.php' );
 include( get_stylesheet_directory() . '/includes/template-functions.php' );
 include( get_stylesheet_directory() . '/includes/class-stratusx-child.php' );
 
@@ -259,8 +260,8 @@ function stratusx_child_expert_details() {
 		$filter_year = 2021;
 		$graph_performance = json_decode( stratusx_child_get_get_graph_performance( $portfolio_id, $filter_year ) );
 		$graph_performance = $graph_performance->data[0];
-		// print_r( $user_information );
-		//print_r( $graph_performance );
+		print_r( $user_information );
+		// print_r( $graph_performance );
 		?>
 		<!--  -->
 		<div id="home">

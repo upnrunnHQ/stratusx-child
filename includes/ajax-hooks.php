@@ -1,14 +1,19 @@
 <?php
-add_action( 'wp_ajax_stratusx_child_get_performance_yearly_wise_data', 'stratusx_child_get_performance_yearly_wise_data' );
-add_action( 'wp_ajax_nopriv_stratusx_child_get_performance_yearly_wise_data', 'stratusx_child_get_performance_yearly_wise_data' );
-function stratusx_child_get_performance_yearly_wise_data() {
-	global $wpdb; // this is how you get access to the database
+add_action( 'wp_ajax_get_graph_performance_by_year', 'stratusx_child_get_graph_performance_by_year_via_ajax' );
+add_action( 'wp_ajax_nopriv_get_graph_performance_by_year', 'stratusx_child_get_graph_performance_by_year_via_ajax' );
 
-	$whatever = intval( $_POST['whatever'] );
+function stratusx_child_get_graph_performance_by_year_via_ajax() {
+	$portfolio_id = isset( $_POST['portfolio_id'] ) ? sanitize_text_field( $_POST['portfolio_id'] ) : '';
+	$filter_year  = isset( $_POST['filter_year'] ) ? absint( $_POST['filter_year'] ) : 0;
 
-	$whatever += 10;
+	$graph_performance = json_decode( stratusx_child_get_get_graph_performance( $portfolio_id, $filter_year ) );
+	$graph_performance = $graph_performance->data[0];
 
-		echo $whatever;
+	$yearly_data = [];
 
-	wp_die(); // this is required to terminate immediately and return a proper response
+	foreach ( $graph_performance->performance as $performance_item ) {
+		$yearly_data[] = $performance_item->value;
+	}
+
+	wp_send_json_success( $yearly_data );
 }
