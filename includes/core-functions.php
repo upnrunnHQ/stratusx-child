@@ -1,4 +1,8 @@
 <?php
+function stratusx_child_get_list_years( $start_year = 2019 ) {
+	return range( $start_year, date( 'Y' ) );
+}
+
 function stratusx_child_get_risk_indicator_data( $user_information ) {
 	$indicator_data = [
 		'chartjs'       => [
