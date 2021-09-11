@@ -27,11 +27,9 @@
 					<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/fliter.png" alt="filter">
 				</button>
 				<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-					<li><a href="#">Action</a></li>
-					<li><a href="#">Another action</a></li>
-					<li><a href="#">Something else here</a></li>
-					<li role="separator" class="divider"></li>
-					<li><a href="#">Separated link</a></li>
+					<?php foreach ( $args['filters'] as $key => $filter ) : ?>
+						<li><button type="button" data-filter-type="<?php echo esc_attr( $key + 1 ); ?>"><?php echo $filter; ?></button></li>
+					<?php endforeach; ?>
 				</ul>
 			</div>
 		</div>

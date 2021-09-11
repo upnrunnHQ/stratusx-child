@@ -369,7 +369,10 @@ function stratusx_child_expert_details() {
 						get_template_part(
 							'template-parts/content',
 							'trading',
-							[ 'user_information' => $user_information ]
+							[
+								'user_information' => $user_information,
+								'filters'          => stratusx_child_get_trading_filters(),
+							]
 						);
 						?>
 					</div>
