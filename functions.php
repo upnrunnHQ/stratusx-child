@@ -365,7 +365,13 @@ function stratusx_child_expert_details() {
 							</div>
 						</div>
 						<?php stratus_child_get_performance( $user_information->performance, $user_information->totalPerformance, $graph_performance, $portfolio_id, $list_years ); ?>
-						<?php stratus_child_get_trading( $user_information ); ?>
+						<?php
+						get_template_part(
+							'template-parts/content',
+							'risk-trading',
+							[ 'user_information' => $user_information ]
+						);
+						?>
 					</div>
 					<div class="col-md-3">
 						<div class="user_p_heading">
