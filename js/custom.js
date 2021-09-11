@@ -332,7 +332,10 @@ jQuery(document).ready(function($) {
     });
 
     $(".repeat_see").on("click", "a", function() {
-        if (appSettings.repeatedTrades.isLoading) {
+        if (
+            appSettings.repeatedTrades.isLoading ||
+            appSettings.repeatedTrades.currentPage >= 10
+        ) {
             return;
         }
 
