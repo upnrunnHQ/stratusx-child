@@ -1520,6 +1520,28 @@ i {
     line-height: 20px;
 }
 
+.trading_filter .dropdown-toggle {
+    padding: 0;
+    border: 0;
+}
+
+.trading_filter .dropdown-menu {
+    width: 336px;
+    left: auto !important;
+    right: 0;
+}
+
+.trading_filter .dropdown-menu li {
+    width: 48%;
+    margin: 1%;
+    float: left;
+}
+
+.trading_filter .dropdown-menu .btn {
+    width: 100%;
+    border-radius: 4px;
+}
+
 .c_num_r {
     color: #ff0000 !important;
 }
