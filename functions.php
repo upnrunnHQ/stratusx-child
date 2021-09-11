@@ -371,33 +371,22 @@ function stratusx_child_expert_details() {
 						<div class="user_p_heading">
 							<h4>Performance</h4>
 						</div>
-						<div class="user_performance_main exp_performance_main">
+						<div class="user_performance_main exp_performance_main" id="performance-1">
 							<div class="user_totle_month usr_holding exp_totle_m">
 								<div class="tot_perc">
-									<h4 class="tot_txt per_month">6 Months</h4>
-									<div class="monthly_per exp_monthly">
-										<h4 class="per_mon">Holding Period Return</h4>
-										<h4 class="per_num">+<?php echo $graph_performance->HPR; ?>%</h4>
-									</div>
-									<div class="monthly_per exp_monthly">
-										<h4 class="per_mon">Standard Deviation</h4>
-										<h4 class="per_num">+<?php echo $graph_performance->SD; ?>%</h4>
-									</div>
-									<div class="monthly_per exp_monthly">
-										<h4 class="per_mon">Sharp Ratio</h4>
-										<h4 class="per_num">+<?php echo $graph_performance->SR; ?></h4>
-									</div>
+									<?php echo stratusx_child_get_graph_performance_widget( $graph_performance ); ?>
 								</div>
 							</div>
 							<div class="g_yearly">
-								<select class="g_year_drp" id="">
+								<span class="g_loading" style="display:none;">Loading..</span>
+								<select class="g_year_drp" data-portfolio-id="<?php echo esc_attr( $portfolio_id ); ?>">
 									<?php foreach ( $list_years as $year ) : ?>
 										<option value="<?php echo $year; ?>"<?php echo ( intval( $year ) === intval( date( 'Y' ) ) ? ' selected' : '' ); ?>><?php echo $year; ?></option>
 									<?php endforeach; ?>
 								</select>
 							</div>
 							<div class="cashout_chart">
-								<canvas id="CashChart" width="200" height="250"></canvas>
+								<canvas id="CashChart" width="200" height="250" data-chartjs="<?php echo esc_attr( json_encode( $chartjs ) ); ?>"></canvas>
 							</div>
 						</div>
 						<?php stratus_child_get_repeated_trades( $user_information->repeatedTrade ); ?>

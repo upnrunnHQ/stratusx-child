@@ -62,7 +62,7 @@ function stratus_child_get_performance( $performance, $total_performance, $graph
 		$chartjs['data'][]   = $performance_item->value;
 	}
 	?>
-	<div class="performance_main">
+	<div class="performance_main" id="performance-2">
 		<div class="performance_head_area">
 			<div class="perfor_head_inner exp_perfor_head">
 				<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/performance.png" alt="">
@@ -196,4 +196,24 @@ function stratus_child_get_trading( $data ) {
 		</div>
 	</div>
 	<?php
+}
+
+function stratusx_child_get_graph_performance_widget( $graph_performance ) {
+	ob_start();
+	?>
+	<h4 class="tot_txt per_month">6 Months</h4>
+	<div class="monthly_per exp_monthly">
+		<h4 class="per_mon">Holding Period Return</h4>
+		<h4 class="per_num">+<?php echo $graph_performance->HPR; ?>%</h4>
+	</div>
+	<div class="monthly_per exp_monthly">
+		<h4 class="per_mon">Standard Deviation</h4>
+		<h4 class="per_num">+<?php echo $graph_performance->SD; ?>%</h4>
+	</div>
+	<div class="monthly_per exp_monthly">
+		<h4 class="per_mon">Sharp Ratio</h4>
+		<h4 class="per_num">+<?php echo $graph_performance->SR; ?></h4>
+	</div>
+	<?php
+	return ob_get_clean();
 }

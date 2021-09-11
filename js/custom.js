@@ -2,8 +2,8 @@ jQuery(document).ready(function($) {
     // Code that uses jQuery's $ can follow here.
     jQuery.noConflict();
 
-    var CashChart = document.getElementById("CashChart").getContext("2d");
-    new Chart(CashChart, {
+    var cashChart = document.getElementById("CashChart");
+    new Chart(cashChart, {
         type: "doughnut",
         data: {
             labels: ["Graph 200,000", "CO 100,000", "CI 100,000", "D 100,000"],
@@ -249,10 +249,14 @@ jQuery(document).ready(function($) {
         }
     });
 
-    $("#g_performance_drp").on("change", function() {
+    $(".totle_see_m").on("click", function() {
+        $(".tot_perc .monthly_per").css("display", "flex");
+    });
+
+    $("#performance-1").on("change", ".g_year_drp", function() {
         var portfolioId = $(this).attr("data-portfolio-id");
         var filterYear = this.value;
-        var $loading = $(".g_loading");
+        var $loading = $("#performance-1").find(".g_loading");
 
         if (filterYear) {
             $loading.show();
@@ -269,13 +273,9 @@ jQuery(document).ready(function($) {
                 url: woocommerce_params.ajax_url,
                 data: formData,
                 success: function(response) {
-                    console.log(response);
-                    _performanceLineChart.data.datasets[0].data =
-                        response.data.graphPerformance;
-                    _performanceLineChart.update();
-
-                    $(".tot_perc").html(response.data.performanceDetail);
-                    $(".tot_txt").html(response.data.totalPerformance);
+                    $("#performance-1 .tot_perc").html(
+                        response.data.performanceWidget
+                    );
                     $loading.hide();
                 },
                 error: function() {
@@ -285,7 +285,42 @@ jQuery(document).ready(function($) {
         }
     });
 
-    $(".totle_see_m").on("click", function() {
-        $(".tot_perc .monthly_per").css("display", "flex");
+    $("#performance-2").on("change", ".g_year_drp", function() {
+        var portfolioId = $(this).attr("data-portfolio-id");
+        var filterYear = this.value;
+        var $loading = $("#performance-2").find(".g_loading");
+
+        if (filterYear) {
+            $loading.show();
+
+            var formData = {
+                action: "get_graph_performance_by_year",
+                portfolio_id: portfolioId,
+                filter_year: filterYear
+            };
+
+            $.ajax({
+                type: "POST",
+                dataType: "JSON",
+                url: woocommerce_params.ajax_url,
+                data: formData,
+                success: function(response) {
+                    _performanceLineChart.data.datasets[0].data =
+                        response.data.graphPerformance;
+                    _performanceLineChart.update();
+
+                    $("#performance-2 .tot_perc").html(
+                        response.data.performanceDetail
+                    );
+                    $("#performance-2 .tot_txt").html(
+                        response.data.totalPerformance
+                    );
+                    $loading.hide();
+                },
+                error: function() {
+                    $loading.hide();
+                }
+            });
+        }
     });
 });
