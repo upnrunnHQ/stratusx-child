@@ -66,7 +66,7 @@ jQuery(document).ready(function($) {
             labels: percentChartData.labels,
             datasets: [
                 {
-                    backgroundColor: ["#007fff", "#f80358", "#fff0f5"],
+                    backgroundColor: ["#f80358", "#007fff", "#f77405"],
                     borderWidth: 0,
                     data: percentChartData.data
                 }
