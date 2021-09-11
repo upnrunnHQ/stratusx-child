@@ -309,3 +309,14 @@ function stratusx_child_get_curl_response( $url, $postfields ) {
 		return [];
 	}
 }
+
+function stratusx_child_get_trading_filters() {
+	return [
+		__( 'One Day', 'stratusx-child' ),
+		__( 'One Week', 'stratusx-child' ),
+		__( 'One Month', 'stratusx-child' ),
+		__( 'Three Months', 'stratusx-child' ),
+		__( 'Six Months', 'stratusx-child' ),
+		__( 'Whole Period', 'stratusx-child' ),
+	];
+}

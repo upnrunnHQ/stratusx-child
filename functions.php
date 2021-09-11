@@ -368,7 +368,7 @@ function stratusx_child_expert_details() {
 						<?php
 						get_template_part(
 							'template-parts/content',
-							'risk-trading',
+							'trading',
 							[ 'user_information' => $user_information ]
 						);
 						?>
