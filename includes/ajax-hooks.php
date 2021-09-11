@@ -3,7 +3,8 @@ add_action( 'wp_ajax_get_graph_performance_by_year', 'stratusx_child_get_graph_p
 add_action( 'wp_ajax_nopriv_get_graph_performance_by_year', 'stratusx_child_get_graph_performance_by_year_via_ajax' );
 add_action( 'wp_ajax_get_repeated_trades', 'stratusx_child_get_repeated_trades_via_ajax' );
 add_action( 'wp_ajax_nopriv_get_repeated_trades', 'stratusx_child_get_repeated_trades_via_ajax' );
-
+add_action( 'wp_ajax_get_filter_trade', 'stratusx_child_get_filter_trade_via_ajax' );
+add_action( 'wp_ajax_nopriv_get_filter_trade', 'stratusx_child_get_filter_trade_via_ajax' );
 
 function stratusx_child_get_graph_performance_by_year_via_ajax() {
 	$portfolio_id = isset( $_POST['portfolio_id'] ) ? sanitize_text_field( $_POST['portfolio_id'] ) : '';
@@ -66,4 +67,17 @@ function stratusx_child_get_repeated_trades_via_ajax() {
 	$repeated_trades_html = ob_get_clean();
 
 	wp_send_json_success( [ 'repeated_trades' => $repeated_trades_html ] );
+}
+
+function stratusx_child_get_filter_trade_via_ajax() {
+	if ( ! isset( $_POST['portfolio_id'], $_POST['filter_type'] ) ) {
+		wp_send_json_error( new WP_Error( 'invalid', __( 'Invalid portfolio_id or filter_type.', 'stratusx-child' ) ) );
+	}
+
+	$portfolio_id = sanitize_text_field( $_POST['portfolio_id'] );
+	$filter_type  = sanitize_text_field( $_POST['filter_type'] );
+
+	$filtered_trade = stratusx_child_get_filtered_trade( $portfolio_id, $filter_type );
+
+	wp_send_json_success( [ 'filtered_trade' => $filtered_trade ] );
 }
