@@ -1,3 +1,7 @@
+<?php
+// stratusx_child_get_repeated_trades('DRY1037474', 1 )
+?>
+
 <div class="repeate_area">
 	<div class="repeat_cont">
 		<h4 class="repeat_txt">

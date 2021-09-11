@@ -242,22 +242,20 @@ function stratusx_child_get_repeated_trades( $portfolio_id, $page_id ) {
 		return $repeated_trade;
 	}
 
-	$query_args = [
-		'url'          => 'https://appsinvodevlopment.com/dawul-new-backend/api/repeatedTrade',
-		'postfields'   => [
+	$response = stratusx_child_get_curl_response(
+		'https://appsinvodevlopment.com/dawul-new-backend/api/repeatedTrade',
+		[
 			'Portfolio_ID' => $portfolio_id,
 			'page'         => $page_id,
-		],
-		'transient_id' => $transient_id,
-	];
-	$response   = stratusx_child_get_curl_response( $query_args );
+		]
+	);
 
 	set_transient( $transient_id, $response, HOUR_IN_SECONDS );
 
 	return $response;
 }
 
-function stratusx_child_get_curl_response( $args = [] ) {
+function stratusx_child_get_curl_response( $url, $postfields ) {
 	try {
 		$curl = curl_init();
 
@@ -277,7 +275,7 @@ function stratusx_child_get_curl_response( $args = [] ) {
 						'token'  => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBwc2ludm9kZXZsb3BtZW50LmNvbVwvZGF3dWwtbmV3LWJhY2tlbmRcL2FwaVwvbG9naW4iLCJpYXQiOjE2MjkzNjgxMTgsIm5iZiI6MTYyOTM2ODExOCwianRpIjoiQUxGaFpRc0xBemlZOWRFbiIsInN1YiI6MTc3NSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.WdoSYu0AkDPF0R6vJ_6X8be39UNzAMkxC2wEXJ_JodA',
 						'is_web' => '1',
 					],
-					$args['postfields']
+					$postfields
 				),
 			)
 		);
