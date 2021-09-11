@@ -55,6 +55,15 @@ function stratusx_child_get_repeated_trades_via_ajax() {
 	$page         = sanitize_text_field( $_POST['page'] );
 
 	$repeated_trades = stratusx_child_get_repeated_trades( $portfolio_id, $page );
+	$repeated_trades = $repeated_trades->data[0]->repeatedTrade;
 
-	wp_send_json_success( [ $repeated_trades ] );
+	ob_start();
+	get_template_part(
+		'template-parts/content',
+		'repeated-trades-list-items',
+		[ 'repeated_trades' => $repeated_trades ]
+	);
+	$repeated_trades_html = ob_get_clean();
+
+	wp_send_json_success( [ 'repeated_trades' => $repeated_trades_html ] );
 }

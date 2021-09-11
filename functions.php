@@ -395,6 +395,7 @@ function stratusx_child_expert_details() {
 							'repeated-trades',
 							[
 								'repeated_trades' => $user_information->repeatedTrade,
+								'portfolio_id'    => $portfolio_id,
 							]
 						);
 						?>
