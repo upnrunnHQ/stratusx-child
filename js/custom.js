@@ -2,6 +2,13 @@ jQuery(document).ready(function($) {
     // Code that uses jQuery's $ can follow here.
     jQuery.noConflict();
 
+    var appSettings = {
+        repeatedTrades: {
+            currentPage: 1,
+            isLoading: false
+        }
+    };
+
     var cashChart = document.getElementById("CashChart");
     new Chart(cashChart, {
         type: "doughnut",
@@ -322,5 +329,40 @@ jQuery(document).ready(function($) {
                 }
             });
         }
+    });
+
+    $(".repeat_see").on("click", "a", function() {
+        if (appSettings.repeatedTrades.isLoading) {
+            return;
+        }
+
+        var button = $(this),
+            buttonText = $(this).text();
+        button.text("Loading...");
+
+        var formData = {
+            action: "get_repeated_trades",
+            portfolio_id: "DRY1037474",
+            page: appSettings.repeatedTrades.currentPage += 1
+        };
+
+        appSettings.repeatedTrades.isLoading = true;
+
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: woocommerce_params.ajax_url,
+            data: formData,
+            success: function(response) {
+                button.text(buttonText);
+                appSettings.repeatedTrades.isLoading = false;
+
+                console.log(response);
+            },
+            error: function() {
+                button.text(buttonText);
+                appSettings.repeatedTrades.isLoading = false;
+            }
+        });
     });
 });

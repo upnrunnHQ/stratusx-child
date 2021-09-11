@@ -235,20 +235,26 @@ function stratusx_child_get_performance_detail( $portfolio_id, $created_date ) {
 	}
 }
 
-function stratusx_child_get_repeated_trade( $portfolio_id, $page_id ) {
+function stratusx_child_get_repeated_trades( $portfolio_id, $page_id ) {
 	$transient_id   = "stratusx_child_get_repeated_trade_{$portfolio_id}_{$page_id}";
 	$repeated_trade = get_transient( $transient_id );
 	if ( $repeated_trade ) {
 		return $repeated_trade;
 	}
 
-	return stratusx_child_get_curl_response(
-		[
-			'url'          => $url,
-			'postfields'   => $postfields,
-			'transient_id' => $transient_id,
-		]
-	);
+	$query_args = [
+		'url'          => 'https://appsinvodevlopment.com/dawul-new-backend/api/repeatedTrade',
+		'postfields'   => [
+			'Portfolio_ID' => $portfolio_id,
+			'page'         => $page_id,
+		],
+		'transient_id' => $transient_id,
+	];
+	$response   = stratusx_child_get_curl_response( $query_args );
+
+	set_transient( $transient_id, $response, HOUR_IN_SECONDS );
+
+	return $response;
 }
 
 function stratusx_child_get_curl_response( $args = [] ) {
@@ -278,7 +284,6 @@ function stratusx_child_get_curl_response( $args = [] ) {
 
 		$response = curl_exec( $curl );
 		$response = json_decode( $response );
-		set_transient( $transient_id, $response, HOUR_IN_SECONDS );
 		curl_close( $curl );
 
 		return $response;

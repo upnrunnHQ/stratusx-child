@@ -1,6 +1,9 @@
 <?php
 add_action( 'wp_ajax_get_graph_performance_by_year', 'stratusx_child_get_graph_performance_by_year_via_ajax' );
 add_action( 'wp_ajax_nopriv_get_graph_performance_by_year', 'stratusx_child_get_graph_performance_by_year_via_ajax' );
+add_action( 'wp_ajax_get_repeated_trades', 'stratusx_child_get_repeated_trades_via_ajax' );
+add_action( 'wp_ajax_nopriv_get_repeated_trades', 'stratusx_child_get_repeated_trades_via_ajax' );
+
 
 function stratusx_child_get_graph_performance_by_year_via_ajax() {
 	$portfolio_id = isset( $_POST['portfolio_id'] ) ? sanitize_text_field( $_POST['portfolio_id'] ) : '';
@@ -41,4 +44,17 @@ function stratusx_child_get_graph_performance_by_year_via_ajax() {
 	$yearly_data['$graph_performance'] = $graph_performance;
 
 	wp_send_json_success( $yearly_data );
+}
+
+function stratusx_child_get_repeated_trades_via_ajax() {
+	if ( ! isset( $_POST['portfolio_id'], $_POST['page'] ) ) {
+		wp_send_json_error( new WP_Error( 'invalid', __( 'Invalid portfolio_id or page.', 'stratusx-child' ) ) );
+	}
+
+	$portfolio_id = sanitize_text_field( $_POST['portfolio_id'] );
+	$page         = sanitize_text_field( $_POST['page'] );
+
+	$repeated_trades = stratusx_child_get_repeated_trades( $portfolio_id, $page );
+
+	wp_send_json_success( [ $repeated_trades ] );
 }
