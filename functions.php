@@ -389,7 +389,15 @@ function stratusx_child_expert_details() {
 								<canvas id="CashChart" width="200" height="250" data-chartjs="<?php echo esc_attr( json_encode( $chartjs ) ); ?>"></canvas>
 							</div>
 						</div>
-						<?php stratus_child_get_repeated_trades( $user_information->repeatedTrade ); ?>
+						<?php
+						get_template_part(
+							'template-parts/content',
+							'repeated-trades',
+							[
+								'repeated_trades' => $user_information->repeatedTrade,
+							]
+						);
+						?>
 					</div>
 				</div>
 			</div>
