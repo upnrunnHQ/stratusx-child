@@ -1526,20 +1526,27 @@ i {
 }
 
 .trading_filter .dropdown-menu {
-    width: 336px;
+    width: 352px;
     left: auto !important;
     right: 0;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .trading_filter .dropdown-menu li {
-    width: 48%;
-    margin: 1%;
+    width: calc(50% - 10px);
     float: left;
+    margin: 5px;
 }
 
 .trading_filter .dropdown-menu .btn {
     width: 100%;
     border-radius: 4px;
+}
+
+.trading_filter .dropdown-menu .btn.active {
+    background-color: #2b75ba;
+    color: #ffffff;
 }
 
 .c_num_r {
@@ -2749,14 +2756,17 @@ i {
 .pro_percent {
     padding-left: 12px;
 }
+
 .themo_cart_icon {
     margin-left: 2% !important;
 }
+
 .navbar .navbar-nav {
     padding-right: 0px !important;
 }
+
 .anly_right_content {
     width: calc(100% - 100px);
     margin-left: auto;
-    float:left;
+    float: left;
 }

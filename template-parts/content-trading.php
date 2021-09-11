@@ -28,7 +28,7 @@
 				</button>
 				<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 					<?php foreach ( $args['filters'] as $key => $filter ) : ?>
-						<li><button type="button" class="btn" data-filter-type="<?php echo esc_attr( $key + 1 ); ?>"><?php echo $filter; ?></button></li>
+						<li><button type="button" class="btn<?php echo ( 1 === $key + 1 ? ' active' : '' ); ?>" data-filter-type="<?php echo esc_attr( $key + 1 ); ?>"><?php echo $filter; ?></button></li>
 					<?php endforeach; ?>
 				</ul>
 			</div>
