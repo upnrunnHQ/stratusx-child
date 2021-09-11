@@ -234,3 +234,55 @@ function stratusx_child_get_performance_detail( $portfolio_id, $created_date ) {
 		return [];
 	}
 }
+
+function stratusx_child_get_repeated_trade( $portfolio_id, $page_id ) {
+	$transient_id   = "stratusx_child_get_repeated_trade_{$portfolio_id}_{$page_id}";
+	$repeated_trade = get_transient( $transient_id );
+	if ( $repeated_trade ) {
+		return $repeated_trade;
+	}
+
+	return stratusx_child_get_curl_response(
+		[
+			'url'          => $url,
+			'postfields'   => $postfields,
+			'transient_id' => $transient_id,
+		]
+	);
+}
+
+function stratusx_child_get_curl_response( $args = [] ) {
+	try {
+		$curl = curl_init();
+
+		curl_setopt_array(
+			$curl,
+			array(
+				CURLOPT_URL            => $url,
+				CURLOPT_RETURNTRANSFER => true,
+				CURLOPT_ENCODING       => '',
+				CURLOPT_MAXREDIRS      => 10,
+				CURLOPT_TIMEOUT        => 0,
+				CURLOPT_FOLLOWLOCATION => true,
+				CURLOPT_HTTP_VERSION   => CURL_HTTP_VERSION_1_1,
+				CURLOPT_CUSTOMREQUEST  => 'POST',
+				CURLOPT_POSTFIELDS     => array_merge(
+					[
+						'token'  => 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBwc2ludm9kZXZsb3BtZW50LmNvbVwvZGF3dWwtbmV3LWJhY2tlbmRcL2FwaVwvbG9naW4iLCJpYXQiOjE2MjkzNjgxMTgsIm5iZiI6MTYyOTM2ODExOCwianRpIjoiQUxGaFpRc0xBemlZOWRFbiIsInN1YiI6MTc3NSwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.WdoSYu0AkDPF0R6vJ_6X8be39UNzAMkxC2wEXJ_JodA',
+						'is_web' => '1',
+					],
+					$args['postfields']
+				),
+			)
+		);
+
+		$response = curl_exec( $curl );
+		$response = json_decode( $response );
+		set_transient( $transient_id, $response, HOUR_IN_SECONDS );
+		curl_close( $curl );
+
+		return $response;
+	} catch ( Exception $e ) {
+		return [];
+	}
+}
