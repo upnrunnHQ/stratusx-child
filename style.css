@@ -138,6 +138,11 @@ form input, .frm_forms form label, .with_frm_style label.frm_primary_label, .wit
 .themo_cart_icon {
     margin-left: 2% !important;
 }
+
 .navbar .navbar-nav {
     padding-right: 0px !important;
+}
+
+.woocommerce ul.products li.product a.button {
+    margin: 5px;
 }

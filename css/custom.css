@@ -1665,7 +1665,6 @@ i {
 
 .repeate_area .repeat_see {
     text-align: right;
-    padding-top: 20px;
 }
 
 .repeate_area .repeat_see a {
@@ -1723,6 +1722,33 @@ i {
 
 .repeate_area .repeat_avg .t_avg_p .avg-pro .pro_per.c_red {
     color: #ff5050;
+}
+
+/* repeated-trades */
+#repeated-trades {
+    margin-top: 16px;
+    max-height: 700px;
+    overflow-y: scroll;
+}
+
+/* width */
+#repeated-trades::-webkit-scrollbar {
+    width: 3px;
+}
+
+/* Track */
+#repeated-trades::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+#repeated-trades::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+#repeated-trades::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 
 /* --- */
