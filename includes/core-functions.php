@@ -255,6 +255,26 @@ function stratusx_child_get_repeated_trades( $portfolio_id, $page_id ) {
 	return $response;
 }
 
+function stratusx_child_get_filter_trade( $portfolio_id, $filter_type ) {
+	$transient_id = "stratusx_child_get_filter_trade_{$portfolio_id}_{$filter_type}";
+	$filter_trade = get_transient( $transient_id );
+	if ( $filter_trade ) {
+		return $filter_trade;
+	}
+
+	$response = stratusx_child_get_curl_response(
+		'https://appsinvodevlopment.com/dawul-new-backend/api/filterTrade',
+		[
+			'Portfolio_ID' => $portfolio_id,
+			'filterType'   => $filter_type,
+		]
+	);
+
+	set_transient( $transient_id, $response, HOUR_IN_SECONDS );
+
+	return $response;
+}
+
 function stratusx_child_get_curl_response( $url, $postfields ) {
 	try {
 		$curl = curl_init();
