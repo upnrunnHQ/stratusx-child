@@ -342,8 +342,8 @@ jQuery(document).ready(function($) {
 
         var formData = {
             action: "get_repeated_trades",
-            portfolio_id: "DRY1037474",
-            page: appSettings.repeatedTrades.currentPage += 1
+            portfolio_id: $("#repeated-trades").data("portfolio-id"),
+            page: (appSettings.repeatedTrades.currentPage += 1)
         };
 
         appSettings.repeatedTrades.isLoading = true;
@@ -356,8 +356,7 @@ jQuery(document).ready(function($) {
             success: function(response) {
                 button.text(buttonText);
                 appSettings.repeatedTrades.isLoading = false;
-
-                console.log(response);
+                $("#repeated-trades").append(response.data.repeated_trades);
             },
             error: function() {
                 button.text(buttonText);

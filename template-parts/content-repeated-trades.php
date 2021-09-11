@@ -13,7 +13,7 @@
 	<div class="repeat_see">
 		<a href="#"><?php _e( 'See More', 'stratusx-child' ); ?></a>
 	</div>
-	<div id="repeated-trades">
+	<div id="repeated-trades" data-portfolio-id="<?php echo esc_attr( $args['portfolio_id'] ); ?>">
 		<?php
 		get_template_part(
 			'template-parts/content',
