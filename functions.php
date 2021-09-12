@@ -86,13 +86,12 @@ function stratusx_child_shortcode_products_query( $query_args ) {
  */
 function expert_profile_js_css() {
 	if ( is_product() || is_page_template( 'expert-details.php' ) ) {
-		wp_enqueue_script( 'popper', get_stylesheet_directory_uri() . '/js/popper.min.js', array( 'jquery' ), '', true );
-		wp_enqueue_script( 'bootstrap', get_stylesheet_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), '', true );
+		wp_enqueue_script( 'bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', array( 'jquery' ), '', true );
 		wp_enqueue_script( 'chart-bundle', 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js', array( 'jquery' ), '', true );
 		wp_enqueue_script( 'chart', get_stylesheet_directory_uri() . '/js/chart.js/Chart.min.js', array( 'jquery' ), '', true );
 		wp_enqueue_script( 'translate', get_stylesheet_directory_uri() . '/js/translate.js', array( 'jquery' ), '', true );
 		wp_enqueue_script( 'main', get_stylesheet_directory_uri() . '/js/main.js', array( 'jquery' ), '', true );
-		wp_enqueue_script( 'stratusx-child', get_stylesheet_directory_uri() . '/js/custom.js', array( 'jquery' ), '', true );
+		wp_enqueue_script( 'stratusx-child', get_stylesheet_directory_uri() . '/js/custom.js', array( 'jquery', 'bootstrap' ), '', true );
 
 		wp_register_style( 'bootstrap', get_stylesheet_directory_uri() . '/css/bootstrap.min.css', false );
 		wp_register_style( 'chart', get_stylesheet_directory_uri() . '/css/Chart.css', false );
@@ -253,15 +252,21 @@ function stratusx_child_expert_details() {
 						</div>
 
 						<div class="exp-add_info">
-							<h4>Additional Info</h4>
-							<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info-white-e.png" alt="info"></a>
+							<h4><?php _e( 'Additional Info', 'stratusx-child' ); ?></h4>
+							<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'Statistics of the last 12 months', 'stratusx-child' ); ?>">
+								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info-white-e.png" alt="info">
+							</a>
 						</div>
 						<div class="addition_info_area exp_additon_info">
 
 							<div class="trades_monthly exp_trades_monthly">
 								<div class="add_cale">
-									<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/calendar-e.png" alt="calendar"></a>
-									<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/Path-1292.png" alt="info"></a>
+									<a href="#">
+										<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/calendar-e.png" alt="calendar">
+									</a>
+									<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'Number of yearly transactions', 'stratusx-child' ); ?>">
+										<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/Path-1292.png" alt="info">
+									</a>
 								</div>
 								<div class="a_trades-inner">
 									<div class="a_week_trades">
@@ -281,7 +286,9 @@ function stratusx_child_expert_details() {
 							<div class="trades_monthly exp_trades_monthly1">
 								<div class="add_cale">
 									<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/bar-e.png" alt="calendar"></a>
-									<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info-orange-e.png" alt="info"></a>
+									<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'Average Holding Time', 'stratusx-child' ); ?>">
+										<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info-orange-e.png" alt="info">
+									</a>
 								</div>
 								<div class="tra_days">
 									<h4 class="days"><?php echo $user_information->avgHoldingTime; ?> Day</h4>
@@ -291,17 +298,21 @@ function stratusx_child_expert_details() {
 							<div class="trades_monthly exp_trades_monthly2">
 								<div class="add_cale">
 									<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/user-e.png" alt="calendar"></a>
-									<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info-green-e.png" alt="info"></a>
+									<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'Joining Date', 'stratusx-child' ); ?>">
+										<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info-green-e.png" alt="info">
+									</a>
 								</div>
 								<div class="tra_days">
 									<h4 class="days"><?php echo date( 'd-m-y', strtotime( $user_information->joiningDate ) ); ?></h4>
-									<h5 class="avg_time">Active Since</h5>
+									<h5 class="avg_time"><?php _e( 'Active Since', 'stratusx-child' ); ?></h5>
 								</div>
 							</div>
 							<div class="trades_monthly exp_trades_monthly3">
 								<div class="add_cale">
 									<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/bar-purple-e.png" alt="calendar"></a>
-									<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info-e.png" alt="info"></a>
+									<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'Highest loss or lowest profit for the last month', 'stratusx-child' ); ?>">
+										<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info-e.png" alt="info">
+									</a>
 								</div>
 								<div class="max_profit">
 									<div class="tra_days">
