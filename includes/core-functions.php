@@ -4,7 +4,6 @@ function stratusx_child_get_list_years( $start_year = 2019 ) {
 }
 
 function stratusx_child_graph_performance_data_chartjs( $graph_performance ) {
-	print_r( $graph_performance );
 	return [];
 }
 
