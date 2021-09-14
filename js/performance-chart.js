@@ -13,7 +13,12 @@
             datasets: performanceChartData.datasets
         },
         options: {
-            legend: {position: "bottom"}
+            legend: {
+                position: "bottom",
+                labels: {
+                    boxWidth: 10,
+                }
+            }
         }
     });
 
