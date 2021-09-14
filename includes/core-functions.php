@@ -4,7 +4,48 @@ function stratusx_child_get_list_years( $start_year = 2019 ) {
 }
 
 function stratusx_child_graph_performance_data_chartjs( $graph_performance ) {
-	return [];
+	$labels   = [];
+	$datasets = [];
+
+	$unfiltered_datasets = [];
+	$background_colors   = [
+		'Graph' => '#2b75ba',
+		'CI'    => '#096DE5',
+		'CO'    => '#3AC236',
+		'D'     => '#2b75ba',
+	];
+
+	foreach ( $graph_performance->performance as $performance ) {
+		$labels[] = $performance->month;
+
+		$unfiltered_datasets['Graph'][] = $performance->value;
+		$unfiltered_datasets['CO'][]    = $performance->CO;
+		$unfiltered_datasets['CI'][]    = $performance->CI;
+		$unfiltered_datasets['D'][]     = $performance->D;
+	}
+
+	foreach ( $unfiltered_datasets as $key => $value ) {
+		$dataset = [
+			'label' => $key,
+			'data'  => $value,
+		];
+
+		if ( 'Graph' === $key ) {
+			$dataset['type']        = 'line';
+			$dataset['borderColor'] = $background_colors[ $key ];
+			$dataset['fill']        = false;
+		} else {
+			$dataset['type']            = 'bar';
+			$dataset['backgroundColor'] = $background_colors[ $key ];
+		}
+
+		$datasets[] = $dataset;
+	}
+
+	return [
+		'labels'   => $labels,
+		'datasets' => $datasets,
+	];
 }
 
 function stratusx_child_get_risk_indicator_data( $user_information ) {

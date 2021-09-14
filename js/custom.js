@@ -13,53 +13,6 @@ jQuery(document).ready(function($) {
         }
     };
 
-    var cashChart = document.getElementById("CashChart");
-    new Chart(cashChart, {
-        type: "doughnut",
-        data: {
-            labels: ["Graph 200,000", "CO 100,000", "CI 100,000", "D 100,000"],
-            datasets: [
-                {
-                    label: "Amount",
-                    backgroundColor: [
-                        "#23e200",
-                        "#00c4ff",
-                        "#ff0000",
-                        "#007fff"
-                    ],
-                    borderWidth: 0,
-                    data: [12000, 14000, 16000, 24000]
-                }
-            ]
-        },
-        options: {
-            maintainAspectRatio: false,
-            layout: {
-                padding: {
-                    left: 0,
-                    right: 0,
-                    top: 10,
-                    bottom: 30
-                }
-            },
-            title: {
-                display: false
-            },
-            legend: {
-                display: true,
-
-                position: "top",
-                labels: {
-                    fontColor: "#000000",
-                    fontSize: 10,
-                    boxWidth: 10,
-                    padding: 5
-                }
-            },
-            cutoutPercentage: 85
-        }
-    });
-
     // =====PercentChart=======
     var percentChart = document.getElementById("percentChart"),
         percentChartData = JSON.parse(percentChart.dataset.chartjs);
@@ -262,38 +215,6 @@ jQuery(document).ready(function($) {
 
     $(".totle_see_m").on("click", function() {
         $(".tot_perc .monthly_per").css("display", "flex");
-    });
-
-    $("#performance-1").on("change", ".g_year_drp", function() {
-        var portfolioId = $(this).attr("data-portfolio-id");
-        var filterYear = this.value;
-        var $loading = $("#performance-1").find(".g_loading");
-
-        if (filterYear) {
-            $loading.show();
-
-            var formData = {
-                action: "get_graph_performance_by_year",
-                portfolio_id: portfolioId,
-                filter_year: filterYear
-            };
-
-            $.ajax({
-                type: "POST",
-                dataType: "JSON",
-                url: woocommerce_params.ajax_url,
-                data: formData,
-                success: function(response) {
-                    $("#performance-1 .tot_perc").html(
-                        response.data.performanceWidget
-                    );
-                    $loading.hide();
-                },
-                error: function() {
-                    $loading.hide();
-                }
-            });
-        }
     });
 
     $("#performance-2").on("change", ".g_year_drp", function() {
