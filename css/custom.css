@@ -2770,3 +2770,8 @@ i {
     margin-left: auto;
     float: left;
 }
+
+.tooltip p {
+    font-size: 12px;
+    color: #ffffff;
+}
