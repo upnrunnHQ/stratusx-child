@@ -389,6 +389,7 @@ function stratusx_child_expert_details() {
 					</div>
 					<div class="col-md-3">
 						<?php
+						$chartjs = stratusx_child_graph_performance_data_chartjs( $graph_performance );
 						get_template_part(
 							'template-parts/content',
 							'performance',
@@ -396,7 +397,7 @@ function stratusx_child_expert_details() {
 								'portfolio_id'      => $portfolio_id,
 								'graph_performance' => $graph_performance,
 								'list_years'        => $list_years,
-								'chartjs'           => [],
+								'chartjs'           => $chartjs,
 							]
 						);
 						get_template_part(
