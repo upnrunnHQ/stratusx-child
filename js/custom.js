@@ -105,6 +105,8 @@ jQuery(document).ready(function($) {
                 yAxes: [
                     {
                         ticks: {
+                            min: -5,
+                            max: 5,
                             padding: 10
                         },
                         gridLines: {
@@ -187,7 +189,9 @@ jQuery(document).ready(function($) {
                 yAxes: [
                     {
                         ticks: {
-                            padding: 10
+                            min: -100,
+                            max: 100,
+                            display: false
                         },
                         gridLines: {
                             color: "#dddddd",
@@ -244,8 +248,8 @@ jQuery(document).ready(function($) {
                 url: woocommerce_params.ajax_url,
                 data: formData,
                 success: function(response) {
-                    var performancelineChartColours = response.data.graphPerformance.data.map(value =>
-                        value < 0 ? "#ff4e4e" : "#3AC236"
+                    var performancelineChartColours = response.data.graphPerformance.data.map(
+                        value => (value < 0 ? "#ff4e4e" : "#3AC236")
                     );
                     _performanceLineChart.data.datasets[0].data =
                         response.data.graphPerformance.data;
@@ -309,25 +313,25 @@ jQuery(document).ready(function($) {
         });
     });
 
-    $('#tradingFilterToggle').dropdown();
+    $("#tradingFilterToggle").dropdown();
 
-    $('.tradingFilterDropdown').on('click', 'li .btn', function () {
+    $(".tradingFilterDropdown").on("click", "li .btn", function() {
         var $that = $(this);
-        var $wrapper = $that.closest('.dropdown-menu');
-        var $loading = $wrapper.closest('.trading_filter').find('.g_loading');
+        var $wrapper = $that.closest(".dropdown-menu");
+        var $loading = $wrapper.closest(".trading_filter").find(".g_loading");
 
-        if ( $that.hasClass('active') ) {
+        if ($that.hasClass("active")) {
             return;
         }
 
-        var portfolioId = $wrapper.attr('data-portfolio-id');
-        var filterType = $that.attr('data-filter-type');
+        var portfolioId = $wrapper.attr("data-portfolio-id");
+        var filterType = $that.attr("data-filter-type");
 
-        if ( portfolioId && filterType ) {
-            $wrapper.find('li .btn').removeClass('active');
+        if (portfolioId && filterType) {
+            $wrapper.find("li .btn").removeClass("active");
             $loading.show();
 
-            $that.addClass('active');
+            $that.addClass("active");
 
             var formData = {
                 action: "get_filter_trade",
@@ -343,15 +347,15 @@ jQuery(document).ready(function($) {
                 success: function(response) {
                     var _response = response.data.filtered_trade.data[0];
 
-                    $.each(_response, function (key, value) {
-                        var $element = $('.trading-dynamic-value.' + key + '');
+                    $.each(_response, function(key, value) {
+                        var $element = $(".trading-dynamic-value." + key + "");
 
                         if ($element.length) {
                             $element.text(value);
                         }
                     });
 
-                    var $tradingSectorsWrapper = $('.trading-sectors-wrapper');
+                    var $tradingSectorsWrapper = $(".trading-sectors-wrapper");
 
                     $.ajax({
                         type: "POST",
@@ -359,19 +363,19 @@ jQuery(document).ready(function($) {
                         url: woocommerce_params.ajax_url,
                         data: {
                             action: "get_filter_trading_sectors_html",
-                            sectors: _response.tradingSector,
+                            sectors: _response.tradingSector
                         },
                         success: function(response) {
-                            if ( response.length ) {
-                                $tradingSectorsWrapper.html( response );
+                            if (response.length) {
+                                $tradingSectorsWrapper.html(response);
                             } else {
-                                $tradingSectorsWrapper.html('');
+                                $tradingSectorsWrapper.html("");
                             }
 
                             $loading.hide();
                         },
                         error: function() {
-                            $tradingSectorsWrapper.html('');
+                            $tradingSectorsWrapper.html("");
 
                             $loading.hide();
                         }
