@@ -149,7 +149,7 @@ function stratusx_child_get_get_other_profile( $portfolio_id ) {
 		// Execute post
 		$response = curl_exec( $ch );
 
-		curl_close( $curl );
+		curl_close( $ch );
 
 		set_transient( $transient_id, $response, HOUR_IN_SECONDS );
 
@@ -189,7 +189,7 @@ function stratusx_child_get_get_user_information( $portfolio_id, $filter_year = 
 		// Execute post
 		$response = curl_exec( $ch );
 
-		curl_close( $curl );
+		curl_close( $ch );
 
 		set_transient( $transient_id, $response, HOUR_IN_SECONDS );
 
@@ -229,7 +229,7 @@ function stratusx_child_get_graph_performance( $portfolio_id, $filter_year = 202
 		// Execute post
 		$response = curl_exec( $ch );
 
-		curl_close( $curl );
+		curl_close( $ch );
 
 		set_transient( $transient_id, $response, HOUR_IN_SECONDS );
 
