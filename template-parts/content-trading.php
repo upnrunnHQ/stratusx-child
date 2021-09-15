@@ -4,7 +4,9 @@
 			<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/trading.png" alt="">
 			<h4 class="trading_txt"><?php _e( 'Trading', 'stratusx-child' ); ?></h4>
 		</div>
-		<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info.png" alt="info"></a>
+		<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'An overview of the portfolio performance for the previous month. You can select the filter icon to choose alternative duration', 'stratusx-child' ); ?>">
+			<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info.png" alt="info">
+		</a>
 	</div>
 	<div class="trading_totle">
 		<?php

@@ -25,7 +25,9 @@ function stratus_child_get_performance( $performance, $total_performance, $graph
 				<h4 class="performance_txt"><?php _e( 'Performance', 'stratusx-child' ); ?></h4>
 			</div>
 			<div class="risk_info_icon exp_risk_info">
-				<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info.png" alt="info"></a>
+				<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'Here you will find the portfolio growth by month, choose the desired year to review the performance.', 'stratusx-child' ); ?>">
+					<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info.png" alt="info">
+				</a>
 				<div class="g_yearly">
 					<span class="g_loading" style="display:none;">Loading..</span>
 					<select class="g_year_drp" id="g_performance_drp" data-portfolio-id="<?php echo esc_attr( $portfolio_id ); ?>">

@@ -256,7 +256,9 @@ jQuery(document).ready(function($) {
         }
     });
 
-    $(".repeat_see").on("click", "a", function() {
+    $(".repeat_see").on("click", "a", function(e) {
+        e.preventDefault();
+
         if (
             appSettings.repeatedTrades.isLoading ||
             appSettings.repeatedTrades.currentPage >= 10
@@ -284,7 +286,7 @@ jQuery(document).ready(function($) {
             success: function(response) {
                 button.text(buttonText);
                 appSettings.repeatedTrades.isLoading = false;
-                $("#repeated-trades").append(response.data.repeated_trades);
+                $("#repeated-trades").prepend(response.data.repeated_trades);
             },
             error: function() {
                 button.text(buttonText);

@@ -6,7 +6,7 @@
 		<h4 class="repeat_txt">
 			<?php _e( 'Repeated Trades', 'stratusx-child' ); ?>
 		</h4>
-		<a href="#">
+		<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'Overview of the repeated stocks transactions', 'stratusx-child' ); ?>">
 			<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info.png" alt="info">
 		</a>
 	</div>
