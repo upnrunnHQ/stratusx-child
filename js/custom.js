@@ -60,13 +60,16 @@ jQuery(document).ready(function($) {
     // ======lastmonthChart=======
     var lastmonthChart = document.getElementById("lastmonthChart"),
         lastmonthChartData = JSON.parse(lastmonthChart.dataset.chartjs);
+    var lastmonthChartColours = lastmonthChartData.datasets.map(value =>
+        value < 0 ? "#ff4e4e" : "#3AC236"
+    );
     new Chart(lastmonthChart, {
         type: "bar",
         data: {
             labels: lastmonthChartData.labels,
             datasets: [
                 {
-                    backgroundColor: "#ff4e4e",
+                    backgroundColor: lastmonthChartColours,
                     data: lastmonthChartData.datasets
                 }
             ]
@@ -138,13 +141,16 @@ jQuery(document).ready(function($) {
         performancelineChartData = JSON.parse(
             performancelineChart.dataset.chartjs
         );
+    var performancelineChartColours = performancelineChartData.data.map(value =>
+        value < 0 ? "#ff4e4e" : "#3AC236"
+    );
     var _performanceLineChart = new Chart(performancelineChart, {
         type: "bar",
         data: {
             labels: performancelineChartData.labels,
             datasets: [
                 {
-                    backgroundColor: "#23e200",
+                    backgroundColor: performancelineChartColours,
                     barThickness: 14,
                     data: performancelineChartData.data
                 }
@@ -237,10 +243,14 @@ jQuery(document).ready(function($) {
                 url: woocommerce_params.ajax_url,
                 data: formData,
                 success: function(response) {
+                    var performancelineChartColours = response.data.graphPerformance.data.map(value =>
+                        value < 0 ? "#ff4e4e" : "#3AC236"
+                    );
                     _performanceLineChart.data.datasets[0].data =
                         response.data.graphPerformance.data;
                     _performanceLineChart.data.labels =
                         response.data.graphPerformance.labels;
+                    _performanceLineChart.data.datasets[0].backgroundColor = performancelineChartColours;
 
                     _performanceLineChart.update();
 
@@ -296,56 +306,5 @@ jQuery(document).ready(function($) {
                 appSettings.repeatedTrades.isLoading = false;
             }
         });
-    });
-
-    $('#tradingFilterToggle').dropdown();
-
-    $('.tradingFilterDropdown').on('click', 'li .btn', function () {
-        var $that = $(this);
-        var $wrapper = $that.closest('.dropdown-menu');
-        var $loading = $wrapper.closest('.trading_filter').find('.g_loading');
-
-        if ( $that.hasClass('active') ) {
-            return;
-        }
-
-        var portfolioId = $wrapper.attr('data-portfolio-id');
-        var filterType = $that.attr('data-filter-type');
-
-        if ( portfolioId && filterType ) {
-            $wrapper.find('li .btn').removeClass('active');
-            $loading.show();
-
-            $that.addClass('active');
-
-            var formData = {
-                action: "get_filter_trade",
-                portfolio_id: portfolioId,
-                filter_type: filterType
-            };
-
-            $.ajax({
-                type: "POST",
-                dataType: "JSON",
-                url: woocommerce_params.ajax_url,
-                data: formData,
-                success: function(response) {
-                    var _response = response.data.filtered_trade.data[0];
-
-                    $.each(_response, function (key, value) {
-                        var $element = $('.trading-dynamic-value.' + key + '');
-
-                        if ($element.length) {
-                            $element.text(value);
-                        }
-                    });
-
-                    $loading.hide();
-                },
-                error: function() {
-                    $loading.hide();
-                }
-            });
-        }
     });
 });
