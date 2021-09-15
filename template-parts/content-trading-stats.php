@@ -1,60 +1,68 @@
+<?php
+/**
+ * @var array $args
+ */
+
+$response = $args['response'];
+?>
+
 <div class="trading_mains">
 	<div class="tra_box exp_tra-box">
-		<spna class="t_bx_num"><?php echo $args['user_information']->longestTrade; ?></spna>
+		<span class="t_bx_num trading-dynamic-value longestTrade"><?php echo esc_html( $response->longestTrade ); ?></span>
 		<p class="t_bx_txt"><?php _e( 'The longest trades', 'stratusx-child' ); ?></p>
 	</div>
 	<div class="tra_box exp_tra-box">
-		<spna class="t_bx_num"><?php echo $args['user_information']->nearestTrade; ?></spna>
+		<span class="t_bx_num trading-dynamic-value nearestTrade"><?php echo esc_html( $response->nearestTrade ); ?></span>
 		<p class="t_bx_txt"><?php _e( 'The shortest trades', 'stratusx-child' ); ?></p>
 	</div>
 </div>
 <div class="trading_mains">
 	<div class="tra_box c_bor_cgr exp_gr-bg">
-		<spna class="t_bx_num c_num_g"><?php echo $args['user_information']->avgWiningTrade; ?></spna>
+		<span class="t_bx_num c_num_g trading-dynamic-value avgWiningTrade"><?php echo esc_html( $response->avgWiningTrade ); ?></span>
 		<p class="t_bx_txt c_num_g"><?php _e( 'Avg. of all profit', 'stratusx-child' ); ?></p>
 	</div>
 	<div class="tra_box exp_gr-bg">
-		<spna class="t_bx_num c_num_g"><?php echo $args['user_information']->avgLosingTrade; ?></spna>
+		<span class="t_bx_num c_num_g trading-dynamic-value avgLosingTrade"><?php echo esc_html( $response->avgLosingTrade ); ?></span>
 		<p class="t_bx_txt c_num_g"><?php _e( 'Avg. of all loss', 'stratusx-child' ); ?></p>
 	</div>
 	<div class="tra_box exp_bg_rd">
-		<spna class="t_bx_num c_num_r"><?php echo $args['user_information']->winingTradeCount; ?></spna>
+		<span class="t_bx_num c_num_r trading-dynamic-value winingTradeCount"><?php echo esc_html( $response->winingTradeCount ); ?></span>
 		<p class="t_bx_txt c_num_r"><?php _e( 'Profitable trades', 'stratusx-child' ); ?></p>
 	</div>
 	<div class="tra_box c_bor_cred exp_bg_rd">
-		<spna class="t_bx_num c_num_r"><?php echo $args['user_information']->losingTradeCount; ?></spna>
+		<span class="t_bx_num c_num_r trading-dynamic-value losingTradeCount"><?php echo esc_html( $response->losingTradeCount ); ?></span>
 		<p class="t_bx_txt c_num_r"><?php _e( 'Losing trades', 'stratusx-child' ); ?></p>
 	</div>
 	<div class="tra_box c_bor_cgr exp_gr-bg">
-		<spna class="t_bx_num c_num_g"><?php echo $args['user_information']->winingTrade; ?>%</spna>
+		<span class="t_bx_num c_num_g trading-dynamic-value winingTrade"><?php echo esc_html( $response->winingTrade ); ?>%</span>
 		<p class="t_bx_txt c_num_g"><?php _e( 'Rate of profitable trades', 'stratusx-child' ); ?></p>
 	</div>
 	<div class="tra_box c_bor_cred exp_gr-bg">
-		<spna class="t_bx_num c_num_g"><?php echo $args['user_information']->losingTrade; ?>%</spna>
+		<span class="t_bx_num c_num_g trading-dynamic-value losingTrade"><?php echo esc_html( $response->losingTrade ); ?>%</span>
 		<p class="t_bx_txt c_num_g"><?php _e( 'Rate of losing trades', 'stratusx-child' ); ?></p>
 	</div>
 	<div class="tra_box c_bor_cgr exp_bg_rd">
-		<spna class="t_bx_num c_num_r"><?php echo $args['user_information']->maxWiningTrade; ?>%</spna>
+		<span class="t_bx_num c_num_r trading-dynamic-value maxWiningTrade"><?php echo esc_html( $response->maxWiningTrade ); ?>%</span>
 		<p class="t_bx_txt c_num_r"><?php _e( 'Highest profit on deals', 'stratusx-child' ); ?></p>
 	</div>
 	<div class="tra_box c_bor_cred exp_bg_rd">
-		<spna class="t_bx_num c_num_r"><?php echo $args['user_information']->maxLosingTrade; ?>%</spna>
+		<span class="t_bx_num c_num_r trading-dynamic-value maxLosingTrade"><?php echo esc_html( $response->maxLosingTrade ); ?>%</span>
 		<p class="t_bx_txt c_num_r"><?php _e( 'Highest loss on deals', 'stratusx-child' ); ?></p>
 	</div>
 	<div class="tra_box c_bor_cred exp_gr-bg">
-		<spna class="t_bx_num c_num_g "><?php echo $args['user_information']->avgProfitLoss; ?>%</spna>
+		<span class="t_bx_num c_num_g trading-dynamic-value avgProfitLoss"><?php echo esc_html( $response->avgProfitLoss ); ?>%</span>
 		<p class="t_bx_txt c_num_g"><?php _e( 'Avg profit/loss', 'stratusx-child' ); ?></p>
 	</div>
 	<div class="tra_box c_bor_cgr exp_gr-bg">
-		<spna class="t_bx_num c_num_g"><?php echo $args['user_information']->sumProfitTrade; ?>%</spna>
+		<span class="t_bx_num c_num_g trading-dynamic-value sumProfitTrade"><?php echo esc_html( $response->sumProfitTrade ); ?>%</span>
 		<p class="t_bx_txt c_num_g"><?php _e( 'Total profit', 'stratusx-child' ); ?></p>
 	</div>
 	<div class="tra_box c_bor_cred exp_bg_rd">
-		<spna class="t_bx_num c_num_r"><?php echo $args['user_information']->lossProfitTrade; ?>%</spna>
+		<span class="t_bx_num c_num_r trading-dynamic-value lossProfitTrade"><?php echo esc_html( $response->lossProfitTrade ); ?>%</span>
 		<p class="t_bx_txt c_num_r"><?php _e( 'Total loss', 'stratusx-child' ); ?></p>
 	</div>
 	<div class="tra_box c_bor_cgr exp_bg_rd">
-		<spna class="t_bx_num c_num_r"><?php echo $args['user_information']->netProfitLoss; ?></spna>
+		<span class="t_bx_num c_num_r trading-dynamic-value netProfitLoss"><?php echo esc_html( $response->netProfitLoss ); ?></span>
 		<p class="t_bx_txt c_num_r"><?php _e( 'Net profit/loss', 'stratusx-child' ); ?></p>
 	</div>
 </div>

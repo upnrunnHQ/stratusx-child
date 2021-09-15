@@ -1,29 +1,41 @@
+<?php
+/**
+ * @var array $args
+ */
+
+$portfolio_id = $args['user_information']->Portfolio_ID;
+?>
+
 <div class="trading_main_area exp-trading">
+    <?php
+    $filter_type = 3;
+    $trade_data = stratusx_child_get_filtered_trade( $portfolio_id, $filter_type );
+    $response   = $trade_data->data[0];
+    ?>
 	<div class="trading_head">
 		<div class="exp_trading_icon">
 			<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/trading.png" alt="">
 			<h4 class="trading_txt"><?php _e( 'Trading', 'stratusx-child' ); ?></h4>
 		</div>
-		<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'An overview of the portfolio performance for the previous month. You can select the filter icon to choose alternative duration', 'stratusx-child' ); ?>">
-			<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info.png" alt="info">
-		</a>
+		<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info.png" alt="info"></a>
 	</div>
 	<div class="trading_totle">
 		<?php
 		get_template_part(
 			'template-parts/content',
 			'trading-total',
-			[ 'user_information' => $args['user_information'] ]
+			[ 'response' => $response ]
 		);
 		?>
 		<div class="trading_filter">
+            <span class="g_loading" style="display:none;"><?php esc_html_e( 'Loading..', 'stratusx-child' ); ?></span>
 			<div class="dropdown">
-				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				<button class="btn btn-default dropdown-toggle" type="button" id="tradingFilterToggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 					<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/fliter.png" alt="filter">
 				</button>
-				<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<ul class="dropdown-menu tradingFilterDropdown" aria-labelledby="tradingFilterToggle" data-portfolio-id="<?php echo esc_attr( $portfolio_id ); ?>">
 					<?php foreach ( $args['filters'] as $key => $filter ) : ?>
-						<li><button type="button" class="btn<?php echo ( 1 === $key + 1 ? ' active' : '' ); ?>" data-filter-type="<?php echo esc_attr( $key + 1 ); ?>"><?php echo $filter; ?></button></li>
+						<li><button type="button" class="btn<?php echo ( $filter_type === $key ? ' active' : '' ); ?>" data-filter-type="<?php echo esc_attr( $key ); ?>"><?php echo $filter; ?></button></li>
 					<?php endforeach; ?>
 				</ul>
 			</div>
@@ -35,7 +47,7 @@
 	get_template_part(
 		'template-parts/content',
 		'trading-stats',
-		[ 'user_information' => $args['user_information'] ]
+		[ 'response' => $response ]
 	);
 	?>
 </div>
