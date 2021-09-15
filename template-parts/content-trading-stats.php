@@ -18,11 +18,11 @@ $response = $args['response'];
 </div>
 <div class="trading_mains">
 	<div class="tra_box c_bor_cgr exp_gr-bg">
-		<span class="t_bx_num c_num_g trading-dynamic-value avgWiningTrade"><?php echo esc_html( $response->avgWiningTrade ); ?></span>
+		<span class="t_bx_num c_num_g trading-dynamic-value profitValue"><?php echo esc_html( $response->profitValue ); ?></span>
 		<p class="t_bx_txt c_num_g"><?php _e( 'Avg. of all profit', 'stratusx-child' ); ?></p>
 	</div>
 	<div class="tra_box exp_gr-bg">
-		<span class="t_bx_num c_num_g trading-dynamic-value avgLosingTrade"><?php echo esc_html( $response->avgLosingTrade ); ?></span>
+		<span class="t_bx_num c_num_g trading-dynamic-value losingValue"><?php echo esc_html( $response->losingValue ); ?></span>
 		<p class="t_bx_txt c_num_g"><?php _e( 'Avg. of all loss', 'stratusx-child' ); ?></p>
 	</div>
 	<div class="tra_box exp_bg_rd">
@@ -34,11 +34,11 @@ $response = $args['response'];
 		<p class="t_bx_txt c_num_r"><?php _e( 'Losing trades', 'stratusx-child' ); ?></p>
 	</div>
 	<div class="tra_box c_bor_cgr exp_gr-bg">
-		<span class="t_bx_num c_num_g trading-dynamic-value winingTrade"><?php echo esc_html( $response->winingTrade ); ?>%</span>
+		<span class="t_bx_num c_num_g trading-dynamic-value avgWiningTrade"><?php echo esc_html( $response->avgWiningTrade ); ?>%</span>
 		<p class="t_bx_txt c_num_g"><?php _e( 'Rate of profitable trades', 'stratusx-child' ); ?></p>
 	</div>
 	<div class="tra_box c_bor_cred exp_gr-bg">
-		<span class="t_bx_num c_num_g trading-dynamic-value losingTrade"><?php echo esc_html( $response->losingTrade ); ?>%</span>
+		<span class="t_bx_num c_num_g trading-dynamic-value avgLosingTrade"><?php echo esc_html( $response->avgLosingTrade ); ?>%</span>
 		<p class="t_bx_txt c_num_g"><?php _e( 'Rate of losing trades', 'stratusx-child' ); ?></p>
 	</div>
 	<div class="tra_box c_bor_cgr exp_bg_rd">
