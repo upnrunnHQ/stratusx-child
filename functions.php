@@ -318,15 +318,15 @@ function stratusx_child_expert_details() {
 							</div>
 
 							<div class="porfit_inner">
-								<div class="pro_score daily_score exp_daily_score">
+								<div class="pro_score daily_score exp_daily_score" tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'Profit/Loss for the last 1 days', 'stratusx-child' ); ?>">
 									<span class="score_percent"><?php echo $user_information->profitScore[0]->dailyScore; ?>%</span>
 									<h4 class="score_txt"><?php _e( 'Daily', 'stratus-child' ); ?></h4>
 								</div>
-								<div class="pro_score exp_pro_score">
+								<div class="pro_score exp_pro_score" tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'Profit/Loss for the last 3 months', 'stratusx-child' ); ?>">
 									<span class="score_percent"><?php echo $user_information->profitScore[0]->monthlyScore; ?>%</span>
 									<h4 class="score_txt"><?php _e( 'Monthly', 'stratus-child' ); ?></h4>
 								</div>
-								<div class="pro_score exp_pro_score">
+								<div class="pro_score exp_pro_score" tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'Profit/Loss for the last 12 months', 'stratusx-child' ); ?>">
 									<span class="score_percent"><?php echo $user_information->profitScore[0]->yearlyScore; ?>%</span>
 									<h4 class="score_txt"><?php _e( 'Yearly', 'stratus-child' ); ?></h4>
 								</div>
