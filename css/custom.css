@@ -1563,6 +1563,56 @@ i {
     border-radius: 4px;
 }
 
+.trading-sectors-bar {
+    margin-top: 40px;
+}
+
+.trading-sectors {
+    margin-top: 30px;
+}
+
+.trading-sectors .tra_sector {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.trading-sectors .tra_sector .tra_color {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+
+.rtl .trading-sectors .tra_sector .tra_color {
+    margin-right: 0;
+    margin-left: 10px;
+}
+
+.trading-sectors .tra_sector .tra_sector_title {
+    flex: 2;
+}
+
+.trading-sectors .tra_sector .tra_sector_percentage {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.trading-progress-bar {
+    animation: trading-progress-bar-animation 3s;
+}
+
+@keyframes trading-progress-bar-animation {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%
+    }
+}
+
 .trading_filter .dropdown-menu .btn.active {
     background-color: #2b75ba;
     color: #ffffff;
