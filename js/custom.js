@@ -219,7 +219,8 @@ jQuery(document).ready(function($) {
         }
     });
 
-    $(".totle_see_m").on("click", function() {
+    $(".totle_see_m").on("click", function(e) {
+        e.preventDefault();
         $(".tot_perc .monthly_per").css("display", "flex");
     });
 
