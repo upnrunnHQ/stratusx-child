@@ -8,7 +8,7 @@ $portfolio_id = $args['user_information']->Portfolio_ID;
 
 <div class="trading_main_area exp-trading">
     <?php
-    $filter_type = 3;
+    $filter_type = 4;
     $trade_data = stratusx_child_get_filtered_trade( $portfolio_id, $filter_type );
     $response   = $trade_data->data[0];
     ?>

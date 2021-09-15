@@ -351,6 +351,32 @@ jQuery(document).ready(function($) {
                         }
                     });
 
+                    var $tradingSectorsWrapper = $('.trading-sectors-wrapper');
+
+                    $.ajax({
+                        type: "POST",
+                        dataType: "html",
+                        url: woocommerce_params.ajax_url,
+                        data: {
+                            action: "get_filter_trading_sectors_html",
+                            sectors: _response.tradingSector,
+                        },
+                        success: function(response) {
+                            if ( response.length ) {
+                                $tradingSectorsWrapper.html( response );
+                            } else {
+                                $tradingSectorsWrapper.html('');
+                            }
+
+                            $loading.hide();
+                        },
+                        error: function() {
+                            $tradingSectorsWrapper.html('');
+
+                            $loading.hide();
+                        }
+                    });
+
                     $loading.hide();
                 },
                 error: function() {

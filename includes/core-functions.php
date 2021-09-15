@@ -365,3 +365,11 @@ function stratusx_child_get_trading_filters() {
 		6 => __( 'Whole Period', 'stratusx-child' ),
 	];
 }
+
+function stratusx_child_get_trading_sectors_colors() {
+	return [
+		'#3357FF',
+		'#FF4933',
+		'#FFBE33',
+	];
+}

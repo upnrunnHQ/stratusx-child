@@ -66,3 +66,14 @@ $response = $args['response'];
 		<p class="t_bx_txt c_num_r"><?php _e( 'Net profit/loss', 'stratusx-child' ); ?></p>
 	</div>
 </div>
+
+<div class="trading-sectors-wrapper">
+    <?php
+    // This is the container of the sector bar and sectors comes from ajax.
+    get_template_part(
+        'template-parts/content',
+        'trading-sectors',
+        array( 'sectors' => $response->tradingSector )
+    );
+    ?>
+</div>
