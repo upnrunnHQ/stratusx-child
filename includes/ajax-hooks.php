@@ -17,6 +17,7 @@ function stratusx_child_get_graph_performance_by_year_via_ajax() {
 	$performance_detail = stratusx_child_get_performance_detail( $portfolio_id, $filter_year );
 	$performance_detail = $performance_detail->data[0];
 
+	$yearly_data             = [];
 	$performance_detail_html = '';
 
 	$current_item_index = 1;
@@ -31,13 +32,10 @@ function stratusx_child_get_graph_performance_by_year_via_ajax() {
 		$performance_detail_html .= '<h4 class="per_num">' . $performance_item->value . '%</h4>';
 		$performance_detail_html .= '</div>';
 
+		$yearly_data['graphPerformance']['labels'][] = $performance_item->month;
+		$yearly_data['graphPerformance']['data'][]   = $performance_item->value;
+
 		$current_item_index++;
-	}
-
-	$yearly_data = [];
-
-	foreach ( $graph_performance->performance as $performance_item ) {
-		$yearly_data['graphPerformance'][] = $performance_item->value;
 	}
 
 	$yearly_data['portfolio_id']       = $portfolio_id;

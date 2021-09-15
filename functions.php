@@ -332,7 +332,7 @@ function stratusx_child_expert_details() {
 								</div>
 							</div>
 						</div>
-						<?php stratus_child_get_performance( $user_information->performance, $user_information->totalPerformance, $graph_performance, $portfolio_id, $list_years ); ?>
+						<?php stratus_child_get_performance( $user_information->performance, $user_information->totalPerformance, $portfolio_id, $list_years ); ?>
 						<?php
 						get_template_part(
 							'template-parts/content',

@@ -10,10 +10,10 @@ function stratusx_child_expert_details_button() {
 	);
 }
 
-function stratus_child_get_performance( $performance, $total_performance, $graph_performance, $portfolio_id, $list_years ) {
+function stratus_child_get_performance( $performance, $total_performance, $portfolio_id, $list_years ) {
 	$current_item_index = 1;
 	$chartjs            = [];
-	foreach ( $graph_performance->performance as $performance_item ) {
+	foreach ( $performance as $performance_item ) {
 		$chartjs['labels'][] = $performance_item->month;
 		$chartjs['data'][]   = $performance_item->value;
 	}

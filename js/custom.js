@@ -3,7 +3,7 @@ jQuery(document).ready(function($) {
     jQuery.noConflict();
 
     $('[data-toggle="tooltip"]').tooltip({
-        html: true,
+        html: true
     });
 
     var appSettings = {
@@ -238,7 +238,10 @@ jQuery(document).ready(function($) {
                 data: formData,
                 success: function(response) {
                     _performanceLineChart.data.datasets[0].data =
-                        response.data.graphPerformance;
+                        response.data.graphPerformance.data;
+                    _performanceLineChart.data.labels =
+                        response.data.graphPerformance.labels;
+
                     _performanceLineChart.update();
 
                     $("#performance-2 .tot_perc").html(
