@@ -357,11 +357,11 @@ function stratusx_child_get_curl_response( $url, $postfields ) {
 
 function stratusx_child_get_trading_filters() {
 	return [
-		__( 'One Day', 'stratusx-child' ),
-		__( 'One Week', 'stratusx-child' ),
-		__( 'One Month', 'stratusx-child' ),
-		__( 'Three Months', 'stratusx-child' ),
-		__( 'Six Months', 'stratusx-child' ),
-		__( 'Whole Period', 'stratusx-child' ),
+		1 => __( 'One Day', 'stratusx-child' ),
+		2 => __( 'One Week', 'stratusx-child' ),
+		3 => __( 'One Month', 'stratusx-child' ),
+		4 => __( 'Three Months', 'stratusx-child' ),
+		5 => __( 'Six Months', 'stratusx-child' ),
+		6 => __( 'Whole Period', 'stratusx-child' ),
 	];
 }
