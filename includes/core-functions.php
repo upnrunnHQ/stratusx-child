@@ -111,7 +111,7 @@ function stratusx_child_get_analyst_details( $analyst_id ) {
 
 		curl_close( $curl );
 
-		set_transient( $transient_id, $response, HOUR_IN_SECONDS );
+		set_transient( $transient_id, $response, 24 * HOUR_IN_SECONDS );
 
 		return $response;
 	} catch ( Exception $e ) {
@@ -151,7 +151,7 @@ function stratusx_child_get_get_other_profile( $portfolio_id ) {
 
 		curl_close( $ch );
 
-		set_transient( $transient_id, $response, HOUR_IN_SECONDS );
+		set_transient( $transient_id, $response, 24 * HOUR_IN_SECONDS );
 
 		return $response;
 	} catch ( Exception $e ) {
@@ -191,7 +191,7 @@ function stratusx_child_get_get_user_information( $portfolio_id, $filter_year = 
 
 		curl_close( $ch );
 
-		set_transient( $transient_id, $response, HOUR_IN_SECONDS );
+		set_transient( $transient_id, $response, 24 * HOUR_IN_SECONDS );
 
 		return $response;
 	} catch ( Exception $e ) {
@@ -204,7 +204,6 @@ function stratusx_child_get_graph_performance( $portfolio_id, $filter_year = 202
 		$transient_id      = "stratusx_child_get_graph_performance_{$portfolio_id}_{$filter_year}";
 		$graph_performance = get_transient( $transient_id );
 		if ( $graph_performance ) {
-			// print_r( json_decode( $graph_performance ) );
 			return $graph_performance;
 		}
 
@@ -231,7 +230,7 @@ function stratusx_child_get_graph_performance( $portfolio_id, $filter_year = 202
 
 		curl_close( $ch );
 
-		set_transient( $transient_id, $response, HOUR_IN_SECONDS );
+		set_transient( $transient_id, $response, 24 * HOUR_IN_SECONDS );
 
 		return $response;
 	} catch ( Exception $e ) {
@@ -271,7 +270,7 @@ function stratusx_child_get_performance_detail( $portfolio_id, $created_date ) {
 
 		$response = curl_exec( $curl );
 		$response = json_decode( $response );
-		set_transient( $transient_id, $response, HOUR_IN_SECONDS );
+		set_transient( $transient_id, $response, 24 * HOUR_IN_SECONDS );
 		curl_close( $curl );
 
 		return $response;
@@ -295,7 +294,7 @@ function stratusx_child_get_repeated_trades( $portfolio_id, $page_id ) {
 		]
 	);
 
-	set_transient( $transient_id, $response, HOUR_IN_SECONDS );
+	set_transient( $transient_id, $response, 24 * HOUR_IN_SECONDS );
 
 	return $response;
 }
@@ -315,7 +314,7 @@ function stratusx_child_get_filtered_trade( $portfolio_id, $filter_type ) {
 		]
 	);
 
-	set_transient( $transient_id, $response, HOUR_IN_SECONDS );
+	set_transient( $transient_id, $response, 24 * HOUR_IN_SECONDS );
 
 	return $response;
 }

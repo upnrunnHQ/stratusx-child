@@ -1,6 +1,9 @@
 <?php
 add_action( 'wp_ajax_get_graph_performance_by_year', 'stratusx_child_get_graph_performance_by_year_via_ajax' );
 add_action( 'wp_ajax_nopriv_get_graph_performance_by_year', 'stratusx_child_get_graph_performance_by_year_via_ajax' );
+add_action( 'wp_ajax_get_cash_performance_by_year', 'stratusx_child_get_cash_performance_by_year_via_ajax' );
+add_action( 'wp_ajax_nopriv_get_cash_performance_by_year', 'stratusx_child_get_cash_performance_by_year_via_ajax' );
+
 add_action( 'wp_ajax_get_repeated_trades', 'stratusx_child_get_repeated_trades_via_ajax' );
 add_action( 'wp_ajax_nopriv_get_repeated_trades', 'stratusx_child_get_repeated_trades_via_ajax' );
 add_action( 'wp_ajax_get_filter_trade', 'stratusx_child_get_filter_trade_via_ajax' );
@@ -45,6 +48,20 @@ function stratusx_child_get_graph_performance_by_year_via_ajax() {
 	$yearly_data['totalPerformance']   = sprintf( __( 'Total: %s', 'stratusx-child' ), $performance_detail->totalPerformance ) . '%';
 	$yearly_data['performanceWidget']  = stratusx_child_get_graph_performance_widget( $graph_performance );
 	$yearly_data['performanceChartjs'] = $performance_chartjs;
+
+	wp_send_json_success( $yearly_data );
+}
+
+function stratusx_child_get_cash_performance_by_year_via_ajax() {
+	$portfolio_id = isset( $_POST['portfolio_id'] ) ? sanitize_text_field( $_POST['portfolio_id'] ) : '';
+	$filter_year  = isset( $_POST['filter_year'] ) ? absint( $_POST['filter_year'] ) : date( 'Y' );
+
+	$graph_performance = json_decode( stratusx_child_get_graph_performance( $portfolio_id, $filter_year ) );
+	$graph_performance = $graph_performance->data[0];
+
+	$yearly_data                      = [];
+	$yearly_data['performanceWidget'] = stratusx_child_get_graph_performance_widget( $graph_performance );
+	$yearly_data['chartJS']           = stratusx_child_graph_performance_data_chartjs( $graph_performance );
 
 	wp_send_json_success( $yearly_data );
 }

@@ -1,6 +1,8 @@
 (function($) {
     "use strict";
 
+    var chartJS = {};
+
     var performanceChartContainer = document.getElementById("CashChart"),
         performanceChartData = JSON.parse(
             performanceChartContainer.dataset.chartjs
@@ -16,7 +18,7 @@
             legend: {
                 position: "bottom",
                 labels: {
-                    boxWidth: 10,
+                    boxWidth: 10
                 }
             }
         }
@@ -30,33 +32,48 @@
         if (filterYear) {
             $loading.show();
 
-            var formData = {
-                action: "get_graph_performance_by_year",
-                portfolio_id: portfolioId,
-                filter_year: filterYear
-            };
+            if (typeof chartJS[filterYear] !== "undefined") {
+                $("#performance-1 .tot_perc").html(
+                    chartJS[filterYear].data.performanceWidget
+                );
+                $loading.hide();
 
-            $.ajax({
-                type: "POST",
-                dataType: "JSON",
-                url: woocommerce_params.ajax_url,
-                data: formData,
-                success: function(response) {
-                    $("#performance-1 .tot_perc").html(
-                        response.data.performanceWidget
-                    );
-                    $loading.hide();
+                performanceChart.data.labels =
+                    chartJS[filterYear].data.chartJS.labels;
+                performanceChart.data.datasets =
+                    chartJS[filterYear].data.chartJS.datasets;
+                performanceChart.update();
+            } else {
+                var formData = {
+                    action: "get_cash_performance_by_year",
+                    portfolio_id: portfolioId,
+                    filter_year: filterYear
+                };
 
-                    performanceChart.data.labels =
-                        response.data.performanceChartjs.labels;
-                    performanceChart.data.datasets =
-                        response.data.performanceChartjs.datasets;
-                    performanceChart.update();
-                },
-                error: function() {
-                    $loading.hide();
-                }
-            });
+                $.ajax({
+                    type: "POST",
+                    dataType: "JSON",
+                    url: woocommerce_params.ajax_url,
+                    data: formData,
+                    success: function(response) {
+                        chartJS[filterYear] = response;
+
+                        $("#performance-1 .tot_perc").html(
+                            response.data.performanceWidget
+                        );
+                        $loading.hide();
+
+                        performanceChart.data.labels =
+                            response.data.chartJS.labels;
+                        performanceChart.data.datasets =
+                            response.data.chartJS.datasets;
+                        performanceChart.update();
+                    },
+                    error: function() {
+                        $loading.hide();
+                    }
+                });
+            }
         }
     });
 })(jQuery);
