@@ -15,10 +15,6 @@ function stratusx_child_get_graph_performance_by_year_via_ajax() {
 	$portfolio_id = isset( $_POST['portfolio_id'] ) ? sanitize_text_field( $_POST['portfolio_id'] ) : '';
 	$filter_year  = isset( $_POST['filter_year'] ) ? absint( $_POST['filter_year'] ) : date( 'Y' );
 
-	$graph_performance   = json_decode( stratusx_child_get_graph_performance( $portfolio_id, $filter_year ) );
-	$graph_performance   = $graph_performance->data[0];
-	$performance_chartjs = stratusx_child_graph_performance_data_chartjs( $graph_performance );
-
 	$performance_detail = stratusx_child_get_performance_detail( $portfolio_id, $filter_year );
 	$performance_detail = $performance_detail->data[0];
 
@@ -43,11 +39,9 @@ function stratusx_child_get_graph_performance_by_year_via_ajax() {
 		$current_item_index++;
 	}
 
-	$yearly_data['portfolio_id']       = $portfolio_id;
-	$yearly_data['performanceDetail']  = $performance_detail_html;
-	$yearly_data['totalPerformance']   = sprintf( __( 'Total: %s', 'stratusx-child' ), $performance_detail->totalPerformance ) . '%';
-	$yearly_data['performanceWidget']  = stratusx_child_get_graph_performance_widget( $graph_performance );
-	$yearly_data['performanceChartjs'] = $performance_chartjs;
+	$yearly_data['portfolio_id']      = $portfolio_id;
+	$yearly_data['performanceDetail'] = $performance_detail_html;
+	$yearly_data['totalPerformance']  = sprintf( __( 'Total: %s', 'stratusx-child' ), $performance_detail->totalPerformance ) . '%';
 
 	wp_send_json_success( $yearly_data );
 }

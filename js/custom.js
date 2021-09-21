@@ -13,6 +13,8 @@ jQuery(document).ready(function($) {
         }
     };
 
+    var performanceChartJS = {};
+
     // =====PercentChart=======
     var percentChart = document.getElementById("percentChart"),
         percentChartData = JSON.parse(percentChart.dataset.chartjs);
@@ -236,41 +238,66 @@ jQuery(document).ready(function($) {
         if (filterYear) {
             $loading.show();
 
-            var formData = {
-                action: "get_graph_performance_by_year",
-                portfolio_id: portfolioId,
-                filter_year: filterYear
-            };
+            if (typeof performanceChartJS[filterYear] !== "undefined") {
+                var performancelineChartColours = performanceChartJS[
+                    filterYear
+                ].data.graphPerformance.data.map(value =>
+                    value < 0 ? "#ff4e4e" : "#3AC236"
+                );
+                _performanceLineChart.data.datasets[0].data =
+                    performanceChartJS[filterYear].data.graphPerformance.data;
+                _performanceLineChart.data.labels =
+                    performanceChartJS[filterYear].data.graphPerformance.labels;
+                _performanceLineChart.data.datasets[0].backgroundColor = performancelineChartColours;
 
-            $.ajax({
-                type: "POST",
-                dataType: "JSON",
-                url: woocommerce_params.ajax_url,
-                data: formData,
-                success: function(response) {
-                    var performancelineChartColours = response.data.graphPerformance.data.map(
-                        value => (value < 0 ? "#ff4e4e" : "#3AC236")
-                    );
-                    _performanceLineChart.data.datasets[0].data =
-                        response.data.graphPerformance.data;
-                    _performanceLineChart.data.labels =
-                        response.data.graphPerformance.labels;
-                    _performanceLineChart.data.datasets[0].backgroundColor = performancelineChartColours;
+                _performanceLineChart.update();
 
-                    _performanceLineChart.update();
+                $("#performance-2 .tot_perc").html(
+                    performanceChartJS[filterYear].data.performanceDetail
+                );
+                $("#performance-2 .tot_txt").html(
+                    performanceChartJS[filterYear].data.totalPerformance
+                );
 
-                    $("#performance-2 .tot_perc").html(
-                        response.data.performanceDetail
-                    );
-                    $("#performance-2 .tot_txt").html(
-                        response.data.totalPerformance
-                    );
-                    $loading.hide();
-                },
-                error: function() {
-                    $loading.hide();
-                }
-            });
+                $loading.hide();
+            } else {
+                var formData = {
+                    action: "get_graph_performance_by_year",
+                    portfolio_id: portfolioId,
+                    filter_year: filterYear
+                };
+
+                $.ajax({
+                    type: "POST",
+                    dataType: "JSON",
+                    url: woocommerce_params.ajax_url,
+                    data: formData,
+                    success: function(response) {
+                        performanceChartJS[filterYear] = response;
+                        var performancelineChartColours = response.data.graphPerformance.data.map(
+                            value => (value < 0 ? "#ff4e4e" : "#3AC236")
+                        );
+                        _performanceLineChart.data.datasets[0].data =
+                            response.data.graphPerformance.data;
+                        _performanceLineChart.data.labels =
+                            response.data.graphPerformance.labels;
+                        _performanceLineChart.data.datasets[0].backgroundColor = performancelineChartColours;
+
+                        _performanceLineChart.update();
+
+                        $("#performance-2 .tot_perc").html(
+                            response.data.performanceDetail
+                        );
+                        $("#performance-2 .tot_txt").html(
+                            response.data.totalPerformance
+                        );
+                        $loading.hide();
+                    },
+                    error: function() {
+                        $loading.hide();
+                    }
+                });
+            }
         }
     });
 

@@ -36,13 +36,13 @@
                 $("#performance-1 .tot_perc").html(
                     chartJS[filterYear].data.performanceWidget
                 );
-                $loading.hide();
-
                 performanceChart.data.labels =
                     chartJS[filterYear].data.chartJS.labels;
                 performanceChart.data.datasets =
                     chartJS[filterYear].data.chartJS.datasets;
                 performanceChart.update();
+
+                $loading.hide();
             } else {
                 var formData = {
                     action: "get_cash_performance_by_year",
