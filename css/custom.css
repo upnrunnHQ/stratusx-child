@@ -1340,7 +1340,7 @@ i {
 .risk_ind_main {
     background: #ffffff;
     border-radius: 8px;
-    padding: 15px;
+    padding: 12px;
     margin: 20px 0px;
 }
 
@@ -1366,7 +1366,7 @@ i {
 .risk_ind_main .risk_head_area .ri_head_inner .risk_txt {
     color: #292a2b;
     font-size: 14px;
-    padding-left: 10px;
+    padding: 0px 10px;
     font-weight: bold;
 }
 
@@ -1379,6 +1379,8 @@ i {
 .profit_score_main .profit_txt {
     color: #292a2b;
     font-weight: 600;
+    padding: 0px 8px;
+   text-transform: capitalize;
 }
 
 .profit_score_head {
@@ -1445,6 +1447,7 @@ i {
     color: #292a2b;
     /* font-size: 16px; */
     font-weight: 600;
+    padding: 0px 10px;
 }
 
 .trading_main_area {
@@ -1462,6 +1465,8 @@ i {
 .trading_main_area .trading_head .trading_txt {
     color: #292a2b;
     font-weight: 600;
+    padding: 0px 10px;
+    font-size: 20px;
 }
 
 .trading_main_area .trading_totle {
@@ -1501,10 +1506,10 @@ i {
     border: 1px solid #9a9a9a;
     border-radius: 8px;
     margin: 5px;
-    padding: 5px;
+    padding: 4px;
     text-align: center;
     width: 142px;
-    height: 70px;
+    height: 75px;
 }
 
 .trading_mains .tra_box .t_bx_num {
@@ -1550,6 +1555,7 @@ i {
     right: 0;
     padding-left: 5px;
     padding-right: 5px;
+    z-index: 100;
 }
 
 .trading_filter .dropdown-menu li {
@@ -1789,7 +1795,7 @@ i {
 
 .repeate_area .repeat_avg .trade_ave .t_tra-txt {
     color: #292a2b;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
 }
 
@@ -1799,7 +1805,7 @@ i {
 
 .repeate_area .repeat_avg .trade_ave .t_petro {
     color: #292a2b;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
 }
 
@@ -1887,7 +1893,7 @@ i {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+   
     padding: 10px 0px;
 }
 
@@ -1897,7 +1903,7 @@ i {
     padding-right: 10px;
 }
 
-.a_trades-inner .a_week_trades:last-child {
+.a_trades-inner .a_week_trades:first-child {
     border-right: none;
     padding-right: 0;
 }
@@ -1920,6 +1926,7 @@ i {
     font-size: 14px;
     font-weight: bold;
     margin-bottom: 5px;
+  
 }
 
 .trades_monthly .tra_days .avg_time {
@@ -2449,7 +2456,7 @@ i {
 
 .anly_profile_content .prof_details_name .prof_nm_cont {
     width: 50%;
-    border-right: 1px solid #dddddd;
+    border-left: 1px solid #dddddd;
     padding: 20px 0;
     margin: 0;
 }
@@ -2687,7 +2694,7 @@ i {
 
 .profit_icon img {
     padding-right: 8px;
-    margin-top: -20px;
+    margin-top: -15px;
 }
 
 .profit_score_main .porfit_inner .pro_score.exp_daily_score {
@@ -2706,8 +2713,8 @@ i {
 }
 
 .perfor_head_inner.exp_perfor_head img {
-    padding-right: 8px;
-    margin-top: -10px;
+    /* padding-right: 8px; */
+    /* margin-top: -10px; */
 }
 
 .risk_info_icon.exp_risk_info {
@@ -2716,7 +2723,7 @@ i {
 }
 
 .risk_info_icon.exp_risk_info a {
-    margin-right: 5px;
+    margin: 0px 5px;
 }
 
 .exp_total_per {
@@ -2749,6 +2756,7 @@ i {
 .user_totle_month.exp_usr_mont .totle_see_m h4 {
     color: #ffffff;
     margin: 0;
+    font-size: 20px;
 }
 
 .user_totle_month.exp_usr_mont .tot_perc .monthly_per {
@@ -2765,6 +2773,7 @@ i {
     background: #ffffff;
     border-radius: 8px;
     padding: 10px 12px;
+    margin-left: 10px;
 }
 
 .exp_trading_icon {
@@ -2839,6 +2848,9 @@ i {
     float: left;
 }
 
+/* .risk_info_icon.exp_r_info .tooltip{
+    top:100% !important;
+} */
 .tooltip {
     font-size: 14px !important;
 }

@@ -2,39 +2,39 @@
 	<div class="risk_head_area">
 		<div class="ri_head_inner">
 			<span class="risk_num"><?php echo $args['totalRiskRate']; ?></span>
-			<span class="risk_txt"><?php _e( 'Risk indicator for the last 12 months', 'stratus-child' ); ?></span>
+			<span class="risk_txt"><?php _e( 'مؤشر المخاطر لمدة 12 شهرا الماضية ', 'stratus-child' ); ?></span>
 		</div>
 		<div class="risk_info_icon exp_r_info">
-			<a tabindex="0" role="button" data-trigger="hover focus" data-toggle="tooltip"
+			<a tabindex="0" role="button" data-placement="bottom" data-trigger="hover focus" data-toggle="tooltip"
 				title="
 				<p>
 					<?php
-					_e( 'This number shows the risks of the wallet on a scale of of -5 to +5, where -5 is the highest risk and +5 the lowest risk.', 'stratusx-child' );
+					_e( 'يوضح هذا الرقم مخاطر المحفظة على مقياس من -5 إلى +5 ، حيث يمثل -5 أعلى درجة خطورة و +5 يمثل أدنى مخاطر.', 'stratusx-child' );
 					?>
 				</p>
 				<p>
 					<?php
-					_e( 'The risk indicator is determined according to a scientific criteria that summarise the account holder behaviour in trading and investment these criteria are:', 'stratusx-child' );
+					_e( 'يتم تحديد مؤشر المخاطر وفقًا لمعايير علمية تلخص سلوك صاحب الحساب في التداول والاستثمار وهذه المعايير هي:', 'stratusx-child' );
 					?>
 				</p>
 				<p>
 					<?php
-					_e( '- Distribution of investment on securities: Investment in a single security is considered high risk, while distribution of investments on more than one security reduces the risk.', 'stratusx-child' );
+					_e( '- توزيع الاستثمار على الأوراق المالية: يعتبر الاستثمار في ورقة مالية واحدة عالي الخطورة ، بينما توزيع الاستثمارات على أكثر من ورقة مالية يقلل من المخاطر.', 'stratusx-child' );
 					?>
 				</p>
 				<p>
 					<?php
-					_e( '- Distribution of investment on sectors: Investment in one sector is considered high risk, while distribution of investments to more than one sector reduces risk.', 'stratusx-child' );
+					_e( '- توزيع الاستثمار على القطاعات: يعتبر الاستثمار في قطاع واحد عالي الخطورة ، بينما توزيع الاستثمارات على أكثر من قطاع يقلل من المخاطر.', 'stratusx-child' );
 					?>
 				</p>
 				<p>
 					<?php
-					_e( '- Quality of securities: Securities will be divided into three types,Low Risk: Contains all profitable companies. Medium Risk: Contains low-making companies within 12 months. High Risk: Includes companies whose accumulated losses amounted to 20% or more of their capital.', 'stratusx-child' );
+					_e( '- جودة الأوراق المالية: سيتم تقسيم الأوراق المالية إلى ثلاثة أنواع ، منخفضة المخاطر: تحتوي على جميع الشركات الرابحة. مخاطرة متوسطة: تحتوي على شركات منخفضة الدخل خلال 12 شهرًا. عالية المخاطر: وتشمل الشركات التي بلغت خسائرها المتراكمة 20٪ أو أكثر من رأس مالها.', 'stratusx-child' );
 					?>
 				</p>
 				<p>
 					<?php
-					_e( '- Number of losing trades compared to winning trades.', 'stratusx-child' );
+					_e( '- عدد التداولات الخاسرة مقارنة بالصفقات الرابحة.', 'stratusx-child' );
 					?>
 				</p>
 				">

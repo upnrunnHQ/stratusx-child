@@ -144,5 +144,15 @@ form input, .frm_forms form label, .with_frm_style label.frm_primary_label, .wit
 }
 
 .woocommerce ul.products li.product a.button {
-    margin: 5px;
+    width: 150px;
+    margin: 14px 5px 0px 5px;
+}
+/* li.product.type-product {
+    height: 400px;
+} */
+@media (max-width: 576px) {
+    .th-form-stacked {
+        width: 100%;
+        padding: 25px 0px; 
+    }
 }

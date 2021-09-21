@@ -1,5 +1,5 @@
 <div class="user_p_heading">
-	<h4><?php _e( 'Indication', 'stratus-child' ); ?></h4>
+	<h4><?php _e( 'مؤشرات ', 'stratus-child' ); ?></h4>
 </div>
 <div class="exp_lone_area">
 	<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/dollar-e.png" alt="doller" class="img-fluid"></a>

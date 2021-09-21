@@ -18,7 +18,7 @@ function stratusx_child_enqueue_scripts() {
 		wp_register_style( 'font-awesome', get_stylesheet_directory_uri() . '/css/font-awesome.min.css', false );
 		wp_register_style( 'gstatic', get_stylesheet_directory_uri() . 'https://fonts.gstatic.com', false );
 		wp_register_style( 'googleapis', 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap', false );
-		wp_register_style( 'responsive', get_stylesheet_directory_uri() . '/css/responsive.css', false );
+		wp_register_style( 'responsive', get_stylesheet_directory_uri() . '/css/responsive.css', array('custom') );
 		wp_register_style( 'custom', get_stylesheet_directory_uri() . '/css/custom.css', false );
 
 		wp_enqueue_style( 'chart' );

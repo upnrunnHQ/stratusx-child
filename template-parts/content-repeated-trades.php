@@ -4,14 +4,14 @@
 <div class="repeate_area">
 	<div class="repeat_cont">
 		<h4 class="repeat_txt">
-			<?php _e( 'Repeated Trades', 'stratusx-child' ); ?>
+			<?php _e( 'الصفقات المتكررة ', 'stratusx-child' ); ?>
 		</h4>
-		<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'Overview of the repeated stocks transactions', 'stratusx-child' ); ?>">
+		<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'نظرة عامة على حركات الأسهم المتكررة', 'stratusx-child' ); ?>">
 			<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info.png" alt="info">
 		</a>
 	</div>
 	<div class="repeat_see">
-		<a href="#"><?php _e( 'See More', 'stratusx-child' ); ?></a>
+		<a href="#"><?php _e( 'مشاهدة المزيد ', 'stratusx-child' ); ?></a>
 	</div>
 	<div id="repeated-trades" data-portfolio-id="<?php echo esc_attr( $args['portfolio_id'] ); ?>">
 		<?php

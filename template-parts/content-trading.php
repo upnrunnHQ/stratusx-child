@@ -15,7 +15,7 @@ $portfolio_id = $args['user_information']->Portfolio_ID;
 	<div class="trading_head">
 		<div class="exp_trading_icon">
 			<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/trading.png" alt="">
-			<h4 class="trading_txt"><?php _e( 'Trading', 'stratusx-child' ); ?></h4>
+			<h4 class="trading_txt"><?php _e( 'الصفقات ', 'stratusx-child' ); ?></h4>
 		</div>
 		<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info.png" alt="info"></a>
 	</div>
@@ -28,7 +28,7 @@ $portfolio_id = $args['user_information']->Portfolio_ID;
 		);
 		?>
 		<div class="trading_filter">
-            <span class="g_loading" style="display:none;"><?php esc_html_e( 'Loading..', 'stratusx-child' ); ?></span>
+            <span class="g_loading" style="display:none;"><?php esc_html_e( 'تحميل...', 'stratusx-child' ); ?></span>
 			<div class="dropdown">
 				<button class="btn btn-default dropdown-toggle" type="button" id="tradingFilterToggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 					<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/fliter.png" alt="filter">

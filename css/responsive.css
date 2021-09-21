@@ -14,7 +14,11 @@
     padding: 5px 30px;
   }
   .anly_profile_img_main {
-    margin-left: -90px;
+    margin-left: 40px;
+  }
+  .trading_filter .dropdown-menu{
+    width: 310px !important;
+    right: -288px !important;
   }
 }
 
@@ -70,9 +74,12 @@
   .anly_right_content {
     flex-wrap: wrap;
   }
-  .anly_profile_img_main {
+  /* .anly_profile_img_main {
     margin: 20px auto;
-  }
+  } */
+  .trading_filter .dropdown-menu .btn {
+    padding: 10px 15px;
+}
 }
 
 @media (max-width: 576px) {
@@ -142,6 +149,20 @@
   }
   .anly_profile_content .prof_details_name .full_name {
     font-size: 16px;
+  }
+  .trading_main_area .trading_totle .total_trading .tot_inner{
+    padding-right: 10px;
+  }
+  .risk_ind_main .risk_head_area .ri_head_inner .risk_txt{
+    font-size: 12px !important;
+  }
+  .elementor-widget-container .th-form-stacked{
+    padding:25px 0px !important;
+  }
+  .anly_profile_img_main{
+    width:250px;
+    height: 280px;
+
   }
 }
 

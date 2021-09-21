@@ -1,5 +1,5 @@
 <div class="user_p_heading">
-	<h4>Performance</h4>
+	<h4>الاداء </h4>
 </div>
 <div class="user_performance_main exp_performance_main" id="performance-1">
 	<div class="user_totle_month usr_holding exp_totle_m">
@@ -8,7 +8,7 @@
 		</div>
 	</div>
 	<div class="g_yearly">
-		<span class="g_loading" style="display:none;">Loading..</span>
+		<span class="g_loading" style="display:none;">تحميل..</span>
 		<select class="g_year_drp" data-portfolio-id="<?php echo esc_attr( $args['portfolio_id'] ); ?>">
 			<?php foreach ( $args['list_years'] as $year ) : ?>
 				<option value="<?php echo $year; ?>"<?php echo ( intval( $year ) === intval( date( 'Y' ) ) ? ' selected' : '' ); ?>><?php echo $year; ?></option>

@@ -144,14 +144,14 @@ function stratusx_child_expert_details() {
 							<div class="per_details">
 								<h1 class="a_per_nm"><?php echo $other_profile->userName; ?></h1>
 								<span class="a_per_id"><?php echo $other_profile->emailAddress; ?></span>
-								<p class="exp_profit">Profit of Last Month: <spna class="exp_per"><?php echo $other_profile->profileProfit; ?>%</spna>
+								<p class="exp_profit">الأرباح لاخر شهر: <spna class="exp_per"><?php echo $other_profile->profileProfit; ?>%</spna>
 								</p>
 								<div class="exp_part_btn">
-									<a href="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="exp_partici_btn">Participation</a>
+									<a href="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="exp_partici_btn">الاشتراك</a>
 								</div>
 
 								<div class="user_about_section">
-									<h3 class="usr_ab_name"><?php printf( __( 'About %s', 'stratusx-child' ), $other_profile->userName ); ?></h3>
+									<h3 class="usr_ab_name"><?php printf( __( 'نبذة تعريفية عن %s', 'stratusx-child' ), $other_profile->userName ); ?></h3>
 									<p class="usr_ab_content"><?php echo $user_information->aboutUs; ?></p>
 								</div>
 							</div>
@@ -169,19 +169,19 @@ function stratusx_child_expert_details() {
 								<h1 class="a_per_nm"><?php echo $analyst_details['data']['analyst']['name']; ?></h1>
 								<span class="a_per_id">@<?php echo $analyst_details['data']['analyst']['user_name']; ?></span>
 								<?php $user_type = $analyst_details['data']['analyst']['user_type']; ?>
-								<h3 class="usr_ab_type">Analyst Type: <?php analyst_expert_user_type( $user_type ); ?></h3>
+								<h3 class="usr_ab_type">نوع التحليل : <?php analyst_expert_user_type( $user_type ); ?></h3>
 							</div>
 							<div class="anyl_participate">
-								<a href="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="anly_partici_btn">Participation</a>
+								<a href="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="anly_partici_btn">الاشتراك </a>
 							</div>
 						</div>
 						<div class="prof_details_name">
 							<div class="prof_nm_cont">
-								<spna class="p_full_nm">Full Name</spna>
+								<spna class="p_full_nm">الاسم كامل </spna>
 								<h3 class="full_name"><?php echo $analyst_details['data']['analyst']['name']; ?></h3>
 							</div>
 							<div class="prof_dt_cont">
-								<spna class="p_full_nm">Join Date</spna>
+								<spna class="p_full_nm">تاريخ الانظمام</spna>
 								<?php
 								$date      = date_create( $analyst_details['data']['created_at'] );
 								$date_join = date_format( $date, 'd-m-Y' );
@@ -190,7 +190,7 @@ function stratusx_child_expert_details() {
 							</div>
 						</div>
 						<div class="user_about_section">
-							<h3 class="usr_ab_name">About <?php echo $analyst_details['data']['analyst']['name']; ?></h3>
+							<h3 class="usr_ab_name">نبذة تعريفية عن <?php echo $analyst_details['data']['analyst']['name']; ?></h3>
 							<p class="usr_ab_content"><?php echo $analyst_details['data']['bio']; ?></p>
 						</div>
 					</div>
@@ -209,8 +209,8 @@ function stratusx_child_expert_details() {
 						</div>
 
 						<div class="exp-add_info">
-							<h4><?php _e( 'Additional Info', 'stratusx-child' ); ?></h4>
-							<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'Statistics of the last 12 months', 'stratusx-child' ); ?>">
+							<h4><?php _e( 'معلومات إضافية', 'stratusx-child' ); ?></h4>
+							<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'إحصائيات آخر 12 شهرًا', 'stratusx-child' ); ?>">
 								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info-white-e.png" alt="info">
 							</a>
 						</div>
@@ -221,64 +221,64 @@ function stratusx_child_expert_details() {
 									<a href="#">
 										<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/calendar-e.png" alt="calendar">
 									</a>
-									<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'Number of yearly transactions', 'stratusx-child' ); ?>">
+									<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'عدد المعاملات السنوية', 'stratusx-child' ); ?>">
 										<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/Path-1292.png" alt="info">
 									</a>
 								</div>
 								<div class="a_trades-inner">
 									<div class="a_week_trades">
 										<h5 class="week_num"><?php echo $user_information->totalTradePerWeek; ?></h5>
-										<h5 class="week_txt">Weekly trades</h5>
+										<h5 class="week_txt">الصفقات الاسبوعية </h5>
 									</div>
 									<div class="a_week_trades">
 										<h5 class="week_num"><?php echo $user_information->totalTradePerMonth; ?></h5>
-										<h5 class="week_txt">Monthly trades</h5>
+										<h5 class="week_txt">الصفقات الشهرية </h5>
 									</div>
 									<div class="a_week_trades">
 										<h5 class="week_num"><?php echo $user_information->totalTradePerYear; ?></h5>
-										<h5 class="week_txt">Yearly trades</h5>
+										<h5 class="week_txt">الصفقات السنوية </h5>
 									</div>
 								</div>
 							</div>
 							<div class="trades_monthly exp_trades_monthly1">
 								<div class="add_cale">
 									<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/bar-e.png" alt="calendar"></a>
-									<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'Average Holding Time', 'stratusx-child' ); ?>">
+									<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'متوسط وقت الانتظار ', 'stratusx-child' ); ?>">
 										<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info-orange-e.png" alt="info">
 									</a>
 								</div>
 								<div class="tra_days">
-									<h4 class="days"><?php echo $user_information->avgHoldingTime; ?> Day</h4>
-									<h5 class="avg_time">Average Holding Time</h5>
+									<h4 class="days"><?php echo $user_information->avgHoldingTime; ?> يوم </h4>
+									<h5 class="avg_time">متوسط وقت الانتظار </h5>
 								</div>
 							</div>
 							<div class="trades_monthly exp_trades_monthly2">
 								<div class="add_cale">
 									<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/user-e.png" alt="calendar"></a>
-									<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'Joining Date', 'stratusx-child' ); ?>">
+									<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'تاريخ الانظمام', 'stratusx-child' ); ?>">
 										<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info-green-e.png" alt="info">
 									</a>
 								</div>
 								<div class="tra_days">
 									<h4 class="days"><?php echo date( 'd-m-y', strtotime( $user_information->joiningDate ) ); ?></h4>
-									<h5 class="avg_time"><?php _e( 'Active Since', 'stratusx-child' ); ?></h5>
+									<h5 class="avg_time"><?php _e( 'نشط منذ ', 'stratusx-child' ); ?></h5>
 								</div>
 							</div>
 							<div class="trades_monthly exp_trades_monthly3">
 								<div class="add_cale">
 									<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/bar-purple-e.png" alt="calendar"></a>
-									<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'Highest loss or lowest profit for the last month', 'stratusx-child' ); ?>">
+									<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'أعلى خسارة أو أدنى ربح للشهر الماضي', 'stratusx-child' ); ?>">
 										<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info-e.png" alt="info">
 									</a>
 								</div>
 								<div class="max_profit">
 									<div class="tra_days">
 										<h4 class="days"><?php echo $user_information->maxProfitTrade; ?></h4>
-										<h5 class="avg_time">Max Profit Trade</h5>
+										<h5 class="avg_time">اعلى ربح من الصفقات </h5>
 									</div>
 									<div class="tra_days">
 										<h4 class="days"><?php echo $user_information->maxLossTrade; ?></h4>
-										<h5 class="avg_time">Min Profit Trade</h5>
+										<h5 class="avg_time">اعلى خسارة من الصفقات </h5>
 									</div>
 								</div>
 							</div>
@@ -292,9 +292,9 @@ function stratusx_child_expert_details() {
 							'indication',
 							[
 								'labels' => [
-									__( 'Cash Percentage', 'stratus-child' ),
-									__( 'Loan Percentage', 'stratus-child' ),
-									__( 'Stock Percentage', 'stratus-child' ),
+									__( 'نسبة النقد ', 'stratus-child' ),
+									__( 'نسبة التسهيلات ', 'stratus-child' ),
+									__( 'نسبة الاسهم ', 'stratus-child' ),
 								],
 								'data'   => [
 									$user_information->cashPercenage,
@@ -313,22 +313,22 @@ function stratusx_child_expert_details() {
 							<div class="profit_score_head">
 								<div class="profit_icon">
 									<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/profit-score.png" alt="">
-									<h4 class="profit_txt"><?php _e( 'Profit Score', 'stratus-child' ); ?></h4>
+									<h4 class="profit_txt"><?php _e( 'الأرباح ', 'stratus-child' ); ?></h4>
 								</div>
 							</div>
 
 							<div class="porfit_inner">
-								<div class="pro_score daily_score exp_daily_score" tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'Profit/Loss for the last 1 days', 'stratusx-child' ); ?>">
+								<div class="pro_score daily_score exp_daily_score" tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'الربح / الخسارة لآخر يوم', 'stratusx-child' ); ?>">
 									<span class="score_percent"><?php echo $user_information->profitScore[0]->dailyScore; ?>%</span>
-									<h4 class="score_txt"><?php _e( 'Daily', 'stratus-child' ); ?></h4>
+									<h4 class="score_txt"><?php _e( 'اليومية ', 'stratus-child' ); ?></h4>
 								</div>
-								<div class="pro_score exp_pro_score" tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'Profit/Loss for the last 3 months', 'stratusx-child' ); ?>">
+								<div class="pro_score exp_pro_score" tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'الربح / الخسارة لآخر 3 أشهر', 'stratusx-child' ); ?>">
 									<span class="score_percent"><?php echo $user_information->profitScore[0]->monthlyScore; ?>%</span>
-									<h4 class="score_txt"><?php _e( 'Monthly', 'stratus-child' ); ?></h4>
+									<h4 class="score_txt"><?php _e( 'شهريا ', 'stratus-child' ); ?></h4>
 								</div>
-								<div class="pro_score exp_pro_score" tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'Profit/Loss for the last 12 months', 'stratusx-child' ); ?>">
+								<div class="pro_score exp_pro_score" tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'الربح / الخسارة لآخر 12 شهرًا', 'stratusx-child' ); ?>">
 									<span class="score_percent"><?php echo $user_information->profitScore[0]->yearlyScore; ?>%</span>
-									<h4 class="score_txt"><?php _e( 'Yearly', 'stratus-child' ); ?></h4>
+									<h4 class="score_txt"><?php _e( 'سنوي ', 'stratus-child' ); ?></h4>
 								</div>
 							</div>
 						</div>
