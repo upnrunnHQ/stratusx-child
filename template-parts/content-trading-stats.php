@@ -5,7 +5,6 @@
 
 $response = $args['response'];
 ?>
-
 <div class="trading_mains">
 	<div class="tra_box exp_tra-box">
 		<span class="t_bx_num trading-dynamic-value longestTrade"><?php echo esc_html( $response->longestTrade ); ?></span>
@@ -68,12 +67,12 @@ $response = $args['response'];
 </div>
 
 <div class="trading-sectors-wrapper">
-    <?php
-    // This is the container of the sector bar and sectors comes from ajax.
-    get_template_part(
-        'template-parts/content',
-        'trading-sectors',
-        array( 'sectors' => $response->tradingSector )
-    );
-    ?>
+	<?php
+	// This is the container of the sector bar and sectors comes from ajax.
+	get_template_part(
+		'template-parts/content',
+		'trading-sectors',
+		array( 'sectors' => $response->tradingSector )
+	);
+	?>
 </div>

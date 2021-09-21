@@ -14,7 +14,7 @@ function stratus_child_get_performance( $performance, $total_performance, $portf
 	$current_item_index = 1;
 	$chartjs            = [];
 	foreach ( $performance as $performance_item ) {
-		$chartjs['labels'][] = $performance_item->month;
+		$chartjs['labels'][] = substr( $performance_item->month, 0, 3 );
 		$chartjs['data'][]   = $performance_item->value;
 	}
 	?>

@@ -1605,8 +1605,13 @@ i {
     justify-content: flex-end;
 }
 
-.trading-progress-bar {
-    animation: trading-progress-bar-animation 3s;
+.progress.trading-progress-bar {
+    animation: trading-progress-bar-animation 1s;
+    border-radius: 0;
+}
+
+#trading-sectors button[type="button"] {
+    border-radius: 5px;
 }
 
 @keyframes trading-progress-bar-animation {
@@ -1893,7 +1898,7 @@ i {
     display: flex;
     justify-content: space-between;
     align-items: center;
-   
+
     padding: 10px 0px;
 }
 
@@ -1926,7 +1931,7 @@ i {
     font-size: 14px;
     font-weight: bold;
     margin-bottom: 5px;
-  
+
 }
 
 .trades_monthly .tra_days .avg_time {

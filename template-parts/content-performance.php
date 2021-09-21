@@ -19,5 +19,3 @@
 		<canvas id="CashChart" height="240" data-chartjs="<?php echo esc_attr( json_encode( $args['chartjs'] ) ); ?>"></canvas>
 	</div>
 </div>
-
-<?php // print_r( $args['chartjs'] ); ?>

@@ -5,13 +5,12 @@
 
 $portfolio_id = $args['user_information']->Portfolio_ID;
 ?>
-
 <div class="trading_main_area exp-trading">
-    <?php
-    $filter_type = 4;
-    $trade_data = stratusx_child_get_filtered_trade( $portfolio_id, $filter_type );
-    $response   = $trade_data->data[0];
-    ?>
+	<?php
+	$filter_type = 6;
+	$trade_data  = stratusx_child_get_filtered_trade( $portfolio_id, $filter_type );
+	$response    = $trade_data->data[0];
+	?>
 	<div class="trading_head">
 		<div class="exp_trading_icon">
 			<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/trading.png" alt="">
@@ -28,7 +27,7 @@ $portfolio_id = $args['user_information']->Portfolio_ID;
 		);
 		?>
 		<div class="trading_filter">
-            <span class="g_loading" style="display:none;"><?php esc_html_e( 'تحميل...', 'stratusx-child' ); ?></span>
+			<span class="g_loading" style="display:none;"><?php esc_html_e( 'تحميل...', 'stratusx-child' ); ?></span>
 			<div class="dropdown">
 				<button class="btn btn-default dropdown-toggle" type="button" id="tradingFilterToggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 					<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/fliter.png" alt="filter">
@@ -42,7 +41,7 @@ $portfolio_id = $args['user_information']->Portfolio_ID;
 		</div>
 	</div>
 </div>
-<div class="exp-trading-inner">
+<div class="exp-trading-inner" id="trading-sectors">
 	<?php
 	get_template_part(
 		'template-parts/content',
@@ -50,4 +49,6 @@ $portfolio_id = $args['user_information']->Portfolio_ID;
 		[ 'response' => $response ]
 	);
 	?>
+
+	<button class="btn btn-primary" type="button"><?php _e( 'See More', 'stratus-child' ); ?></button>
 </div>

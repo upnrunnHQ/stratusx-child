@@ -16,7 +16,7 @@ function stratusx_child_graph_performance_data_chartjs( $graph_performance ) {
 	];
 
 	foreach ( $graph_performance->performance as $performance ) {
-		$labels[] = $performance->month;
+		$labels[] = substr( $performance->month, 0, 3 );
 
 		$unfiltered_datasets['Graph'][] = $performance->value;
 		$unfiltered_datasets['CO'][]    = $performance->CO;
@@ -59,7 +59,7 @@ function stratusx_child_get_risk_indicator_data( $user_information ) {
 
 	if ( isset( $user_information->riskPrevious12Month ) ) {
 		foreach ( $user_information->riskPrevious12Month as $risk_item ) {
-			$indicator_data['chartjs']['labels'][]   = $risk_item->month;
+			$indicator_data['chartjs']['labels'][]   = substr( $risk_item->month, 0, 3 );
 			$indicator_data['chartjs']['datasets'][] = $risk_item->value;
 		}
 	}

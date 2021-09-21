@@ -389,4 +389,22 @@ jQuery(document).ready(function($) {
             });
         }
     });
+
+    $("#trading-sectors").on("click", 'button[type="button"]', function() {
+        $("#trading-sectors")
+            .find(".progress-bar")
+            .css("display", "block");
+
+        $("#trading-sectors")
+            .find(".tra_sector")
+            .css("display", "flex");
+
+        $(".trading-progress-bar").css("width", 0);
+        $(".trading-progress-bar").animate(
+            {
+                width: "100%"
+            },
+            1000
+        );
+    });
 });
