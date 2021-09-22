@@ -386,17 +386,24 @@ jQuery(document).ready(function($) {
 
                     $.ajax({
                         type: "POST",
-                        dataType: "html",
                         url: woocommerce_params.ajax_url,
                         data: {
                             action: "get_filter_trading_sectors_html",
                             sectors: _response.tradingSector
                         },
                         success: function(response) {
-                            if (response.length) {
-                                $tradingSectorsWrapper.html(response);
+                            if (response.success) {
+                                $tradingSectorsWrapper.html(response.data);
+                                $('#trading-sectors button[type="button"]').css(
+                                    "display",
+                                    "block"
+                                );
                             } else {
                                 $tradingSectorsWrapper.html("");
+                                $('#trading-sectors button[type="button"]').css(
+                                    "display",
+                                    "none"
+                                );
                             }
 
                             $loading.hide();
@@ -433,5 +440,7 @@ jQuery(document).ready(function($) {
             },
             1000
         );
+
+        $(this).css("display", "none");
     });
 });

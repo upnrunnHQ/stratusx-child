@@ -110,8 +110,9 @@ function stratusx_child_get_trading_sectors_html_via_ajax() {
 		);
 
 		$html = ob_get_clean();
+
+		wp_send_json_success( $html );
 	}
 
-	echo $html;
-	exit;
+	wp_send_json_error();
 }

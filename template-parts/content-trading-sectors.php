@@ -4,7 +4,6 @@
  */
 
 $sectors = $args['sectors'];
-
 $sectors = json_decode( json_encode( $sectors ) );
 ?>
 

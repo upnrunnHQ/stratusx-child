@@ -7,7 +7,7 @@ $portfolio_id = $args['user_information']->Portfolio_ID;
 ?>
 <div class="trading_main_area exp-trading">
 	<?php
-	$filter_type = 6;
+	$filter_type = 3;
 	$trade_data  = stratusx_child_get_filtered_trade( $portfolio_id, $filter_type );
 	$response    = $trade_data->data[0];
 	?>
@@ -50,5 +50,5 @@ $portfolio_id = $args['user_information']->Portfolio_ID;
 	);
 	?>
 
-	<button class="btn btn-primary" type="button"><?php _e( 'See More', 'stratus-child' ); ?></button>
+	<button class="btn btn-primary" style="<?php echo ( count( $response->tradingSector ) ? '' : 'display: none' ); ?>" type="button"><?php _e( 'See More', 'stratus-child' ); ?></button>
 </div>

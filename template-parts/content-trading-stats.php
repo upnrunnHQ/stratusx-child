@@ -72,7 +72,7 @@ $response = $args['response'];
 	get_template_part(
 		'template-parts/content',
 		'trading-sectors',
-		array( 'sectors' => $response->tradingSector )
+		[ 'sectors' => $response->tradingSector ]
 	);
 	?>
 </div>
