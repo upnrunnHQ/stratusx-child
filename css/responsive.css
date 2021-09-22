@@ -16,9 +16,9 @@
   .anly_profile_img_main {
     margin-left: 40px;
   }
-  .trading_filter .dropdown-menu{
-    width: 310px !important;
-    right: -288px !important;
+  .trading_filter .dropdown-menu {
+    width: 310px;
+    right: -288px;
   }
 }
 
@@ -79,7 +79,7 @@
   } */
   .trading_filter .dropdown-menu .btn {
     padding: 10px 15px;
-}
+  }
 }
 
 @media (max-width: 576px) {
@@ -150,24 +150,70 @@
   .anly_profile_content .prof_details_name .full_name {
     font-size: 16px;
   }
-  .trading_main_area .trading_totle .total_trading .tot_inner{
+  .trading_main_area .trading_totle .total_trading .tot_inner {
     padding-right: 10px;
   }
-  .risk_ind_main .risk_head_area .ri_head_inner .risk_txt{
+  .risk_ind_main .risk_head_area .ri_head_inner .risk_txt {
     font-size: 12px !important;
   }
-  .elementor-widget-container .th-form-stacked{
-    padding:25px 0px !important;
+  .elementor-widget-container .th-form-stacked {
+    padding: 25px 0px !important;
   }
-  .anly_profile_img_main{
-    width:250px;
+  .anly_profile_img_main {
+    width: 250px;
     height: 280px;
-
+  }
+  .exp_part_btn .exp_partici_btn {
+    padding: 14px 30px;
+  }
+  .performance_main {
+    padding: 15px 8px;
+  }
+  .user_totle_month.exp_usr_mont .totle_see_m h4 {
+    font-size: 16px;
+  }
+  .user_totle_month.exp_usr_mont .totle_see_m {
+    padding: 7px 10px;
+  }
+  .trading_main_area .trading_head .trading_txt {
+    font-size: 16px;
+  }
+  .profit_score_main .profit_txt {
+    font-size: 16px;
   }
 }
 
 @media (max-width: 360px) {
   .r_filter_main .f_choose .fl_score {
     margin: 0;
+  }
+  .user_about_section .usr_ab_name {
+    font-size: 22px;
+  }
+  .trading_filter .dropdown-menu {
+    width: 285px;
+    right: -262px;
+  }
+  .risk_ind_main .risk_head_area .ri_head_inner .risk_num {
+    padding: 4px 5px;
+  }
+  .g_yearly .g_year_drp {
+    padding: 8px 30px;
+  }
+  .performance_head_area .performance_txt {
+    padding: 0px 4px;
+    font-size: 16px;
+  }
+  .anly_person_details {
+    flex-wrap: wrap;
+  }
+  .anly_profile_content .prof_details_name {
+    padding: 5px;
+  }
+  .repeate_area .repeat_avg .trade_ave .t_petro {
+    font-size: 14px;
+  }
+  .repeate_area .repeat_avg .trade_ave .t_tra-txt {
+    font-size: 13px;
   }
 }

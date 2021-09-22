@@ -1378,6 +1378,7 @@ i {
 
 .profit_score_main .profit_txt {
     color: #292a2b;
+    font-size: 18px;
     font-weight: 600;
     padding: 0px 8px;
    text-transform: capitalize;
@@ -2688,9 +2689,9 @@ i {
     align-items: center;
 }
 
-.risk_info_icon.exp_r_info a {
+/* .risk_info_icon.exp_r_info a {
     padding-right: 20px;
-}
+} */
 
 .profit_icon {
     display: flex;
