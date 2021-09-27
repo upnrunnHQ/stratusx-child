@@ -227,6 +227,7 @@ jQuery(document).ready(function($) {
 
     $(".totle_see_m").on("click", function(e) {
         e.preventDefault();
+        $("#performance-2 .tot_perc").css("flexDirection", "column");
         $(".tot_perc .monthly_per").css("display", "flex");
     });
 
@@ -257,6 +258,11 @@ jQuery(document).ready(function($) {
                 );
                 $("#performance-2 .tot_txt").html(
                     performanceChartJS[filterYear].data.totalPerformance
+                );
+
+                $("#performance-2 .tot_perc").css(
+                    "flexDirection",
+                    "column-reverse"
                 );
 
                 $loading.hide();
@@ -291,6 +297,12 @@ jQuery(document).ready(function($) {
                         $("#performance-2 .tot_txt").html(
                             response.data.totalPerformance
                         );
+
+                        $("#performance-2 .tot_perc").css(
+                            "flexDirection",
+                            "column-reverse"
+                        );
+
                         $loading.hide();
                     },
                     error: function() {

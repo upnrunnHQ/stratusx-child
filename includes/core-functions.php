@@ -372,3 +372,11 @@ function stratusx_child_get_trading_sectors_colors() {
 		'#FFBE33',
 	];
 }
+
+function stratusx_child_get_visible_months() {
+	return [
+		date( 'F', strtotime( '0 month' ) ),
+		date( 'F', strtotime( '-1 month' ) ),
+		date( 'F', strtotime( '-2 month' ) ),
+	];
+}

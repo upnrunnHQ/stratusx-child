@@ -22,8 +22,10 @@ function stratusx_child_get_graph_performance_by_year_via_ajax() {
 	$performance_detail_html = '';
 
 	$current_item_index = 1;
+	$visible_months     = stratusx_child_get_visible_months();
+
 	foreach ( $performance_detail->performance as $performance_item ) {
-		if ( $current_item_index <= 3 ) {
+		if ( in_array( $performance_item->month, $visible_months, true ) ) {
 			$performance_detail_html .= '<div class="monthly_per">';
 		} else {
 			$performance_detail_html .= '<div class="monthly_per" style="display: none;">';

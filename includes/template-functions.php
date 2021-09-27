@@ -11,12 +11,13 @@ function stratusx_child_expert_details_button() {
 }
 
 function stratus_child_get_performance( $performance, $total_performance, $portfolio_id, $list_years ) {
-	$current_item_index = 1;
-	$chartjs            = [];
+	$chartjs = [];
 	foreach ( $performance as $performance_item ) {
 		$chartjs['labels'][] = substr( $performance_item->month, 0, 3 );
 		$chartjs['data'][]   = $performance_item->value;
 	}
+
+	$visible_months = stratusx_child_get_visible_months();
 	?>
 	<div class="performance_main" id="performance-2">
 		<div class="performance_head_area">
@@ -49,11 +50,10 @@ function stratus_child_get_performance( $performance, $total_performance, $portf
 			</div>
 			<div class="tot_perc">
 				<?php foreach ( $performance as $performance_item ) : ?>
-					<div class="monthly_per"<?php echo ( $current_item_index <= 3 ? '' : ' style="display: none;"' ); ?>>
+					<div class="monthly_per"<?php echo ( in_array( $performance_item->month, $visible_months, true ) ? '' : ' style="display: none;"' ); ?>>
 						<h4 class="per_mon"><?php echo $performance_item->month; ?></h4>
 						<h4 class="per_num"><?php echo $performance_item->value; ?>%</h4>
 					</div>
-					<?php $current_item_index++; ?>
 				<?php endforeach; ?>
 			</div>
 		</div>

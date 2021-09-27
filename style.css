@@ -11,80 +11,74 @@ Domain Path:    /languages/
 /* = Theme customization starts here
 -------------------------------------------------------------- */
 @font-face {
-  font-family: "Tajawal";
-  font-style: normal;
-  font-weight: 300;
-  src: url("fonts/ArbFONTS-Tajawal-Light.ttf");
+    font-family: "Tajawal";
+    font-style: normal;
+    font-weight: 300;
+    src: url("fonts/ArbFONTS-Tajawal-Light.ttf");
 }
 
 body {
-  /*text-align: justify;*/
-  font-family: "Tajawal";
+    /*text-align: justify;*/
+    font-family: "Tajawal";
 }
 
 body,
 p,
 li {
-  font-family: "Tajawal" !important;
+    font-family: "Tajawal" !important;
 }
 
 .navbar .navbar-nav {
-  font-family: "Tajawal" !important;
+    font-family: "Tajawal" !important;
 }
 
-.navbar .navbar-nav > li > a,
-.navbar .navbar-nav > li > a:hover,
-.navbar .navbar-nav > li.active > a,
-.navbar .navbar-nav > li.active > a:hover,
-.navbar .navbar-nav > li.active > a:focus,
-.banner[data-transparent-header="true"].headhesive--clone .navbar-nav > li > a,
-.navbar .navbar-nav > li.th-accent {
-  font-family: "Tajawal" !important;
+.navbar .navbar-nav>li>a,
+.navbar .navbar-nav>li>a:hover,
+.navbar .navbar-nav>li.active>a,
+.navbar .navbar-nav>li.active>a:hover,
+.navbar .navbar-nav>li.active>a:focus,
+.banner[data-transparent-header="true"].headhesive--clone .navbar-nav>li>a,
+.navbar .navbar-nav>li.th-accent {
+    font-family: "Tajawal" !important;
 }
 
-.elementor-179
-  .elementor-element.elementor-element-4251bf2
-  .elementor-heading-title {
-  font-weight: normal;
+.elementor-179 .elementor-element.elementor-element-4251bf2 .elementor-heading-title {
+    font-weight: normal;
 }
 
 .footer .widget {
-  text-align: right;
+    text-align: right;
 }
 
 .footer p,
 .footer a,
 .footer ul li,
 .footer ol li {
-  text-align: right;
+    text-align: right;
 }
 
 .th-contact-info-widget .icon-block i {
-  padding-left: 10px;
+    padding-left: 10px;
 }
 
 .top-nav-icon-blocks .icon-block i {
-  padding-left: 13px;
+    padding-left: 13px;
 }
 
 .headhesive--clone #logo img {
-  max-height: 50px !important;
+    max-height: 50px !important;
 }
 
-.navbar-nav > li {
-  float: right;
+.navbar-nav>li {
+    float: right;
 }
 
-.elementor-widget-themo-service-block.elementor-position-left
-  .th-service-block-w
-  .elementor-icon-box-icon {
-  margin-left: 20px;
+.elementor-widget-themo-service-block.elementor-position-left .th-service-block-w .elementor-icon-box-icon {
+    margin-left: 20px;
 }
 
-.elementor-widget-themo-service-block.elementor-position-left
-  .th-service-block-w
-  .elementor-icon-box-wrapper.th-show-icon {
-  text-align: right;
+.elementor-widget-themo-service-block.elementor-position-left .th-service-block-w .elementor-icon-box-wrapper.th-show-icon {
+    text-align: right;
 }
 
 .col-lg-1,
@@ -99,18 +93,15 @@ li {
 .col-lg-10,
 .col-lg-11,
 .col-lg-12 {
-  float: right;
+    float: right;
 }
 
 /*
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6{
 	text-align: right
 }*/
-.elementor-213
-  .elementor-element.elementor-element-zkydphc
-  .th-header-wrap
-  .elementor-icon-box-wrapper {
-  text-align: right;
+.elementor-213 .elementor-element.elementor-element-zkydphc .th-header-wrap .elementor-icon-box-wrapper {
+    text-align: right;
 }
 
 .frm_forms form input[type="text"],
@@ -127,7 +118,7 @@ li {
 .frm_style_formidable-style.with_frm_style input[type="tel"],
 .frm_style_formidable-style.with_frm_style input[type="file"],
 .frm_style_formidable-style.with_frm_style input[type="search"] {
-  font-family: "Tajawal" !important;
+    font-family: "Tajawal" !important;
 }
 
 form input,
@@ -164,7 +155,7 @@ a.frm_save_draft,
 .with_frm_style div.description,
 .with_frm_style div.frm_description,
 .frm_style_formidable-style.with_frm_style .frm_error {
-  font-family: "Tajawal" !important;
+    font-family: "Tajawal" !important;
 }
 
 .frm_forms form label,
@@ -174,7 +165,7 @@ a.frm_save_draft,
 .frm_style_formidable-style.with_frm_style.frm_login_form label,
 .frm_style_formidable-style.with_frm_style .frm_radio label,
 .frm_style_formidable-style.with_frm_style .frm_checkbox label {
-  float: right;
+    float: right;
 }
 
 .frm_forms form label,
@@ -184,75 +175,77 @@ a.frm_save_draft,
 .frm_style_formidable-style.with_frm_style.frm_login_form label,
 .frm_style_formidable-style.with_frm_style .frm_radio label,
 .frm_style_formidable-style.with_frm_style .frm_checkbox label {
-  width: 100%;
-  text-align: right;
+    width: 100%;
+    text-align: right;
 }
 
 .with_frm_style .frm_radio input[type="radio"],
 .with_frm_style .frm_checkbox input[type="checkbox"] {
-  margin: 4px 15px 5px 10px;
+    margin: 4px 15px 5px 10px;
 }
 
 .with_frm_style .chosen-rtl .chosen-choices li.search-choice {
-  padding: 10px;
-  margin: 5px;
-  padding-left: 16px;
+    padding: 10px;
+    margin: 5px;
+    padding-left: 16px;
 }
 
-.with_frm_style
-  .chosen-rtl
-  .chosen-choices
-  li.search-choice
-  .search-choice-close {
-  left: 3px;
-  top: 12px;
+.with_frm_style .chosen-rtl .chosen-choices li.search-choice .search-choice-close {
+    left: 3px;
+    top: 12px;
 }
 
 .with_frm_style .chosen-container-multi .chosen-choices {
-  min-height: 45px;
+    min-height: 45px;
 }
 
 .with_frm_style .chosen-container-multi .chosen-choices li.search-field {
-  line-height: 3;
-  margin-right: 10px;
+    line-height: 3;
+    margin-right: 10px;
 }
 
 .with_frm_style .chosen-container-multi .chosen-choices {
-  border: 1px solid var(--border-color);
+    border: 1px solid var(--border-color);
 }
 
 .with_frm_style .frm_message p {
-  text-align: right;
+    text-align: right;
 }
 
 .woocommerce.single-product .product {
-  margin-top: 0;
+    margin-top: 0;
 }
 
 .themo_cart_icon {
-  margin-left: 2% !important;
+    margin-left: 2% !important;
 }
 
 .navbar .navbar-nav {
-  padding-right: 0px !important;
+    padding-right: 0px !important;
 }
 
 .woocommerce ul.products li.product a.button {
-  width: 150px;
-  margin: 14px 5px 0px 5px;
+    width: 150px;
+    margin: 14px 5px 0px 5px;
 }
+
 /* li.product.type-product {
     height: 400px;
 } */
 @media (max-width: 576px) {
-  .th-form-stacked {
-    width: 100%;
-    padding: 25px 0px;
-  }
+    .th-form-stacked {
+        width: 100%;
+        padding: 25px 0px;
+    }
 }
 
 @media (max-width: 380px) {
-  .elementor-element.elementor-products-grid ul.products {
-    grid-template-columns: repeat(1, 1fr) !important;
-  }
+    .elementor-element.elementor-products-grid ul.products {
+        grid-template-columns: repeat(1, 1fr) !important;
+    }
+}
+
+#performance-2 .tot_perc {
+    display: flex;
+    flex-direction: column-reverse;
 }
