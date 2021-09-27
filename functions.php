@@ -105,6 +105,8 @@ function stratusx_child_expert_details() {
 		$user_information = json_decode( stratusx_child_get_get_user_information( $portfolio_id, $current_year ) );
 		$user_information = $user_information->data[0];
 
+		//print_r($user_information);
+
 		//API 3 graphInformation
 		$graph_performance = json_decode( stratusx_child_get_graph_performance( $portfolio_id, $current_year ) );
 		$graph_performance = $graph_performance->data[0];
@@ -210,7 +212,7 @@ function stratusx_child_expert_details() {
 
 						<div class="exp-add_info">
 							<h4><?php _e( 'معلومات إضافية', 'stratusx-child' ); ?></h4>
-							<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'إحصائيات آخر 12 شهرًا', 'stratusx-child' ); ?>">
+							<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'بيانات إحصائية عن آخر 12 شهر', 'stratusx-child' ); ?>">
 								<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info-white-e.png" alt="info">
 							</a>
 						</div>
@@ -221,7 +223,7 @@ function stratusx_child_expert_details() {
 									<a href="#">
 										<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/calendar-e.png" alt="calendar">
 									</a>
-									<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'عدد المعاملات السنوية', 'stratusx-child' ); ?>">
+									<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'ستظهر هنا عدد الصفقات السنوية', 'stratusx-child' ); ?>">
 										<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/Path-1292.png" alt="info">
 									</a>
 								</div>
@@ -406,4 +408,42 @@ function stratusx_child_expert_details() {
 		</div>
 		<?php
 	endif;
+}
+
+function convert_month_to_arabic( $full, $month ) {
+
+	if( $full == 'full_month' ) {
+
+		$months = array(
+			"January" => "يناير",
+			"February" => "فبراير",
+			"March" => "مارس",
+			"April" => "أبريل",
+			"May" => "مايو",
+			"June" => "يونيو",
+			"July" => "يوليو",
+			"August" => "أغسطس",
+			"September" => "سبتمبر",
+			"October" => "اكتوبر",
+			"November" => "نوفمبر",
+			"December" => "ديسمبر"
+		);
+	} else {
+		$months = array(
+			"Jan" => "يناير",
+			"Feb" => "فبراير",
+			"Mar" => "مارس",
+			"Apr" => "أبريل",
+			"May" => "مايو",
+			"Jun" => "يونيو",
+			"Jul" => "يوليو",
+			"Aug" => "أغسطس",
+			"Sep" => "سبتمبر",
+			"Oct" => "اكتوبر",
+			"Nov" => "نوفمبر",
+			"Dec" => "ديسمبر"
+		);
+	}
+	
+	return 	$months["$month"];
 }

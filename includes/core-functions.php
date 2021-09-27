@@ -16,7 +16,8 @@ function stratusx_child_graph_performance_data_chartjs( $graph_performance ) {
 	];
 
 	foreach ( $graph_performance->performance as $performance ) {
-		$labels[] = substr( $performance->month, 0, 3 );
+		//$labels[] = substr( $performance->month, 0, 3 );
+		$labels[] = convert_month_to_arabic( 'short_month', $performance->month );
 
 		$unfiltered_datasets['Graph'][] = $performance->value;
 		$unfiltered_datasets['CO'][]    = $performance->CO;
@@ -59,7 +60,9 @@ function stratusx_child_get_risk_indicator_data( $user_information ) {
 
 	if ( isset( $user_information->riskPrevious12Month ) ) {
 		foreach ( $user_information->riskPrevious12Month as $risk_item ) {
-			$indicator_data['chartjs']['labels'][]   = substr( $risk_item->month, 0, 3 );
+			//$indicator_data['chartjs']['labels'][]   = substr( $risk_item->month, 0, 3 );
+			$indicator_data['chartjs']['labels'][]   = convert_month_to_arabic( 'full_month', $risk_item->month);
+			
 			$indicator_data['chartjs']['datasets'][] = $risk_item->value;
 		}
 	}
@@ -356,12 +359,12 @@ function stratusx_child_get_curl_response( $url, $postfields ) {
 
 function stratusx_child_get_trading_filters() {
 	return [
-		1 => __( 'One Day', 'stratusx-child' ),
-		2 => __( 'One Week', 'stratusx-child' ),
-		3 => __( 'One Month', 'stratusx-child' ),
-		4 => __( 'Three Months', 'stratusx-child' ),
-		5 => __( 'Six Months', 'stratusx-child' ),
-		6 => __( 'Whole Period', 'stratusx-child' ),
+		1 => __( 'يوما ما', 'stratusx-child' ),
+		2 => __( 'اسبوع واحد', 'stratusx-child' ),
+		3 => __( 'شهر', 'stratusx-child' ),
+		4 => __( 'ثلاث شهور', 'stratusx-child' ),
+		5 => __( 'ستة أشهر', 'stratusx-child' ),
+		6 => __( 'الفترة كلها', 'stratusx-child' ),
 	];
 }
 

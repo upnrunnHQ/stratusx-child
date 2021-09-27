@@ -12,8 +12,10 @@ function stratusx_child_expert_details_button() {
 
 function stratus_child_get_performance( $performance, $total_performance, $portfolio_id, $list_years ) {
 	$chartjs = [];
+	//print_r($performance);
 	foreach ( $performance as $performance_item ) {
-		$chartjs['labels'][] = substr( $performance_item->month, 0, 3 );
+		//$chartjs['labels'][] = substr( $performance_item->month, 0, 3 );
+		$chartjs['labels'][] = convert_month_to_arabic( 'full_month', $performance_item->month);
 		$chartjs['data'][]   = $performance_item->value;
 	}
 
@@ -26,7 +28,7 @@ function stratus_child_get_performance( $performance, $total_performance, $portf
 				<h4 class="performance_txt"><?php _e( 'الاداء', 'stratusx-child' ); ?></h4>
 			</div>
 			<div class="risk_info_icon exp_risk_info">
-				<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'ستجد هنا نمو المحفظة حسب الشهر ، اختر السنة المطلوبة لمراجعة الأداء.', 'stratusx-child' ); ?>">
+				<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'هنا تجد نمو المحفظة بحسب الأشهر، يمكنك اختيار السنة المطلوبة لمراجعة الأداء', 'stratusx-child' ); ?>">
 					<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info.png" alt="info">
 				</a>
 				<div class="g_yearly">
@@ -46,12 +48,13 @@ function stratus_child_get_performance( $performance, $total_performance, $portf
 		<div class="user_totle_month exp_usr_mont">
 			<div class="totle_see_m">
 				<h4 class="tot_txt"><?php printf( __( 'المجموع: %s', 'stratusx-child' ), $total_performance ); ?>%</h4>
-				<a href="#"><?php _e( 'مشاهدة المزيد ', 'stratusx-child' ); ?></a>
+				<a href="#"><?php _e( 'مشاهدة المزيد  ', 'stratusx-child' ); ?></a>
 			</div>
 			<div class="tot_perc">
 				<?php foreach ( $performance as $performance_item ) : ?>
 					<div class="monthly_per"<?php echo ( in_array( $performance_item->month, $visible_months, true ) ? '' : ' style="display: none;"' ); ?>>
-						<h4 class="per_mon"><?php echo $performance_item->month; ?></h4>
+						<!--<h4 class="per_mon"><?php //_e($performance_item->month, 'strarusx-child'); ?></h4>-->
+						<h4 class="per_mon"><?php echo convert_month_to_arabic( 'full_month', $performance_item->month); ?></h4>
 						<h4 class="per_num"><?php echo $performance_item->value; ?>%</h4>
 					</div>
 				<?php endforeach; ?>
@@ -66,11 +69,11 @@ function stratusx_child_get_graph_performance_widget( $graph_performance ) {
 	?>
 	<h4 class="tot_txt per_month">6 الشهور</h4>
 	<div class="monthly_per exp_monthly">
-		<h4 class="per_mon">العائد من فترة الاحتفاظ بالاسهم</h4>
+		<h4 class="per_mon"> العائد من فترة الاحتفاظ بالاسهم </h4>
 		<h4 class="per_num">+<?php echo $graph_performance->HPR; ?>%</h4>
 	</div>
 	<div class="monthly_per exp_monthly">
-		<h4 class="per_mon">الانحراف المعياري </h4>
+		<h4 class="per_mon"> الانحراف المعياري </h4>
 		<h4 class="per_num">+<?php echo $graph_performance->SD; ?>%</h4>
 	</div>
 	<div class="monthly_per exp_monthly">

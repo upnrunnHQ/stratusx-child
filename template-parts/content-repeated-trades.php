@@ -6,7 +6,7 @@
 		<h4 class="repeat_txt">
 			<?php _e( 'الصفقات المتكررة ', 'stratusx-child' ); ?>
 		</h4>
-		<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'نظرة عامة على حركات الأسهم المتكررة', 'stratusx-child' ); ?>">
+		<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'الأسهم التي تم تنفيذ عليها صفقات مكررة', 'stratusx-child' ); ?>">
 			<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info.png" alt="info">
 		</a>
 	</div>
