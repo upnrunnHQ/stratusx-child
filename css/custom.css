@@ -1737,7 +1737,7 @@ i {
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
-    background-image: url(../image/arrow-white.png);
+    background-image: url(./../images/arrow-white.png);
     background-repeat: no-repeat;
     background-position-x: 90%;
     background-position-y: 17px;

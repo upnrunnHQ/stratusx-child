@@ -1,6 +1,12 @@
 <?php
 function stratusx_child_get_list_years( $start_year = 2019 ) {
-	return range( $start_year, date( 'Y' ) );
+	$list_years   = [];
+	$current_year = date( 'Y' );
+	for ( $i = $current_year; $i >= $start_year; $i-- ) {
+		$list_years[] = $i;
+	}
+
+	return $list_years;
 }
 
 function stratusx_child_graph_performance_data_chartjs( $graph_performance ) {
@@ -9,10 +15,10 @@ function stratusx_child_graph_performance_data_chartjs( $graph_performance ) {
 
 	$unfiltered_datasets = [];
 	$background_colors   = [
-		'Graph' => '#2b75ba',
-		'CI'    => '#096DE5',
-		'CO'    => '#3AC236',
-		'D'     => '#2b75ba',
+		'Graph' => 'rgb(9, 109, 229)',
+		'CI'    => 'rgb(60, 220, 78)',
+		'CO'    => 'rgb(23, 197, 255)',
+		'D'     => 'rgb(61, 165, 255)',
 	];
 
 	foreach ( $graph_performance->performance as $performance ) {
@@ -61,8 +67,8 @@ function stratusx_child_get_risk_indicator_data( $user_information ) {
 	if ( isset( $user_information->riskPrevious12Month ) ) {
 		foreach ( $user_information->riskPrevious12Month as $risk_item ) {
 			//$indicator_data['chartjs']['labels'][]   = substr( $risk_item->month, 0, 3 );
-			$indicator_data['chartjs']['labels'][]   = convert_month_to_arabic( 'full_month', $risk_item->month);
-			
+			$indicator_data['chartjs']['labels'][] = convert_month_to_arabic( 'full_month', $risk_item->month );
+
 			$indicator_data['chartjs']['datasets'][] = $risk_item->value;
 		}
 	}
