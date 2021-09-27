@@ -220,31 +220,35 @@ function stratusx_child_expert_details() {
 
 							<div class="trades_monthly exp_trades_monthly">
 								<div class="add_cale">
-									<a href="#">
-										<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/calendar-e.png" alt="calendar">
-									</a>
-									<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'ستظهر هنا عدد الصفقات السنوية', 'stratusx-child' ); ?>">
-										<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/Path-1292.png" alt="info">
-									</a>
+									<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/calendar-e.png" alt="calendar">
 								</div>
 								<div class="a_trades-inner">
 									<div class="a_week_trades">
 										<h5 class="week_num"><?php echo $user_information->totalTradePerWeek; ?></h5>
 										<h5 class="week_txt">الصفقات الاسبوعية </h5>
+										<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'ستظهر هنا عدد الصفقات السنوية', 'stratusx-child' ); ?>">
+											<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/Path-1292.png" alt="info">
+										</a>
 									</div>
 									<div class="a_week_trades">
 										<h5 class="week_num"><?php echo $user_information->totalTradePerMonth; ?></h5>
 										<h5 class="week_txt">الصفقات الشهرية </h5>
+										<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'ستظهر هنا عدد الصفقات السنوية', 'stratusx-child' ); ?>">
+											<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/Path-1292.png" alt="info">
+										</a>
 									</div>
 									<div class="a_week_trades">
 										<h5 class="week_num"><?php echo $user_information->totalTradePerYear; ?></h5>
 										<h5 class="week_txt">الصفقات السنوية </h5>
+										<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'ستظهر هنا عدد الصفقات السنوية', 'stratusx-child' ); ?>">
+											<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/Path-1292.png" alt="info">
+										</a>
 									</div>
 								</div>
 							</div>
 							<div class="trades_monthly exp_trades_monthly1">
 								<div class="add_cale">
-									<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/bar-e.png" alt="calendar"></a>
+									<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/bar-e.png" alt="calendar">
 									<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'متوسط وقت الانتظار ', 'stratusx-child' ); ?>">
 										<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info-orange-e.png" alt="info">
 									</a>
@@ -256,7 +260,7 @@ function stratusx_child_expert_details() {
 							</div>
 							<div class="trades_monthly exp_trades_monthly2">
 								<div class="add_cale">
-									<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/user-e.png" alt="calendar"></a>
+									<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/user-e.png" alt="calendar">
 									<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'تاريخ الانظمام', 'stratusx-child' ); ?>">
 										<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info-green-e.png" alt="info">
 									</a>
@@ -268,7 +272,7 @@ function stratusx_child_expert_details() {
 							</div>
 							<div class="trades_monthly exp_trades_monthly3">
 								<div class="add_cale">
-									<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/bar-purple-e.png" alt="calendar"></a>
+									<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/bar-purple-e.png" alt="calendar">
 									<a tabindex="0" role="button" data-toggle="tooltip" title="<?php _e( 'أعلى خسارة أو أدنى ربح للشهر الماضي', 'stratusx-child' ); ?>">
 										<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info-e.png" alt="info">
 									</a>
@@ -444,6 +448,6 @@ function convert_month_to_arabic( $full, $month ) {
 			"Dec" => "ديسمبر"
 		);
 	}
-	
+
 	return 	$months["$month"];
 }
