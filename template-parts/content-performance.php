@@ -18,4 +18,5 @@
 	<div class="cashout_chart">
 		<canvas id="CashChart" height="240" data-chartjs="<?php echo esc_attr( json_encode( $args['chartjs'] ) ); ?>"></canvas>
 	</div>
+	<span>Ci: الإيداع, Co: السحب, D: التوزيعات</span>
 </div>

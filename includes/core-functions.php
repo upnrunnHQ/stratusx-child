@@ -15,10 +15,10 @@ function stratusx_child_graph_performance_data_chartjs( $graph_performance ) {
 
 	$unfiltered_datasets = [];
 	$background_colors   = [
-		'Graph' => 'rgb(9, 109, 229)',
-		'CI'    => 'rgb(60, 220, 78)',
-		'CO'    => 'rgb(23, 197, 255)',
-		'D'     => 'rgb(61, 165, 255)',
+		'Graph' => '#316EA5',
+		'CO'    => '#E00B05',
+		'CI'    => '#15F20D',
+		'D'     => '#42A4E5',
 	];
 
 	foreach ( $graph_performance->performance as $performance ) {

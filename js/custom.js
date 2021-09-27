@@ -193,7 +193,9 @@ jQuery(document).ready(function($) {
                         ticks: {
                             min: -100,
                             max: 100,
-                            display: false
+                            callback: function(label) {
+                                return `${label}%`;
+                            }
                         },
                         gridLines: {
                             color: "#dddddd",
