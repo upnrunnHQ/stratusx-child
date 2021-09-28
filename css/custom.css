@@ -2771,6 +2771,10 @@ i {
     padding: 7px 15px;
 }
 
+.user_totle_month.exp_usr_mont .totle_see_m.negative {
+    background: #ff0000;
+}
+
 .user_totle_month.exp_usr_mont .totle_see_m a {
     background: transparent;
     color: #ffffff;

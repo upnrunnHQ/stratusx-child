@@ -264,7 +264,7 @@ jQuery(document).ready(function($) {
                 $("#performance-2 .tot_perc").html(
                     performanceChartJS[filterYear].data.performanceDetail
                 );
-                $("#performance-2 .tot_txt").html(
+                $("#performance-2 .user_totle_month__header").html(
                     performanceChartJS[filterYear].data.totalPerformance
                 );
 
@@ -292,6 +292,7 @@ jQuery(document).ready(function($) {
                     url: woocommerce_params.ajax_url,
                     data: formData,
                     success: function(response) {
+                        console.log(response);
                         performanceChartJS[filterYear] = response;
                         var performancelineChartColours = response.data.graphPerformance.data.map(
                             value => (value < 0 ? "#ff4e4e" : "#3AC236")
@@ -307,7 +308,7 @@ jQuery(document).ready(function($) {
                         $("#performance-2 .tot_perc").html(
                             response.data.performanceDetail
                         );
-                        $("#performance-2 .tot_txt").html(
+                        $("#performance-2 .user_totle_month__header").html(
                             response.data.totalPerformance
                         );
 

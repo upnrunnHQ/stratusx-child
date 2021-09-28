@@ -14,6 +14,7 @@ function stratus_child_get_performance( $performance, $total_performance, $portf
 	$current_year  = date( 'Y' );
 	$current_month = date( 'n' );
 	$chartjs       = [];
+	$header_class  = intval( $total_performance ) < 0 ? 'totle_see_m negative' : 'totle_see_m';
 
 	foreach ( $performance as $performance_item ) {
 		if ( ( intval( $performance_item->year ) === intval( $current_year ) ) && ( intval( $performance_item->m ) > $current_month ) ) {
@@ -52,8 +53,10 @@ function stratus_child_get_performance( $performance, $total_performance, $portf
 			<canvas id="performancelineChart" data-chartjs="<?php echo esc_attr( json_encode( $chartjs ) ); ?>"></canvas>
 		</div>
 		<div class="user_totle_month exp_usr_mont">
-			<div class="totle_see_m">
-				<h4 class="tot_txt"><?php printf( __( 'المجموع: %s', 'stratusx-child' ), $total_performance ); ?>%</h4>
+			<div class="user_totle_month__header">
+				<div class="<?php echo esc_attr( $header_class ); ?>">
+					<h4 class="tot_txt"><?php echo __( 'المجموع: ', 'stratusx-child' ) . $total_performance; ?>%</h4>
+				</div>
 			</div>
 			<div class="tot_perc">
 				<?php

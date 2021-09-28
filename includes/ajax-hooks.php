@@ -53,7 +53,14 @@ function stratusx_child_get_graph_performance_by_year_via_ajax() {
 
 	$yearly_data['portfolio_id']      = $portfolio_id;
 	$yearly_data['performanceDetail'] = $performance_detail_html;
-	$yearly_data['totalPerformance']  = sprintf( __( 'Total: %s', 'stratusx-child' ), $performance_detail->totalPerformance ) . '%';
+
+	$header_class = floatval( $performance_detail->totalPerformance ) < 0 ? 'totle_see_m negative' : 'totle_see_m';
+
+	$yearly_data['totalPerformance'] = '
+	<div class="' . $header_class . '">
+		<h4 class="tot_txt">' .  __( 'المجموع: ', 'stratusx-child' ) . $performance_detail->totalPerformance . '%</h4>
+	</div>
+	';
 
 	wp_send_json_success( $yearly_data );
 }
