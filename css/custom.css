@@ -1362,6 +1362,7 @@ i {
     font-size: 14px;
     padding: 5px 8px;
     text-align: center;
+    direction: ltr;
 }
 
 .risk_ind_main .risk_head_area .ri_head_inner .risk_txt {
