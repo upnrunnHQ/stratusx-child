@@ -383,9 +383,9 @@ function stratusx_child_get_trading_filters() {
 
 function stratusx_child_get_trading_sectors_colors() {
 	return [
-		'#3357FF',
-		'#FF4933',
-		'#FFBE33',
+		'#2b75ba',
+		'#f00017',
+		'#dc961f',
 	];
 }
 

@@ -1707,8 +1707,11 @@ i {
 
 /* ---- */
 .user_totle_month .tot_perc .tot_txt.per_month {
-    text-align: right;
+    text-align: left;
     font-size: 15px;
+}
+.user_performance_main .user_p_heading.float-right {
+    margin-top: 25px;
 }
 
 .user_performance_main {

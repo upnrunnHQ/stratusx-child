@@ -10,9 +10,7 @@
 			<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info.png" alt="info">
 		</a>
 	</div>
-	<div class="repeat_see">
-		<a href="#"><?php _e( 'مشاهدة المزيد ', 'stratusx-child' ); ?></a>
-	</div>
+	
 	<div id="repeated-trades" data-portfolio-id="<?php echo esc_attr( $args['portfolio_id'] ); ?>">
 		<?php
 		get_template_part(
@@ -21,5 +19,8 @@
 			[ 'repeated_trades' => $args['repeated_trades'] ]
 		);
 		?>
+	</div>
+	<div class="repeat_see">
+		<a href="#"><?php _e( 'مشاهدة المزيد ', 'stratusx-child' ); ?></a>
 	</div>
 </div>
