@@ -396,3 +396,11 @@ function stratusx_child_get_visible_months() {
 		date( 'F', strtotime( '-2 month' ) ),
 	];
 }
+
+function stratusx_child_sort_by_percentage( $a, $b ) {
+	if ( floatval( $a->percentage ) === floatval( $b->percentage ) ) {
+		return 0;
+	}
+
+	return ( floatval( $a->percentage ) < floatval( $b->percentage ) ) ? 1 : -1;
+}

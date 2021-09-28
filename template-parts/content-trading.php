@@ -8,6 +8,7 @@ $portfolio_id = $args['user_information']->Portfolio_ID;
 <div class="trading_main_area exp-trading">
 	<?php
 	$filter_type = 3;
+	// $filter_type = 6;
 	$trade_data  = stratusx_child_get_filtered_trade( $portfolio_id, $filter_type );
 	$response    = $trade_data->data[0];
 	?>
@@ -16,7 +17,9 @@ $portfolio_id = $args['user_information']->Portfolio_ID;
 			<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/trading.png" alt="">
 			<h4 class="trading_txt"><?php _e( 'الصفقات ', 'stratusx-child' ); ?></h4>
 		</div>
-		<a href="#"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info.png" alt="info"></a>
+		<a tabindex="0" role="button" data-toggle="tooltip" title="نظرة عامة على أداء المحفظة للشهر السابق. يمكنك تحديد أيقونة عامل التصفية لاختيار المدة البديلة">
+			<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/info.png" alt="info">
+		</a>
 	</div>
 	<div class="trading_totle">
 		<?php

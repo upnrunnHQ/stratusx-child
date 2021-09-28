@@ -222,15 +222,21 @@ jQuery(document).ready(function($) {
                 displayColors: true,
                 intersect: false,
                 mode: "index",
-                caretPadding: 10
+                caretPadding: 10,
+                callbacks: {
+                    label: function(tooltipItem) {
+                        return tooltipItem.value + "%";
+                    }
+                }
             }
         }
     });
 
-    $(".totle_see_m").on("click", function(e) {
+    $('#performance-2 button[type="button"]').on("click", function(e) {
         e.preventDefault();
         $("#performance-2 .tot_perc").css("flexDirection", "column");
         $(".tot_perc .monthly_per").css("display", "flex");
+        $(this).css("display", "none");
     });
 
     $("#performance-2").on("change", ".g_year_drp", function() {
@@ -265,6 +271,11 @@ jQuery(document).ready(function($) {
                 $("#performance-2 .tot_perc").css(
                     "flexDirection",
                     "column-reverse"
+                );
+
+                $('#performance-2 button[type="button"]').css(
+                    "display",
+                    "block"
                 );
 
                 $loading.hide();
@@ -303,6 +314,11 @@ jQuery(document).ready(function($) {
                         $("#performance-2 .tot_perc").css(
                             "flexDirection",
                             "column-reverse"
+                        );
+
+                        $('#performance-2 button[type="button"]').css(
+                            "display",
+                            "block"
                         );
 
                         $loading.hide();

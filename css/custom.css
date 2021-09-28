@@ -2752,6 +2752,7 @@ i {
 }
 
 .user_totle_month.exp_usr_mont {
+    padding-bottom: 16px;
     box-shadow: none;
     border: 1px solid #dddddd;
 }

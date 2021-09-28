@@ -5,6 +5,7 @@
 
 $sectors = $args['sectors'];
 $sectors = json_decode( json_encode( $sectors ) );
+uasort( $sectors, 'stratusx_child_sort_by_percentage' );
 ?>
 
 <?php if ( $sectors ) : ?>

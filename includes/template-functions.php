@@ -15,7 +15,6 @@ function stratus_child_get_performance( $performance, $total_performance, $portf
 	$current_month = date( 'n' );
 	$chartjs       = [];
 
-	//print_r($performance);
 	foreach ( $performance as $performance_item ) {
 		if ( ( intval( $performance_item->year ) === intval( $current_year ) ) && ( intval( $performance_item->m ) > $current_month ) ) {
 			continue;
@@ -55,7 +54,6 @@ function stratus_child_get_performance( $performance, $total_performance, $portf
 		<div class="user_totle_month exp_usr_mont">
 			<div class="totle_see_m">
 				<h4 class="tot_txt"><?php printf( __( 'المجموع: %s', 'stratusx-child' ), $total_performance ); ?>%</h4>
-				<a href="#"><?php _e( 'مشاهدة المزيد  ', 'stratusx-child' ); ?></a>
 			</div>
 			<div class="tot_perc">
 				<?php foreach ( $performance as $performance_item ) : ?>
@@ -66,6 +64,7 @@ function stratus_child_get_performance( $performance, $total_performance, $portf
 					</div>
 				<?php endforeach; ?>
 			</div>
+			<button class="btn btn-primary" style="display: block;" type="button"><?php _e( 'مشاهدة المزيد  ', 'stratusx-child' ); ?></button>
 		</div>
 	</div>
 	<?php

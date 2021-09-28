@@ -249,3 +249,7 @@ a.frm_save_draft,
     display: flex;
     flex-direction: column-reverse;
 }
+
+#performance-2 button[type="button"]{
+    border-radius: 5px;
+}
