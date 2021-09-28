@@ -53,5 +53,7 @@ $portfolio_id = $args['user_information']->Portfolio_ID;
 	);
 	?>
 
-	<button class="btn btn-primary" style="<?php echo ( count( $response->tradingSector ) ? '' : 'display: none' ); ?>" type="button"><?php _e( 'See More', 'stratus-child' ); ?></button>
+	<button class="btn btn-primary" style="<?php echo ( count( $response->tradingSector ) ? '' : 'display: none' ); ?>" type="button">
+		مشاهدة المزيد
+	</button>
 </div>

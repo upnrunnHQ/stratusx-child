@@ -1293,6 +1293,7 @@ i {
 }
 
 .user_totle_month .tot_perc .monthly_per .per_num {
+    direction: ltr;
     color: #09d128;
     font-size: 16px;
 }
@@ -1483,6 +1484,7 @@ i {
 }
 
 .trading_main_area .trading_totle .total_trading .tot_inner {
+    direction: ltr;
     text-align: center;
     padding-right: 25px;
 }
@@ -1511,6 +1513,7 @@ i {
     text-align: center;
     width: 142px;
     height: 75px;
+    direction: ltr;
 }
 
 .trading_mains .tra_box .t_bx_num {

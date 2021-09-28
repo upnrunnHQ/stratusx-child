@@ -56,13 +56,17 @@ function stratus_child_get_performance( $performance, $total_performance, $portf
 				<h4 class="tot_txt"><?php printf( __( 'المجموع: %s', 'stratusx-child' ), $total_performance ); ?>%</h4>
 			</div>
 			<div class="tot_perc">
-				<?php foreach ( $performance as $performance_item ) : ?>
+				<?php
+				foreach ( $performance as $performance_item ) :
+					$num_class = intval( $performance_item->value ) < 0 ? 'per_num c_num_r' : 'per_num';
+					?>
 					<div class="monthly_per"<?php echo ( in_array( $performance_item->month, $visible_months, true ) ? '' : ' style="display: none;"' ); ?>>
-						<!--<h4 class="per_mon"><?php //_e($performance_item->month, 'strarusx-child'); ?></h4>-->
 						<h4 class="per_mon"><?php echo convert_month_to_arabic( 'full_month', $performance_item->month ); ?></h4>
-						<h4 class="per_num"><?php echo $performance_item->value; ?>%</h4>
+						<h4 class="<?php echo esc_attr( $num_class ); ?>"><?php echo $performance_item->value; ?>%</h4>
 					</div>
-				<?php endforeach; ?>
+					<?php
+				endforeach;
+				?>
 			</div>
 			<button class="btn btn-primary" style="display: block;" type="button"><?php _e( 'مشاهدة المزيد  ', 'stratusx-child' ); ?></button>
 		</div>
@@ -76,15 +80,15 @@ function stratusx_child_get_graph_performance_widget( $graph_performance ) {
 	<h4 class="tot_txt per_month">6 الشهور</h4>
 	<div class="monthly_per exp_monthly">
 		<h4 class="per_mon"> العائد من فترة الاحتفاظ بالاسهم </h4>
-		<h4 class="per_num">+<?php echo $graph_performance->HPR; ?>%</h4>
+		<h4 class="per_num"><?php echo $graph_performance->HPR; ?>%</h4>
 	</div>
 	<div class="monthly_per exp_monthly">
 		<h4 class="per_mon"> الانحراف المعياري </h4>
-		<h4 class="per_num">+<?php echo $graph_performance->SD; ?>%</h4>
+		<h4 class="per_num"><?php echo $graph_performance->SD; ?>%</h4>
 	</div>
 	<div class="monthly_per exp_monthly">
 		<h4 class="per_mon">معامل شارب </h4>
-		<h4 class="per_num">+<?php echo $graph_performance->SR; ?></h4>
+		<h4 class="per_num"><?php echo $graph_performance->SR; ?></h4>
 	</div>
 	<?php
 	return ob_get_clean();

@@ -253,3 +253,8 @@ a.frm_save_draft,
 #performance-2 button[type="button"]{
     border-radius: 5px;
 }
+
+.performance_chart,
+.risk_indicator_chart {
+    direction: ltr;
+}

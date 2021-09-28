@@ -283,7 +283,7 @@ function stratusx_child_expert_details() {
 										<h5 class="avg_time">اعلى ربح من الصفقات </h5>
 									</div>
 									<div class="tra_days">
-										<h4 class="days"><?php echo $user_information->maxLossTrade; ?></h4>
+										<h4 class="days c_num_r"><?php echo $user_information->maxLossTrade; ?></h4>
 										<h5 class="avg_time">اعلى خسارة من الصفقات </h5>
 									</div>
 								</div>

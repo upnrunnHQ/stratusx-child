@@ -32,17 +32,20 @@ function stratusx_child_get_graph_performance_by_year_via_ajax() {
 			continue;
 		}
 
+		$month     = convert_month_to_arabic( 'full_month', $performance_item->month );
+		$num_class = intval( $performance_item->value ) < 0 ? 'per_num c_num_r' : 'per_num';
+
 		if ( in_array( $performance_item->month, $visible_months, true ) ) {
 			$performance_detail_html .= '<div class="monthly_per">';
 		} else {
 			$performance_detail_html .= '<div class="monthly_per" style="display: none;">';
 		}
 
-		$performance_detail_html .= '<h4 class="per_mon">' . $performance_item->month . '</h4>';
-		$performance_detail_html .= '<h4 class="per_num">' . $performance_item->value . '%</h4>';
+		$performance_detail_html .= '<h4 class="per_mon">' . $month . '</h4>';
+		$performance_detail_html .= '<h4 class="' . $num_class . '">' . $performance_item->value . '%</h4>';
 		$performance_detail_html .= '</div>';
 
-		$yearly_data['graphPerformance']['labels'][] = $performance_item->month;
+		$yearly_data['graphPerformance']['labels'][] = $month;
 		$yearly_data['graphPerformance']['data'][]   = $performance_item->value;
 
 		$current_item_index++;

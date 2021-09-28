@@ -21,8 +21,8 @@ $response = $args['response'];
 		<p class="t_bx_txt c_num_g"><?php _e( 'متوسط قيمة الصفقات الرابحة ', 'stratusx-child' ); ?></p>
 	</div>
 	<div class="tra_box exp_gr-bg">
-		<span class="t_bx_num c_num_g trading-dynamic-value losingValue"><?php echo esc_html( $response->losingValue ); ?></span>
-		<p class="t_bx_txt c_num_g"><?php _e( 'متوسط قيمة الصفقات الخاسرة ', 'stratusx-child' ); ?></p>
+		<span class="t_bx_num c_num_r trading-dynamic-value losingValue"><?php echo esc_html( $response->losingValue ); ?></span>
+		<p class="t_bx_txt c_num_r"><?php _e( 'متوسط قيمة الصفقات الخاسرة ', 'stratusx-child' ); ?></p>
 	</div>
 	<div class="tra_box exp_bg_rd">
 		<span class="t_bx_num c_num_r trading-dynamic-value winingTradeCount"><?php echo esc_html( $response->winingTradeCount ); ?></span>
