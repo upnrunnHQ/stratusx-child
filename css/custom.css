@@ -1750,6 +1750,10 @@ i {
     background-position-y: 17px;
 }
 
+.rtl .g_yearly .g_year_drp {
+    background-position-x: 10%;
+}
+
 /* ---Yearly Chart--- */
 .yearly_chart {
     background: #ffffff;
