@@ -2792,6 +2792,10 @@ i {
     display: inline-block;
 }
 
+.rtl .repeate_area .repeat_avg .t_avg_p .avg-pro .pro_per.c_red {
+    direction: ltr;
+}
+
 .user_totle_month.exp_usr_mont .tot_perc .monthly_per {
     padding: 10px 10px;
 }
