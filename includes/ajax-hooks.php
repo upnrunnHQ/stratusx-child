@@ -58,7 +58,7 @@ function stratusx_child_get_graph_performance_by_year_via_ajax() {
 
 	$yearly_data['totalPerformance'] = '
 	<div class="' . $header_class . '">
-		<h4 class="tot_txt">' .  __( 'المجموع: ', 'stratusx-child' ) . $performance_detail->totalPerformance . '%</h4>
+		<h4 class="tot_txt">' .  __( 'المجموع: ', 'stratusx-child' ) . '<span>' . esc_html( $performance_detail->totalPerformance ) . '%</span></h4>
 	</div>
 	';
 

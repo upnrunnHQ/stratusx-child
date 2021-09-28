@@ -2791,6 +2791,11 @@ i {
     font-size: 20px;
 }
 
+.rtl .user_totle_month.exp_usr_mont .totle_see_m h4 span {
+    direction: ltr;
+    display: inline-block;
+}
+
 .user_totle_month.exp_usr_mont .tot_perc .monthly_per {
     padding: 10px 10px;
 }
