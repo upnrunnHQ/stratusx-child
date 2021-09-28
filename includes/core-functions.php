@@ -21,7 +21,14 @@ function stratusx_child_graph_performance_data_chartjs( $graph_performance ) {
 		'D'     => '#42A4E5',
 	];
 
+	$current_year  = date( 'Y' );
+	$current_month = date( 'n' );
+
 	foreach ( $graph_performance->performance as $performance ) {
+		if ( ( intval( $performance->year ) === intval( $current_year ) ) && ( intval( $performance->m ) > $current_month ) ) {
+			continue;
+		}
+
 		//$labels[] = substr( $performance->month, 0, 3 );
 		$labels[] = convert_month_to_arabic( 'short_month', $performance->month );
 

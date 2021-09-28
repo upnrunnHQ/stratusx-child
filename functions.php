@@ -301,11 +301,13 @@ function stratusx_child_expert_details() {
 									__( 'نسبة النقد ', 'stratus-child' ),
 									__( 'نسبة التسهيلات ', 'stratus-child' ),
 									__( 'نسبة الاسهم ', 'stratus-child' ),
+									__( 'البحث عن النسبة المئوية', 'stratus-child' ),
 								],
 								'data'   => [
 									$user_information->cashPercenage,
 									$user_information->loanPercenage,
 									$user_information->stockPercenage,
+									$user_information->fundPercenage,
 								],
 							]
 						);
@@ -416,38 +418,38 @@ function stratusx_child_expert_details() {
 
 function convert_month_to_arabic( $full, $month ) {
 
-	if( $full == 'full_month' ) {
+	if ( $full == 'full_month' ) {
 
 		$months = array(
-			"January" => "يناير",
-			"February" => "فبراير",
-			"March" => "مارس",
-			"April" => "أبريل",
-			"May" => "مايو",
-			"June" => "يونيو",
-			"July" => "يوليو",
-			"August" => "أغسطس",
-			"September" => "سبتمبر",
-			"October" => "اكتوبر",
-			"November" => "نوفمبر",
-			"December" => "ديسمبر"
+			'January'   => 'يناير',
+			'February'  => 'فبراير',
+			'March'     => 'مارس',
+			'April'     => 'أبريل',
+			'May'       => 'مايو',
+			'June'      => 'يونيو',
+			'July'      => 'يوليو',
+			'August'    => 'أغسطس',
+			'September' => 'سبتمبر',
+			'October'   => 'اكتوبر',
+			'November'  => 'نوفمبر',
+			'December'  => 'ديسمبر',
 		);
 	} else {
 		$months = array(
-			"Jan" => "يناير",
-			"Feb" => "فبراير",
-			"Mar" => "مارس",
-			"Apr" => "أبريل",
-			"May" => "مايو",
-			"Jun" => "يونيو",
-			"Jul" => "يوليو",
-			"Aug" => "أغسطس",
-			"Sep" => "سبتمبر",
-			"Oct" => "اكتوبر",
-			"Nov" => "نوفمبر",
-			"Dec" => "ديسمبر"
+			'Jan' => 'يناير',
+			'Feb' => 'فبراير',
+			'Mar' => 'مارس',
+			'Apr' => 'أبريل',
+			'May' => 'مايو',
+			'Jun' => 'يونيو',
+			'Jul' => 'يوليو',
+			'Aug' => 'أغسطس',
+			'Sep' => 'سبتمبر',
+			'Oct' => 'اكتوبر',
+			'Nov' => 'نوفمبر',
+			'Dec' => 'ديسمبر',
 		);
 	}
 
-	return 	$months["$month"];
+	return  $months[ "$month" ];
 }

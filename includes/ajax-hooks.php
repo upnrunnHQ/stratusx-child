@@ -24,7 +24,14 @@ function stratusx_child_get_graph_performance_by_year_via_ajax() {
 	$current_item_index = 1;
 	$visible_months     = stratusx_child_get_visible_months();
 
+	$current_year  = date( 'Y' );
+	$current_month = date( 'n' );
+
 	foreach ( $performance_detail->performance as $performance_item ) {
+		if ( ( intval( $performance_item->year ) === intval( $current_year ) ) && ( intval( $performance_item->m ) > $current_month ) ) {
+			continue;
+		}
+
 		if ( in_array( $performance_item->month, $visible_months, true ) ) {
 			$performance_detail_html .= '<div class="monthly_per">';
 		} else {

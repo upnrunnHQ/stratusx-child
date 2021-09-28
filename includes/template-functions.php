@@ -11,11 +11,18 @@ function stratusx_child_expert_details_button() {
 }
 
 function stratus_child_get_performance( $performance, $total_performance, $portfolio_id, $list_years ) {
-	$chartjs = [];
+	$current_year  = date( 'Y' );
+	$current_month = date( 'n' );
+	$chartjs       = [];
+
 	//print_r($performance);
 	foreach ( $performance as $performance_item ) {
+		if ( ( intval( $performance_item->year ) === intval( $current_year ) ) && ( intval( $performance_item->m ) > $current_month ) ) {
+			continue;
+		}
+
 		//$chartjs['labels'][] = substr( $performance_item->month, 0, 3 );
-		$chartjs['labels'][] = convert_month_to_arabic( 'full_month', $performance_item->month);
+		$chartjs['labels'][] = convert_month_to_arabic( 'full_month', $performance_item->month );
 		$chartjs['data'][]   = $performance_item->value;
 	}
 
@@ -54,7 +61,7 @@ function stratus_child_get_performance( $performance, $total_performance, $portf
 				<?php foreach ( $performance as $performance_item ) : ?>
 					<div class="monthly_per"<?php echo ( in_array( $performance_item->month, $visible_months, true ) ? '' : ' style="display: none;"' ); ?>>
 						<!--<h4 class="per_mon"><?php //_e($performance_item->month, 'strarusx-child'); ?></h4>-->
-						<h4 class="per_mon"><?php echo convert_month_to_arabic( 'full_month', $performance_item->month); ?></h4>
+						<h4 class="per_mon"><?php echo convert_month_to_arabic( 'full_month', $performance_item->month ); ?></h4>
 						<h4 class="per_num"><?php echo $performance_item->value; ?>%</h4>
 					</div>
 				<?php endforeach; ?>

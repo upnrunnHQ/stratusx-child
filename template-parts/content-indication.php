@@ -20,6 +20,10 @@
 				<h4><?php echo $args['labels'][2]; ?></h4>
 				<h3><?php echo $args['data'][2]; ?>%</h3>
 			</div>
+			<div class="exp_percent exp_fnd">
+				<h4><?php echo $args['labels'][3]; ?></h4>
+				<h3><?php echo $args['data'][3]; ?>%</h3>
+			</div>
 		</div>
 	</div>
 </div>
